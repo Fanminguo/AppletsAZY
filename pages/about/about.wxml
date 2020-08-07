@@ -1,0 +1,12 @@
+<!--pages/about/about.wxml-->
+<view class="about-top">
+    <image class="logo" src="https://bj.aizhiyi.com/wap/images/me_icon/name62.png"></image>
+    <view class="about-test">版本号：2.12.3</view>
+    <view class="about-info">北京爱之依信息技术有限公司致力于打造中国本土特色精品直供平台，平台经营产品涵盖民俗非遗，全国特产，创意定制三大领域。</view>
+</view>
+<view class="about-nav">
+   <!-- <view class="about-nav-info">给我评分<view class="icon"></view></view> -->
+   <view class="about-nav-info" bindtap="toUrl" data-url="https://bj.aizhiyi.com/wap/home/document.html">爱之依服务协议<view class="icon"></view></view>
+   <view class="about-nav-info" bindtap="goDocument"  style="border-bottom:0">用户隐私协议<view class="icon"></view></view>
+</view>
+

@@ -1,0 +1,90 @@
+<!--pages/myAssets/myAssets.wxml-->
+<!-- 我的资产 -->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view>
+	<!-- 信息权益 -->
+	<view class="top-information">
+		<!-- 头像V -->
+		<view class="top-name">
+			<view class="name-img">
+				<image bindtap="goData"  src="{{assets.avatar}}"></image>
+			</view>
+			<view class="name-text" bindtap="goData" wx:if="{{assets.cust_nickname !=''}}">{{assets.cust_nickname}}</view>
+				<view class="name-text" bindtap="goData" wx:else>{{assets.user_name}}</view>
+			<view class="spokesman" wx:if="{{assets.level >0}}">
+				<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/V1.png"></image>
+				<view class="spokesman-text">中华文化代言人</view>
+			</view>
+			<view class="equity">
+				<view bindtap="goequity">V权益</view>
+				<image bindtap="goequity" src="https://bj.aizhiyi.com/wap/images/me_icon/name.png"></image>
+			</view>
+		</view>
+		<!-- 易瓷币代言费 -->
+		<view class="currency clearfix">
+			<view class="flex-row" bindtap="goEndorsement">
+				<view class="currency-class">代言费(元)</view>
+				<view class="balance">{{assets.totalMoney}}</view>
+				<image src="https://bj.aizhiyi.com/wap/images/me_icon/name.png"></image>
+			</view>
+			<view class="flex-row" bindtap="goYici">
+				<view class="currency-class">易瓷币(个)</view>
+				<view class="balance">{{assets.yici_num}}</view>
+				<image src="https://bj.aizhiyi.com/wap/images/me_icon/name.png"></image>
+			</view>
+			<view class="dotted"></view>
+		</view>
+
+	</view>
+	<!-- 动画 -->
+	<!-- <view class="animation clearfix">
+		<image src="{{gundongText.cust_avatar}}"></image>
+		<view class="text">{{gundongText.content}}</view>
+	</view> -->
+	<view class="animation {{ isClass?'marquee' : '' }}">
+      <view class="marquee-content">
+        <block wx:for="{{gundong}}" wx:key="index">
+          <view class="scroll-view-item_H check-info-item">
+            <image class="avatar" mode="{{widthFix}}" src="{{item.cust_avatar}}" />
+           <view class="text">{{item.content}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+
+	<!-- 总收益 -->
+	<view class="profit">
+		<view class="profit-time">
+			<text>资产总收益</text>
+			<view class="ranking" bindtap="rankingList" data-id="{{assets.now_year_totalMoney}}">
+				<view>排行榜 ></view>
+			</view>
+		</view>
+		<!-- 收益 -->
+		<view class="number">
+			<text>收益</text>
+			<text class="number-text">+{{now_year_totalMoney}}</text>
+		</view>
+		<view class="rocket">
+			<view class="progress">
+				<image class="yuanquan" style="left:{{money_percentage}}%" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/zc_huojian@2x.png"></image>
+			</view>
+		</view>
+		<view class="come">您的收益打败了{{assets.money_percentage}}%的用户，加油！</view>
+	</view>
+	<!-- 列表 -->
+	  <view class="workList">
+        <view class="workSing" wx:for="{{spellList}}" wx:key="index" bindtap="{{item.click}}">
+            <image class="workLeft" src="{{item.spellImg}}"></image>
+            <view class="workSword {{item.workSword1}}">
+                <view>{{item.spellName}}</view>
+                <image class="workRight" src="https://bj.aizhiyi.com/wap/images/me_icon/name.png"></image>
+            </view>
+        </view>
+    </view>
+	<view class="bj" bindtap="close" wx:if="{{closeShow}}"></view>
+	<view class="springBox" wx:if="{{closeShow}}">
+		<image class="springBoxImg" bindtap="goWeb" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/zichan_zhuanqianmiji_top@2x.png"></image>
+		<image class="close" bindtap="close" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/close-circle@2x.png"></image>
+	</view>
+</view>

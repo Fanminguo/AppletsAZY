@@ -1,0 +1,95 @@
+/* pages/myNews/index/index.wxss */
+.redDot {
+    font-size: 22rpx;
+    line-height: 26rpx;
+    height: 26rpx;
+	width:26rpx;
+    font-family: Helvetica;
+    color: rgba(255, 255, 255, 1);
+	background: rgba(197, 25, 6, 1);
+	border-radius: 50%;
+	position: absolute;
+	left: 115rpx;
+	top: 28rpx;
+	text-align: center;
+}
+
+page{
+	background: #1D1F28
+}
+.topBox{
+	margin-top: 20rpx;
+	background: #fff;
+	/* height: 1075rpx */
+}
+.box {
+    width: 750rpx;
+    height: 160rpx;
+	position: relative;
+	background: #1D1F28;
+	color: #fff;
+	border-bottom: 1rpx solid #31333F;
+}
+.box .boxContent .text .w450{
+	width: 450rpx;
+}
+.box .boxImg image {
+    width: 93rpx;
+    height: 93rpx;
+    box-shadow: 0 1rpx 2rpx 0 rgba(22, 17, 2, 0.2);
+    border-radius: 16rpx;
+    float: left;
+    margin-top: 38rpx;
+    margin-left: 36rpx;
+}
+
+.box .boxContent {
+    height: 160rpx;
+	
+}
+
+.box .boxContent .boxLeft {
+    float: right;
+    width: 80%;
+    margin-top: 38rpx;
+}
+
+.box .boxContent .boxLeft .name {
+    height: 40rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+    color: #fff;
+    line-height: 40rpx;
+    float: left;
+}
+
+.box .boxContent .boxLeft .tiem {
+    float: right;
+    margin-right: 24rpx;
+    height: 33rpx;
+    font-size: 24rpx;
+    font-weight: 500;
+    color: rgba(155, 155, 155, 1);
+    line-height: 33rpx;
+}
+
+.box .boxContent .text {
+    height: 40rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    color: rgba(155, 155, 155, 1);
+    line-height: 40rpx;
+    padding-left: 75px;
+    margin-top: 86rpx;
+}
+.box .boxContent .text view{
+	width: 150rpx;
+	display: inline-block;
+	text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+	padding-top: 5rpx;
+
+}

@@ -1,0 +1,15 @@
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view class="set-cont">
+	<view class="set-menu" bindtap="">微信<view class="icon"></view>
+		<text class="set-text" wx:if="{{isBoundWx==null}}">未绑定</text>
+		<text class="set-text" wx:else>{{isBoundWx}}</text>
+	</view>
+	<view class="set-menu" bindtap="goZfb">支付宝<view class="icon"></view>
+		<text class="set-text" wx:if="{{isBoundAlipay==null}}">未绑定</text>
+		<text class="set-text" wx:else>{{isBoundAlipay}}</text>
+	</view>
+	<view class="set-menu" bindtap="tofeedback">钱包地址<view class="icon"></view>
+		<text class="set-text" wx:if="{{isExtract==null}}">未绑定</text>
+		<text class="set-text" wx:else>已绑定</text>
+	</view>
+</view>

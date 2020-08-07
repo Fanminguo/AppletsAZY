@@ -1,0 +1,78 @@
+/* pages/myAssets/detailed/detailed.wxss */
+.box-top {
+  text-align: center;
+}
+
+.box-top .amount {
+  font-size: 58rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 60rpx;
+}
+
+.box-top .box-type {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 20rpx;
+  margin-bottom: 76rpx;
+}
+
+.box-middle {
+  width: 690rpx;
+  margin: 0 auto;
+}
+
+.middle-list {
+  width: 690rpx;
+  margin-bottom: 15rpx;
+}
+
+.middle-list .text {
+  float: left;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.middle-list .text-type {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+  float: right;
+  width: 350rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: right;
+}
+
+.mt20 {
+  margin-top: 20rpx;
+}
+
+.objection {
+  width: 750rpx;
+  height: 98rpx;
+  background: rgba(29, 31, 43, 1);
+  line-height: 98rpx;
+  position: relative;
+}
+.objection text{
+font-size:28rpx;
+font-family:PingFangSC-Regular,PingFang SC;
+font-weight:400;
+color:rgba(255,255,255,1);
+margin-left: 30rpx;
+}
+.objection image{
+	position: absolute;
+	top: 41rpx;
+	right: 42rpx;
+	width: 14rpx;
+	height: 25rpx;
+}

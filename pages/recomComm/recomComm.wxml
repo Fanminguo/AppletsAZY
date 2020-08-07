@@ -1,0 +1,81 @@
+<view class="commList clearfix " id="tab-con">
+	<view class="commSingle  fl">
+		<view class="listBox " wx:for="{{listData}}" wx:key="index" wx:if="{{index%2==0}}">
+			<view class="relative">
+				<image mode="widthFix" bindtap="goOrder" data-key="{{index}}" data-name="{{item.video_name}}" data-id='{{item.products_commonid}}' data-index="{{item.products_id}}" class="{{item.image_type == 3?'loevImg' :'loevImg1'}}" src="{{item.image}}"></image>
+				<!-- <view class="likeLove">
+					<view class="loveLeft fl">
+						<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/51.png"></image>
+						<text wx:if="{{item.products_collect<10000}}">{{item.products_collect}}</text>
+						<text wx:if="{{item.products_collect>10000}}">
+						{{filters.toFixOne(item.products_collect/10000)}}w</text>
+					</view>
+					<view class="fr moneyRight">
+						<text>￥{{item.products_price}}</text>
+					</view>
+				</view> -->
+                <view class="products-inner-price">
+					<view class="fl">
+						<view class="products-inner-price-zan"></view>
+						<block wx:if="{{item.products_collect<10000}}">
+							{{item.products_collect}}
+						</block>
+						<block wx:if="{{item.products_collect>10000}}">
+							{{filters.toFixOne(item.products_collect/10000)}}w
+						</block>
+					</view>
+					<view class="fr">￥{{item.products_price}}</view>
+				</view>
+				<view class="delete " bindtap="deleteOrder" data-index="{{index}}">
+					<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/92.png"></image>
+				</view>
+			</view>
+
+			<view class="introDuce">
+				{{item.products_name}}
+			</view>
+		</view>
+	</view>
+	<view class="commSingle  fl">
+		<view class="listBox " wx:for="{{listData}}" wx:key="index" wx:if="{{index%2==1}}">
+			<view class="relative">
+				<!-- <image class="{{item.image_type == 3?'loevImg' :'loevImg1'}}" src="{{item.image}}"></image> -->
+				<image mode="widthFix" bindtap="goOrder" data-key="{{index}}" data-name="{{item.video_name}}" data-id='{{item.products_commonid}}' data-index="{{item.products_id}}" class="{{item.image_type == 3?'loevImg' :'loevImg1'}}" src="{{item.image}}"></image>
+				<!-- <view class="likeLove">
+                    <view class="loveLeft fl">
+                        <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/51.png"></image>
+                        <text wx:if="{{item.products_collect<10000}}">{{item.products_collect}}</text>
+                        <text wx:if="{{item.products_collect>10000}}">
+					 {{filters.toFixOne(item.products_collect/10000)}}w</text>
+                    </view>
+                    <view class="fr moneyRight">
+                        <text>￥{{item.products_price}}</text>
+                    </view>
+                </view> -->
+				<view class="products-inner-price">
+					<view class="fl">
+						<view class="products-inner-price-zan"></view>
+						<block wx:if="{{item.products_collect<10000}}">
+							{{item.products_collect}}
+						</block>
+						<block wx:if="{{item.products_collect>10000}}">
+							{{filters.toFixOne(item.products_collect/10000)}}w
+						</block>
+					</view>
+					<view class="fr">￥{{item.products_price}}</view>
+				</view>
+				<view class="delete" bindtap="deleteOrder" data-index="{{index}}">
+					<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/92.png"></image>
+				</view>
+			</view>
+
+			<view class="introDuce" bindtap="goOrder" data-key="{{index}}" data-name="{{item.video_name}}" data-id='{{item.products_commonid}}' data-index="{{item.products_id}}">
+				{{item.products_name}}
+			</view>
+		</view>
+	</view>
+</view>
+
+<view class="bottom" wx:if="{{!hasmore}}">
+	暂时没有更多了~
+</view>

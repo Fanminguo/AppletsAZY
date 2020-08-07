@@ -1,0 +1,23 @@
+<!-- 加载 -->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view class="shopList" wx:for="{{listData}}" wx:key="index">
+	<view class="shopImg clearfix">
+		<image class="fl shopTU {{item.online?'animat':''}}" src="{{item.store_avatar}}" data-id="{{item.store_id}}" bindtap="goShop"></image>
+		<view class="fl shopBox" data-id="{{item.store_id}}" bindtap="goShop">
+			<view class="shopName">{{item.store_name}}</view>
+			<view class="people">{{item.store_intro}}</view>
+		</view>
+		<view class="fl">
+			<view class="{{!item.follow?'butFollow':'active'}}" data-index="{{index}}" data-id="{{item.store_id}}" bindtap="followShop">{{item.SearchText}}</view>
+		</view>
+		<!-- <view class="delete fl" bindtap="deleteOrder" data-index="{{index}}">
+			<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/guanzhu_cuohao@2x_wps.png"></image>
+		</view> -->
+		<view class="circular-Small" wx:if="{{item.online}}" data-store_id="{{item.store_id}}" bindtap="goList">
+			<view class="circular-Small-text">直播</view>
+		</view>
+	</view>
+</view>
+<view class="bottom" wx:if="{{!hasmore}}">
+	暂时没有更多了~
+</view>

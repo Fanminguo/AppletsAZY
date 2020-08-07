@@ -1,0 +1,22 @@
+<!--pages/set/setAccount/wallet/wallet.wxml-->
+<view>
+	<view class="edit-cont">
+		<view class="edit-inner text">
+			<view>请输入<text>{{mobile}}</text>收到的短信验证码</view>
+		</view>
+		<view class="edit-inner">
+			<input placeholder-class="phcolor" type="number" bindinput="tel_code" class="input" placeholder="请输入短信验证码"></input>
+			<button class="get-btn" disabled='{{disabled}}' bindtap="goGetCode">{{code}}</button>
+		</view>
+		<view class="edit-inner">
+			<input placeholder-class="phcolor" style="width:85%"  bindinput="tel_address" class="input" placeholder="请输入您的钱包地址"></input>
+
+		</view>
+	</view>
+	<view class="editBtn" bindtap="editBtn">去绑定</view>
+	<view class="textList">
+		<view>温馨提示</view>
+		<view>1、只有绑定钱包地址才能转入/转出易瓷币</view>
+		<view>2、请仔细检查钱包地址，一旦转出将无法更改</view>
+	</view>
+</view>

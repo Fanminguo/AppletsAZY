@@ -1,0 +1,8 @@
+<!--pages/set/set.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view class="set-cont">
+   <view class="set-menu" bindtap="toedit">账户与安全<view class="icon"></view></view>
+     <view class="set-menu" bindtap="goSet">提现设置<view class="icon"></view></view>
+   <view class="set-menu" bindtap="tofeedback">意见反馈<view class="icon"></view></view>
+   <view class="set-menu" bindtap="toabout">关于我们<view class="icon"></view></view>
+</view>

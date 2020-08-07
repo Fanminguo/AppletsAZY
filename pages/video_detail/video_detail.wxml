@@ -1,0 +1,264 @@
+<!-- <view class="load_wrap" wx:if="{{!hide}}"></view> -->
+<!-- 头部导航 -->
+
+<view class="nav-list" style="padding-top:{{topHeight}}px">
+
+	<view class="back" wx:if="{{!is_share}}" bindtap="back"></view>
+
+	<view class="hot-shop" style="top:{{topHeight+38}}px" wx:if="{{videos[videoIndex].products_promotion_type==10}}">团购</view>
+	<view class="hot-shop" style="top:{{topHeight+38}}px" wx:if="{{videos[videoIndex].products_promotion_type==2}}">限时购</view>
+</view>
+<!-- 尾部导航 -->
+<!-- 右侧导航 -->
+<view class="right-nav {{!navShow ? ' active' : ''}} {{isIphoneX?'isIPX':''}}">
+	<view class="products-info" wx:if="{{ videos[videoIndex].store_id}}">
+		<image bindtap='tostore' data-storeid="{{videos[videoIndex].store_id}}" style="border-radius:50%" class='products-info-img {{videos[videoIndex].online?"animat":""}}' src='{{videos[videoIndex].store_avatar}}'></image>
+		<button class="circular-Small" style="width: 93rpx;height: 93rpx;top: -0.5vw;left: -0.4vw;" wx:if="{{videos[videoIndex].online}}" bindtap="goList" data-store_id="{{videos[videoIndex].store_id}}">
+			<view class="circular-Small-text" style="border-radius: 50% 50% 20rpx 20rpx;top: 0rpx;left: 17rpx;z-index: 2;">直播</view>
+		</button>
+		<view class='products-info-icon' wx:if="{{videos[videoIndex].is_favorate_store==false}}" bindtap='tofollowStore' data-store_id="{{videos[videoIndex].store_id}}"></view>
+		<!-- <view class='products-info-icon' bindtap='tofollowStore'></view> -->
+	</view>
+	<!-- <image data-store_id="{{videos[videoIndex].store_id}}" class='products-info-icon' bindtap='tofollowStore' src="{{videos[videoIndex].is_favorate_products ? 'https://bj.aizhiyi.com/wap/test/wap/xcxImg/43.png' : 'https://bj.aizhiyi.com/wap/test/wap/xcxImg/1.png'}}"></image> -->
+	<!-- <view class="activity" bindtap="goactivity">
+     <view class="activity-icon"></view>
+     <text>活动</text>
+   </view> -->
+	<!-- <view class="fabulous2" bindtap="daimaiClick2" data-products_id="{{videos[videoIndex].products_id}}"  data-pointratio="{{videos[videoIndex].products_collect}}">
+      <image class='fabulous-img'  src="{{videos[videoIndex].is_favorate_products ? 'https://bj.aizhiyi.com/wap/test/wap/xcxImg/52.png' : 'https://bj.aizhiyi.com/wap/test/wap/xcxImg/51.png'}}"></image>
+      <text>{{videos[videoIndex].products_collect}}</text>
+      
+   </view> -->
+	<view class="fabulous2" bindtap="daimaiClick2" wx:if="{{!indexFalse}}" data-products_id="{{videos[videoIndex].products_id}}" data-pointratio="{{videos[videoIndex].products_collect}}">
+		<image class='fabulous-img' src="{{videos[videoIndex].is_favorate_products ? 'https://bj.aizhiyi.com/wap/test/wap/xcxImg/52.png' : 'https://bj.aizhiyi.com/wap/test/wap/xcxImg/51.png'}}"></image>
+		<text>{{videos[videoIndex].products_collect}}</text>
+	</view>
+	<view class="fabulous" bindtap="pinglun" data-id="{{videos[videoIndex].products_commonid}}">
+		<view class="comment-btn"></view>
+		<text>{{videos[videoIndex].common_count}}</text>
+	</view>
+	<view class="share" open-type='share'>
+		<button open-type='share' class='share-img' data-id="{{videos[videoIndex].products_commonid}}"></button>
+		<text>分享</text>
+	</view>
+	<!-- <view class="load" bindtap="toload">
+      <image class='load-img' src='https://bj.aizhiyi.com/wap/test/wap/xcxImg/6.png'></image>
+      <text>下载app</text>
+   </view> -->
+	<!-- <button class="go-simi on" open-type="getUserInfo" wx:if="{{ videos[videoIndex].products_id}}" bindtap="gosimlar" data-productid="{{videos[videoIndex].products_id}}" data-pcid="{{videos[videoIndex].pc_id}}">
+	<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/49.png"></image>
+   </button> -->
+	<button class="go-simi " open-type="getUserInfo" wx:if="{{ !videos[videoIndex].products_id}}" bindtap="gosimlar" data-productid="{{videos[videoIndex].products_id}}" data-pcid="{{videos[videoIndex].pc_id}}">
+		<image class="simiImg on" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/58.png?56"></image>
+	</button>
+	<button class="go-simi " open-type="getUserInfo" wx:if="{{videos[videoIndex].products_id}}" bindtap="gosimlar" data-productid="{{videos[videoIndex].products_id}}" data-pcid="{{videos[videoIndex].pc_id}}">
+		<view class="simiImg on">
+			<image class="Img" src="{{videos[videoIndex].products_image}}"></image>
+		</view>
+	</button>
+</view>
+<!-- 商品信息 -->
+<view class="products-bottom {{!navShow ? ' active' : ''}} {{isIphoneX?'isIPX':''}}" catchtap="multipleTap" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd" bindtouchcancel="touchCancel" style="color:#fff">
+	<button class="products-bottom-name" data-productid="{{videos[videoIndex].products_id}}" bindtap="joincart">{{videos[videoIndex].products_name}}</button>
+	<button class="products-bottom-store" data-storeid="{{videos[videoIndex].store_id}}" bindtap="tostore"><text>@</text>{{videos[videoIndex].store_name}}</button>
+	<view class="products-bottom-jian-img"></view>
+	<view class="products-bottom-jian" data-productid="{{videos[videoIndex].products_id}}" bindtap="godetik">
+		<view class="example">
+			<view class="marquee_box">
+				<view class="marquee_text" style="{{orientation}}:{{marqueeDistance2}}px;font-size: {{size}}px;">
+					<text>{{videos[videoIndex].products_jingle}}{{videos[videoIndex].products_jingle}}{{videos[videoIndex].products_jingle}}{{videos[videoIndex].products_jingle}}{{videos[videoIndex].products_jingle}}{{videos[videoIndex].products_jingle}}{{videos[videoIndex].products_jingle}}{{videos[videoIndex].products_jingle}}{{videos[videoIndex].products_jingle}}{{videos[videoIndex].products_jingle}}{{videos[videoIndex].products_jingle}}{{videos[videoIndex].products_jingle}}{{videos[videoIndex].products_jingle}}{{videos[videoIndex].products_jingle}}{{videos[videoIndex].products_jingle}}{{videos[videoIndex].products_jingle}}{{videos[videoIndex].products_jingle}}{{videos[videoIndex].products_jingle}}</text>
+				</view>
+			</view>
+		</view>
+		<!-- <view style="transform: translateX(-{{marqueeDistance}}px);">
+         <text style="margin-right:{{marquee_margin}}px;"></text>
+         <text style="margin-right:{{marquee_margin}}px;"></text> 
+         <text style="{{orientation}}:{{marqueeDistance}}px;font-size: {{size}}px;"></text> 
+      </view> -->
+	</view>
+</view>
+<!-- 视频滑动 -->
+<view class="container" catchtap="multipleTap" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd" bindtouchcancel="touchCancel">
+	<view class="video_dialog"></view>
+	<block wx:if="{{is_show6}}">
+		<image class="showImg" src="{{videos[videoIndex].video_thum}}"></image>
+	</block>
+	<block wx:if="{{!is_show6}}">
+		<view class='coverPic {{videoImg}}'>
+			<view class='prevCoverImgCon {{prevCoverStatus}}'>
+				<image class='prevCoverImg' mode="aspectFill" src='{{prevCoverImg}}' animationend="testEvent"></image>
+			</view>
+			<view class='curCoverImgCon {{curCoverStatus}}'>
+				<image class='curCoverImg' mode="aspectFill" src='{{curCoverImg}}' animationend="testEvent"></image>
+			</view>
+			<view class='nextCoverImgCon {{nextCoverStatus}}' animationend="testEvent">
+				<image class='nextCoverImg' mode="aspectFill" src='{{nextCoverImg}}'></image>
+			</view>
+		</view>
+
+		<video poster="{{videos[videoIndex].video_thum}}" class="vvideo video {{videoStatus}}" bindtimeupdate="bindtimeupdate" bindwaiting="bindwaiting" id="kdvideo" binderror="binderror" autoplay="{{autoplay}}" hidden="{{animationShow}}" objectFit="cover" src="{{videos[videoIndex].video_name}}" bindplay="bindplay" controls="{{controls}}" loop="true"></video>
+		<image class="play-btn" wx:if="{{!playState && !animationShow}}" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/42.png"></image>
+		<progress class="progress {{isIphoneX?'isIPX':''}}" percent="{{percent}}" activeColor="#ffffff" backgroundColor="#A9A9A9" stroke-width="1" wx:if="{{!waiting}}" />
+		<image class="loadgif {{isIphoneX?'isIPX':''}}" wx:if="{{waiting}}" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/a222.gif?90"></image>
+	</block>
+
+</view>
+<view class="comment-box bottom-pl {{isIphoneX?'isipXbottom':''}}" bindtap="pinglun" data-id="{{videos[videoIndex].products_commonid}}">
+	<view class="text">
+		<span class="icon">
+			<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/b_bianji@2x.png"></image>
+		</span>
+		<label class="input">喜欢就说点什么吧</label>
+		<!-- <input class="input" readonly unselectable="on" type="text" value="{{commentText}}" confirm-type="done" placeholder="喜欢就说点什么吧"></input> -->
+		<!-- <input wx:if="{{newName}}" class="input" type="text" value="{{commentText}}" bindconfirm="commentConfirm" bindinput="setCommentText" confirm-type="done" placeholder="回复：{{newName}}"></input>
+        <view class="release" bindtap="commentConfirm">
+            发布
+        </view> -->
+	</view>
+</view>
+
+
+<!-- 评论弹出层 -->
+<view class='maskContent' bindtap="quxiao" hidden="{{isHide}}" catchtouchmove='true'></view>
+<view class="comment-box {{isIphoneX?'isipXbottom':''}}" hidden="{{isHide}}">
+	<span class="title">共{{percentage.comments_count}}条评论</span>
+	<image class="quxiao" bindtap="quxiao" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/b_quxiao.png"></image>
+	<view class="box" >
+		<!-- 查看评论 -->
+		<view class="plOne" wx:if="{{Eject}}" style="padding-bottom:5rpx;background: #1D1F28">
+			<view class="plName">
+				<view class="clearfix">
+					<view class="clearfix w60">
+						<image src="{{comment_custimage}}"></image>
+						<text>{{comment_custname}}</text>
+					</view>
+				</view>
+				<view class="plContent">
+					{{comment_content}}
+				</view>
+			</view>
+		</view>
+		<!-- 评论置顶 -->
+		<view class="plOne" wx:if="{{comment_false}}">
+			<view class="plName">
+				<view class="clearfix">
+					<view class="clearfix w60" bindlongpress="longPress" data-id="{{comment_text.comment_id}}" data-num="{{comment_text.cust_id}}" data-index="{{comment_text.comments_type}}" data-name="{{comment_text.comment_custname}}">
+						<image src="{{comment_text.comment_custimage}}"></image>
+						<text>{{comment_text.comment_custname}}</text>
+					</view>
+					<view class="fabulous-box fr" data-id="{{comment_text.comment_id}}" data-type="2" data-video="{{comment_text.products_commonid}}" data-curIndex="{{index}}" bindtap="daimaiClick" data-likes="{{comment_text.is_likes}}" products_commonid="{{comment_text.products_commonid}}">
+						<image class='fabuImg fr' src='{{comment_text.is_likes == "0"?daimaisrc:heartsrc}}'></image>
+						<view class="fabuText fr">{{comment_text.like_num}}</view>
+					</view>
+				</view>
+				<view class="plContent">
+					{{comment_text.comment_content}}
+				</view>
+			</view>
+		</view>
+
+
+
+		<view class="plOne" wx:for="{{mentList}}" wx:for-index="index" wx:key="index">
+			<view class="plName">
+				<view class="clearfix">
+					<view class="clearfix w60" bindlongpress="longPress" data-id="{{item.comment_id}}" data-num="{{item.cust_id}}" data-index="{{item.comments_type}}" data-name="{{item.comment_custname}}">
+						<image src="{{item.comment_custimage}}"></image>
+						<text>{{item.comment_custname}}</text>
+					</view>
+					<view class="fabulous-box fr" data-id="{{item.comment_id}}" data-type="{{item.comments_type}}" data-video="{{item.products_commonid}}" data-curIndex="{{index}}" bindtap="daimaiClick" data-likes="{{item.is_likes}}" data-pointratio="{{videos[videoIndex].products_collect}}" products_commonid="{{item.products_commonid}}">
+						<image class='fabuImg fr' src=' {{item.is_likes == "0"?daimaisrc:heartsrc}}'></image>
+						<view class="fabuText fr">{{item.like_num}}</view>
+					</view>
+				</view>
+				<view class="plContent">
+					{{item.comment_content}}
+				</view>
+			</view>
+
+			<!-- 追评 -->
+			<view class="clearfix">
+				<view class="bars" bindtap="display" wx:if="{{!item.exhibi &&item.received_comment_count >0}}" data-id="{{item.comment_id}}">一展开{{item.received_comment_count}}条评论</view>
+				<view class="barsList" bindtap="review" wx:if="{{item.exhibi}}" wx:for="{{content}}" wx:key="index" wx:for-item="g" data-id="{{g.comment_id}}" data-num="{{g.cust_id}}" data-index="{{g.comments_type}}" data-numId="{{g.parent_respond_commentid}}" data-name="{{g.comment_custname}}">
+					<view class="clearfix">
+						<image src="{{g.comment_custimage}}"></image>
+						<view class="name">{{g.comment_custname}}</view>
+					</view>
+					<view class="text">
+						回复
+						<text>{{g.cust_name}}：</text> {{g.comment_content}}
+					</view>
+				</view>
+				<view class="bars" wx:if="{{item.exhibi}}" data-id="{{item.comment_id}}" bindtap="addReview">{{addReviewText}}</view>
+			</view>
+		</view>
+		<view class="bars" bindtap="moreList" wx:if="{{mentList.length>=8}}">更多评论</view>
+		<view class="blankboxImg" wx:if="{{!comment_false && mentList.length <=0}}">
+				<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/mediumnoconnection@2x.png"></image>
+				<view class="blankboxText">留下个记号吧</view>
+			</view>
+	</view>
+	<!-- 评论没数据时 -->
+	<!-- <view class="box" wx:if="{{mentList.length <=0}}">
+		<view class="empty">
+			 <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/no-connection@2x.png"></image> 
+		</view>
+	</view> -->
+	<view class="text">
+		<span class="icon">
+			<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/b_bianji@2x.png"></image>
+		</span>
+		<input cursor-spacing="0" adjust-position="false" wx:if="{{!newName}}" class="input" type="text" value="{{commentText}}" bindconfirm="commentConfirm" bindinput="setCommentText" confirm-type="done" placeholder="喜欢就说点什么吧"></input>
+		<input cursor-spacing="0" adjust-position="false" wx:if="{{newName}}" class="input" type="text" value="{{commentText}}" bindconfirm="commentConfirm" bindinput="setCommentText" confirm-type="done" placeholder="回复：{{newName}}"></input>
+		<button class="release" bindtap="commentConfirm" style="position:relative; z-index:10">
+			发布
+		</button>
+	</view>
+</view>
+
+<!-- 代金券 -->
+<view class="voucher-bj" wx:if="{{showVoucher}}" style="display:none">
+	<view class="voucher">
+		<view class="voucher-top">
+			<view>恭喜你</view>
+			<view>领券成功</view>
+		</view>
+		<view class="voucher-cont clearfix" wx:if="{{newVoucher}}">
+			<view class="voucher-cont-price fl">
+				<view class="h3"><text>￥</text>160<text style="margin-left:5rpx">元</text></view>
+			</view>
+			<view class="voucher-cont-text fl" style="line-height:60rpx">
+				<view class="h3">购物畅想</view>
+				<view class="h3">新人大礼包</view>
+			</view>
+		</view>
+		<view class="voucher-cont clearfix" wx:if="{{fiveVOucher}}">
+			<view class="voucher-cont-price fl">
+				<view class="h3"><text>￥</text>5<text style="margin-left:5rpx">元</text></view>
+			</view>
+			<view class="voucher-cont-text fl" style='line-height:50rpx; padding-top:10rpx;'>
+				<view class="h3">拼团畅想</view>
+				<view class="h3">拼团成功</view>
+			</view>
+		</view>
+		<view class="voucher-cont clearfix" wx:if="{{sevenVoucher}}" style="display:none">
+			<view class="voucher-cont-price fl">
+				<view class="h3"><text>￥</text>0<text style="margin-left:5rpx">元</text></view>
+			</view>
+			<view class="voucher-cont-pintext fl" style='line-height:50rpx; padding-top:10rpx;'>
+				<view class="h3">拼团畅想</view>
+				<view class="h3">0元拼团</view>
+			</view>
+		</view>
+		<view class="voucher-date">有效期：{{voucherTime}}</view>
+		<view class="voucher-btn" bindtap="hideVoucher">我知道了</view>
+	</view>
+</view>
+
+<view class="newTips" wx:if="{{showTips}}" style="display:none">
+	<view class="newTips-cont">
+		<image class="one" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/111.png"></image>
+		<image class="two" style="height:217rpx" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/114.png"></image>
+		<view class="newTips-cont-btn" bindtap="hideTips">我知道了</view>
+	</view>
+</view>

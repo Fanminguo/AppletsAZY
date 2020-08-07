@@ -1,0 +1,122 @@
+/* pages/recomShop/recomShop.wxss */
+
+page {
+    background: #161824;
+}
+
+.shopList {
+    width: 750rpx;
+    height: 113rpx;
+    margin: 30rpx 0 40rpx 0;
+}
+.shopImg{
+    position: relative;
+}
+.shopImg .shopTU {
+    height: 100rpx;
+    width: 100rpx;
+    margin-left: 24rpx;
+    border-radius: 50%;
+    margin-right: 30rpx;
+}
+
+/* 店铺名称 */
+
+.shopName {
+    font-size: 28rpx;
+    font-family: PingFangSC;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
+    -webkit-background-clip: text;
+}
+
+/* 获赞 */
+
+.shopFabu {
+    height: 33rpx;
+    /* background: rgba(57, 59, 68, 1); */
+    border-radius: 3rpx;
+    opacity: 0.5;
+    line-height: 33rpx;
+}
+
+.shopFabu .hongxin {
+    width: 30rpx;
+    height: 30rpx;
+    margin-left: 5rpx;
+    margin-right: 5rpx;
+}
+
+.shopFabu text {
+    font-size: 20rpx;
+    font-family: PingFangSC;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 1);
+}
+
+/* 名称 */
+
+.shopBox {
+    width: 388rpx;
+}
+
+
+/* 感兴趣 */
+
+.people {
+    height: 33rpx;
+    font-size: 24rpx;
+    font-family: PingFangSC;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 33rpx;
+}
+
+/* 按钮 */
+
+.butFollow {
+    width: 166rpx;
+    height: 58rpx;
+    background: rgba(202, 73, 58, 1);
+    border-radius: 8rpx;
+    line-height: 58rpx;
+    text-align: center;
+    color: #fff;
+    margin-top: 21rpx;
+}
+
+/* 选中 */
+
+.active {
+    width: 166rpx;
+    height: 58rpx;
+    background: rgba(57, 59, 68, 1);
+    border-radius: 8rpx;
+	line-height: 58rpx;
+	text-align: center;
+	color:rgba(255,255,255,1);
+	margin-top: 21rpx;
+}
+/* 删除 */
+/* .delete{
+	margin-top: 27rpx;
+	margin-left: 20rpx;
+} */
+.delete image{
+	width: 44rpx;
+	height: 44rpx;
+}
+.bottom {
+	width: 750rpx;
+    height: 100rpx;
+    font-size: 24rpx;
+    font-family: PingFangSC;	
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 100rpx;
+	text-align: center;
+}
+.circular-Small{
+    top: -6rpx;
+left: 19rpx;
+}

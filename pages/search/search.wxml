@@ -1,0 +1,139 @@
+<wxs module="filters" src="../../utils/filters.wxs"></wxs>
+<view class="load_wrap" wx:if="{{!hide1}}"></view>
+<view class="SearchBox">
+    <view class="Search_input_top_box">
+        <view class="Search_ico_box">
+            <icon class="Search_ico weui-icon-search_in-box" type="search" size="14"></icon>
+        </view>
+        <input class="Search_Input" placeholder='请输入搜索内容' bindinput='inputvalue' value="{{input_value}}" bindfocus="activeFocus" bindconfirm="wxSearchConfirm" focus ></input>
+        <view class="Search_btn" bindtap='search'>{{SearchText}}</view>
+    </view>
+    <!--搜索记录盒子-->
+    <view class="Search_record_box" wx:if="{{listarr.length>0 && inputVal.length <= 0}}">
+        <view class="Search_record_text">
+            <text>搜索记录</text>
+            <view class="dele fr">
+                <!-- <icon bindtap='delete_list' type="clear" size="14"></icon> -->
+                <image  bindtap='delete_list' src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/lajitong.png"></image>
+            </view>
+        </view>
+        <!--记录词的盒子-->
+        <view class="History_box">
+            <view class="History-list">
+                <text wx:for="{{listarr}}" data-text="{{item}}" wx:key="key" bindtap='this_value'>{{item}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="Search_record_box" wx:if="{{inputVal.length <= 0}}">
+        <view class="Search_record_text">
+            <text>热门搜索</text>
+        </view>
+        <!--记录词的盒子-->
+        <view class="History_box">
+            <view class="History-list">
+                <text wx:for="{{popularList}}" data-text="{{item}}" wx:key="key" bindtap='this_value'>{{item}}</text>
+            </view>
+        </view>
+    </view>
+</view>
+<!-- 模糊搜索 -->
+<view class="Search_xian" wx:if="{{hide}}">
+    <scroll-view class="scrollView" scroll-y>
+        <view wx:for="{{listDataCopy}}" wx:key="*this" data-text="{{item}}" bindtap='this_value'>
+            {{item}}
+        </view>
+    </scroll-view>
+</view>
+
+<!-- <view class="boxSearch" wx:if="{{!hide}}"> -->
+    <!-- 商品热搜榜 -->
+    <!-- <view class="clearfix">
+        <view class="search clearfix">
+            <view class="topSearch">
+                <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/b3_1.png"></image>
+                <view class="color">商品热搜榜</view>
+            </view>
+            <view class="rightBtn" bindtap="goSearchList">
+                <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/jinqu.png"></image>
+                <view>查看更多</view>
+            </view>
+        </view> -->
+        <!-- 商品热列表 -->
+        <!-- <view class="searchList clearfix" wx:for="{{hotSearch}}" wx:key="index" data-id="{{item.products_commonid}}" bindtap="goVideo" data-index="{{item.products_id}}">
+            <view class="orderList">
+                <image class="orderImg" src="{{item.products_image}}"></image>
+            </view>
+            <view class="likeImg">
+                <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/b3_1@2x.png"></image>
+                <view wx:if="{{item.products_collect<10000}}">
+                    {{item.products_collect}}
+                </view>
+                <view wx:if="{{item.products_collect>10000}}">
+                    {{filters.toFixOne(item.products_collect/10000)}}w
+                </view>
+
+            </view>
+        </view>
+    </view> -->
+    <!-- 店铺人气榜 -->
+    <!-- <view class="clearfix">
+        <view class="search clearfix">
+            <view class="topSearch">
+                <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/b3_2.png"></image>
+                <view class="color">店铺人气榜</view>
+            </view>
+            <view class="rightBtn" bindtap="popularity">
+                <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/jinqu.png"></image>
+                <view>查看更多</view>
+            </view>
+        </view> -->
+        <!-- 人气榜列表 -->
+        <!-- <view class="clearfix">
+            <view class="popularityList {{index == 1?'orange':''}}{{index == 2?'blue':''}}{{index == 3?'darkBlue':''}}" wx:for="{{popularityList}}" wx:key="index" data-id="{{item.store_id}}" bindtap="goShop">
+                <view class="boxName clearfix">
+                    <view class="name">{{item.store_name}}</view>
+                    <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/进入@2x.png"></image>
+                </view> -->
+                <!-- 内容 -->
+                <!-- <view class="content clearfix">
+                    <view class="contentImg">
+                        <image src="{{item.store_avatar}}"></image>
+                    </view>
+                    <view class="sortContent">
+                        <view class="sort">Top.{{index +1}}</view>
+                        <view class="sortText">{{item.store_intro}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view> -->
+    <!-- 推荐榜 -->
+    <!-- <view class="clearfix">
+        <view class="search clearfix">
+            <view class="topSearch">
+                <image class="tuijianImg" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/b3_3 .png"></image>
+                <view class="color">推荐榜</view>
+            </view>
+            <view class="rightBtn" bindtap="recom">
+                <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/jinqu.png"></image>
+                <view>查看更多</view>
+            </view>
+        </view> -->
+        <!-- 推荐榜列表 -->
+        <!-- <view class="recommend clearfix" wx:for="{{recommend}}" wx:key="index" data-id="{{item.products_commonid}}" bindtap="goVideo" data-index="{{item.products_id}}">
+            <view class="recomList">
+                <image class="orderImg" src="{{item.products_image}}"></image>
+                <view class="loveNum">
+                    <view wx:if="{{item.products_collect < 10000}}">{{item.products_collect}}</view>
+                    <view wx:if="{{item.products_collect > 10000}}">{{filters.toFixOne(item.products_collect/10000)}}w</view>
+                    <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/51.png"></image>
+                </view>
+                <view class="nameBrief">
+                    <text>
+					{{item.products_name}}
+				</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view> -->

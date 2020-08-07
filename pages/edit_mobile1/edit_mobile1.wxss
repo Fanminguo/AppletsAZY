@@ -1,0 +1,18 @@
+/* pages/edit_mobile1/edit_mobile1.wxss */
+
+.edit-cont{ padding-top: 20rpx; border-radius:26rpx;}
+.edit-inner{ height: 100rpx; line-height:100rpx; margin-left: 30rpx; border-bottom: solid 2rpx #31333F; position: relative;color:rgba(155,155,155,0.8);font-size: 28rpx;}
+.input{ height: 100rpx; width: 500rpx; color:rgba(155,155,155,0.8);font-size: 28rpx;}
+button.get-btn{ color: #CA493A;width:162rpx;height:50rpx;border-radius:8rpx; font-size: 28rpx; border: solid 1rpx #CA493A;
+line-height: 47rpx; text-align: center; position: absolute; right: 32rpx; top: 26rpx; padding: 0;}
+.edit-btn{width:680rpx;height:88rpx;background:#CA493A;border-radius:44rpx; margin: 60rpx auto 0;font-size:30rpx;text-align: center;
+line-height: 88rpx; color: #fff; }
+.edit-no{ font-size: 24rpx; text-align: center; margin-top: 68rpx; color: #626262 }
+.code{width:200rpx;height:80rpx; position: absolute; right: 30rpx; top: 10rpx;}
+.phcolor{
+    color: rgba(155,155,155,0.8);
+}
+button .get-btn[disabled]{
+    color: #CA493A;
+    background-color: none;
+}

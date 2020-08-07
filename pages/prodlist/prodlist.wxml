@@ -1,0 +1,119 @@
+<!--pages/prodlist/prodlist.wxml-->
+<wxs module="filters" src="../../utils/filters.wxs"></wxs>
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<!-- 搜索 -->
+<view class="Search_input_top_box">
+	<view class="Search_ico_box">
+		<icon class="Search_ico weui-icon-search_in-box" type="search" size="14"></icon>
+	</view>
+	<input class="Search_Input" focus="{{name_focus}}" bindinput='inputvalue' value="{{keyword}}" bindconfirm="wxSearchConfirm"></input>
+	<view class="Search_btn" bindtap='search'>{{SearchText}}</view>
+</view>
+<view class="clearfix">
+	<!-- tab切换 -->
+	<view class="small_nav {{tabFixed?'small_navFix':''}}" id="tab-con">
+		<scroll-view scroll-x="true" scroll-left="{{scrollLeft}}">
+			<view class="small_nav_scroll">
+				<view class="{{id=='0'?'cur':' '}}" data-id="0" bindtap="switchNav">综合</view>
+				<view class="{{id==item.categoryId?'cur':' '}}" wx:for="{{typeList}}" wx:key="index" data-id="{{item.categoryId}}" data-index="{{index}}" bindtap="switchNav">{{item.categoryName}}</view>
+				<view class=" {{id=='3'?'cur':' '}} Price" data-id="3" data-index="{{screen}}" bindtap="switchNav">价格</view>
+				<text class="screen" data-id="{{screen}}" wx:if="{{screen == 0}}"></text>
+				<text class="screen screenOne" data-id="{{screen}}" wx:if="{{screen == 1}}"></text>
+				<text class="screen screenTwo" data-id="{{screen}}" wx:if="{{screen == 2}}"></text>
+			</view>
+		</scroll-view>
+		<!-- 筛选 -->
+		<view class="animation-button" bindtap="translate">筛选</view>
+		<view class="float {{isRuleTrue?'isRuleShow':'isRuleHide'}}" bindtap="succHide">
+		</view>
+		<view class="float1 {{isRuleTrue?'isRuleShow':'isRuleHide'}}">
+			<view class="animation-element" animation="{{animation}}">
+				<view class='use'>
+					<view class='iconuse'>商品价格区间</view>
+					<view class="search-priceinp clearfix">
+						<input type="tel" placeholder="{{min_price}}" maxlength="5" bindinput='lowPrice' class="search-priceinp-low"></input>
+						<span></span>
+						<input type="tel" placeholder="{{max_price}}" maxlength="5" bindinput='highPrice' class="search-priceinp-high"></input>
+					</view>
+				</view>
+				<!-- 价格 -->
+				<view class='use'>
+					<view class='iconprice'>分类</view>
+					<view class="iconList clearfix">
+						<view wx:for="{{pcList}}" wx:key="index">
+							<view class="listText {{item.select ? 'active' : ''}}" catchtap="gotoresult" data-num="{{item.pc_id}}">{{item.pc_name}}</view>
+						</view>
+					</view>
+				</view>
+				<view class='buttom'>
+					<view class="animation-reset" bindtap="succHide">重置</view>
+					<view class="animation-button" bindtap="successHide">确定</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+<!-- 渲染页面 -->
+<view class="commList clearfix " id="tab-con">
+	<view class="commSingle  fl">
+		<view class="listBox " wx:for="{{listData}}" wx:key="index" bindtap="goData" data-name="{{item.video_name}}" data-id='{{item.products_id}}' wx:if="{{index%2 ==0}}" data-index="{{item.products_commonid}}" data-key="{{index}}">
+			<view class="relative">
+				<image class="{{item.image_type == 3?'loevImg' :'loevImg1'}}" mode="widthFix" src="{{item.image}}"></image>
+				<view class="likeLove">
+					<view class="loveLeft fl">
+						<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/51.png"></image>
+						<text wx:if="{{item.products_collect<10000}}">{{item.products_collect}}</text>
+						<text wx:if="{{item.products_collect>10000}}">
+						{{filters.toFixOne(item.products_collect/10000)}}w</text>
+					</view>
+					<view class="fr moneyRight">
+						<text>￥{{item.products_price}}</text>
+					</view>
+				</view>
+				<view class="list-box" wx:if="{{item.online}}">
+					<view class="listZhibo">直播中</view>
+				</view>
+			</view>
+
+			<view class="introDuce">
+				{{item.products_name}}
+			</view>
+
+
+		</view>
+	</view>
+	<view class="commSingle  fl">
+		<view class="listBox" wx:for="{{listData}}" wx:key="index" bindtap="goData" data-name="{{item.video_name}}" data-id='{{item.products_id}}' wx:if="{{index%2==1}}" data-index="{{item.products_commonid}}" data-key="{{index}}">
+			<view class="relative">
+				<image mode="widthFix" class="{{item.image_type == 3?'loevImg' :'loevImg1'}}" src="{{item.image}}"></image>
+				<view class="likeLove">
+					<view class="loveLeft fl">
+						<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/51.png"></image>
+						<text wx:if="{{item.products_collect<10000}}">{{item.products_collect}}</text>
+						<text wx:if="{{item.products_collect>10000}}">
+						{{filters.toFixOne(item.products_collect/10000)}}w</text>
+					</view>
+					<view class="fr moneyRight">
+						<text>￥{{item.products_price}}</text>
+					</view>
+
+				</view>
+				<view class="list-box" wx:if="{{item.online}}">
+					<view class="listZhibo">直播中</view>
+				</view>
+				<view class="hot-shop" style="top:25rpx"  wx:if="{{item.products_promotion_type==10}}">团购</view>
+				<view class="hot-shop" style="top:25rpx" wx:if="{{item.products_promotion_type==2}}">限时购</view>
+			</view>
+			<view class="introDuce">
+				{{item.products_name}}
+			</view>
+		</view>
+	</view>
+
+</view>
+<view class="Defect" wx:if="{{listData <=0 && !hasmore}}">
+	<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/0@2x.png"></image>
+</view>
+<view class='remind' wx:if="{{state==0}}">
+	<view>到达底部喽~</view>
+</view>

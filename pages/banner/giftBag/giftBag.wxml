@@ -1,0 +1,16 @@
+<!--pages/banner/giftBag/giftBag.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view class="gongzhong">
+	<image mode="widthFix"  src="https://bj.aizhiyi.com/wap/images/images/1_01.jpg"></image>
+	<image mode="widthFix"  src="https://bj.aizhiyi.com/wap/images/images/2_02.jpg"></image>
+	<image mode="widthFix"  src="https://bj.aizhiyi.com/wap/images/images/3_03.jpg"></image>
+	<image mode="widthFix"  src="https://bj.aizhiyi.com/wap/images/images/4_04.jpg"></image>
+	<image mode="widthFix"  src="https://bj.aizhiyi.com/wap/images/images/5_05.jpg"></image>
+	<image mode="widthFix"  src="https://bj.aizhiyi.com/wap/images/images/6_06.jpg"></image>
+	<!-- <image mode="widthFix"  src="https://bj.aizhiyi.com/wap/images/images/7_070.jpg"></image> -->
+	<view class="bjPosi">
+		<image mode="widthFix"  src="https://bj.aizhiyi.com/wap/images/images/7_070.jpg"></image>
+		<view class="bjBtn" bindtap="goCode"></view>
+	</view>
+
+</view>

@@ -1,0 +1,88 @@
+/* pages/cardCoupon/gift_detail/gift_detail.wxss */
+
+/* 头部金额 */
+
+
+.money {
+    height: 81rpx;
+    font-size: 58rpx;
+    font-family: PingFangSC;
+    font-weight: 400;
+   color:rgba(255,255,255,0.9);
+    line-height: 81rpx;
+    text-align: center;
+    padding-top: 47rpx;
+    padding-bottom: 13rpx;
+}
+
+.state {
+    height: 42rpx;
+    font-size: 30rpx;
+    font-family: PingFangSC;
+    font-weight: 400;
+    color: rgba(98, 98, 98, 1);
+    line-height: 42rpx;
+    text-align: center;
+}
+
+/* 详情 */
+
+.detailed {
+    width: 690rpx;
+    margin: 0 auto;
+    margin-top: 76rpx;
+}
+
+.list {
+    height: 40rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC;
+    font-weight: 400;
+    color:rgba(255,255,255,1);
+    line-height: 40rpx;
+    margin-bottom: 20rpx;
+}
+
+.list text {
+    height: 40rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC;
+    font-weight: 400;
+    color:rgba(255,255,255,0.8);
+    line-height: 40rpx;
+    float: right;
+}
+
+/* 查看详情 */
+
+.btnOrder {
+    width: 750rpx;
+    height: 98rpx;
+    background: #1D1F2B;
+    border-radius: 26rpx;
+    line-height: 90rpx;
+    margin-top: 15rpx;
+}
+
+.btnOrder text {
+    margin-left: 30rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC;
+    font-weight: 400;
+    color: rgba(155, 155, 155, 1);
+}
+
+.btnOrder image {
+    width: 14rpx;
+    height: 25rpx;
+    float: right;
+	margin-top: 36rpx;
+	margin-right: 25rpx;
+}
+.list .name{
+	width: 250rpx;
+	white-space: nowrap;
+    text-overflow: ellipsis;
+	overflow: hidden;
+	text-align: right;
+}

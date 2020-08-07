@@ -1,0 +1,70 @@
+<!--pages/groupOrder/groupOrder.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<!-- 订单列表 -->
+<view class="orderList clearfix" wx:for="{{listData}}" wx:key="index">
+    <view class="topName clearfix">
+        <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/dianpu_icon@2x.png"></image>
+        <view class="shopName">{{item.order_list[0].store_name}}</view>
+        <text class="orderState">{{item.order_list[0].group_status == "1"?"正在拼团":""}}</text>
+        <text class="orderState">{{item.order_list[0].group_status == "2"?"拼团成功":""}}</text>
+        <text class="orderState">{{item.order_list[0].group_status == "3"?"拼团失败":""}}</text>
+    </view>
+    <view class="introduction clearfix" bindtap="goDetails" data-id="{{item.order_list[0].extend_order_products[0].products_id}}">
+        <view class="imgName">
+            <image src="{{item.order_list[0].extend_order_products[0].products_image_url}}"></image>
+        </view>
+        <view class="orderText">
+            <view class="comName">{{item.order_list[0].extend_order_products[0].products_name}}</view>
+            <view class="fications">{{item.order_list[0].extend_order_products[0].products_spec}}</view>
+        </view>
+        <view class="price clearfix">
+            <view class="money">
+			￥{{item.order_list[0].extend_order_products[0].products_price}}
+                <text>￥{{item.order_list[0].extend_order_products[0].products_now_price}}</text>
+            </view>
+            <view class="number">x{{item.order_list[0].extend_order_products[0].products_num}}</view>
+        </view>
+    </view>
+    <view class="btnOrder clearfix">
+	<!-- products_id=<%=orderlist[j].extend_order_products[0].products_id%>&mygrouplist=1&groupbuy_hug=<%=orderlist[j].groupbuy_hug_id%>&order_sn=<%=orderlist[j].order_sn%>&order_id=<%=orderlist[j].order_id%>" order_id="<%=orderlist[j].order_id%>" class="btn tema-btn"> -->
+        <view class="details" bindtap="goGroup" data-id="{{item.order_list[0].extend_order_products[0].products_id}}" data-num ="{{item.order_list[0].groupbuy_hug_id}}" data-index = "{{item.order_list[0].order_sn}}" data-name="{{item.order_list[0].order_id}}">拼团详情</view>
+        <view class="details details1" bindtap="goOrder" data-id="{{item.order_list[0].order_id}}">订单详情</view>
+    </view>
+</view>
+<!-- 商城列表 -->
+<!-- <view class="scList" wx:if="{{id == '0'}}">
+    <view class="benner" >
+        <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/p_banner.png"></image>
+        <view class="white"></view>
+    </view>
+    <view class="assembleList clearfix" wx:for="{{commoData}}" wx:key="index">
+        <view class="assList clearfix" bindtap="goDetails" data-id="{{item.products_id2}}">
+            <image src="{{item.products_image}}"></image>
+            <view class="assName">{{item.products_name}}</view>
+            <view class="shipping clearfix">
+            </view>
+            <view class="group">{{item.sale_fic_count}}已成团</view>
+            <view class="btnGroup">
+                <view class="money">￥{{item.groupbuy_price5}}</view>
+                <view class="spell">{{item.free_groupbuy !=0?'去拼团':'0元拼团'}}</view>
+            </view>
+        </view>
+    </view>
+</view> -->
+
+
+<view class='remind' wx:if="{{state==0 && listData.length >= 3 }}">
+    <view>已经到底喽~</view>
+</view>
+<!-- 底部tab、 -->
+<view class="dibuTab clearfix">
+    <view data-id="0" bindtap="goGroupList" class="xiantiao">拼团商城</view>
+    <view data-id="1" bindtap="switchClick" class="active">我的团</view>
+</view>
+<view class="cont_Image" wx:if="{{state == 0 && listData.length <= 0}}">
+    <view class='cont_count cont_color'>
+        <view class='none_tab'>
+            <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/19cbaabc27fcc03e982d0b99ae6e063.png"></image>
+        </view>
+    </view>
+</view>

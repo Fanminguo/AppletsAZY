@@ -1,0 +1,132 @@
+<!--pages/personalData/personalData.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<!-- 头像 -->
+<view class="bjColor">
+    <!-- <view class="portrait" bindtap='upShopLogo'> -->
+	<view class="portrait">
+        <view class="portraitText">头像</view>
+        <view class="portraitImg">
+            <image src="{{dataName.avatar}}"></image>
+        </view>
+    </view>
+	<!-- <view class="arrowImg mt-59"></view> -->
+</view>
+
+<!-- 会员名 -->
+<view class="bjColor">
+    <view class="portrait">
+        <view class="portraitText">会员名</view>
+        <view class="portraitImg">
+            <text>{{dataName.cust_name}}</text>
+        </view>
+    </view>
+</view>
+<!-- 我的二维码 -->
+<!-- <view class="bjColor">
+<view class="portrait">
+    <view class="portraitText">我的二维码</view>
+    <view class="portraitImg" bindtap="meCode">
+        <image class="code" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/a21e36da14d6e079dd885d6f80386e1.png"></image>
+    </view>
+	</view>
+</view> -->
+<!-- 昵称 -->
+<view class="bjColor">
+    <view class="portrait">
+        <view class="portraitText">用户名</view>
+        <view class="portraitImg">
+            <!-- <input id='peopleName' bindblur='verifyName' type='text' placeholder='请输入姓名' placeholder-class='placeholder' value="{{dataName.cust_nickname}}"></input> -->
+			<text>{{dataName.cust_nickname}}</text>
+
+        </view>
+    </view>
+	<!-- <view class="arrowImg mt-64"></view> -->
+</view>
+<!-- 性别 -->
+<view class="bjColor">
+    <view class="portrait">
+        <view class="portraitText">性别</view>
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <view class="portraitImg">
+                <text>{{array[index]}}</text>
+            </view>
+        </picker>
+    </view>
+	<view class="arrowImg mt-59"></view>
+</view>
+<!-- 生日 -->
+<view class="bjColor">
+    <view class="portrait">
+        <view class="portraitText">生日</view>
+        <picker mode="date" value="{{cust_birthday}}" start="1980-01-01" end="2020-01-01" bindchange="bindDateChange">
+            <view class="portraitImg">
+                <text wx:if="{{cust_birthday != ''}}">{{cust_birthday}}</text>
+                <text wx:if="{{cust_birthday == ''}}">请选择</text>
+            </view>
+        </picker>
+    </view>
+	<view class="arrowImg mt-64"></view>
+</view>
+<!-- 行业 -->
+<view class="bjColor">
+    <view class="portrait">
+        <view class="portraitText">行业</view>
+        <view class="picker-box">
+            <view class='skill-picker'>
+                <picker class="pickerSconed" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+                    <view class="picker" wx:if="{{custText !=''}}">
+                        {{multiArray[0][multiIndex[0]]}}{{multiArray[1][multiIndex[1]]}}
+                    </view>
+                    <view class="picker" wx:if="{{custText ==''}}">
+                        请选择
+                    </view>
+                    <industry-class class="pickerSconed" bind:myEvent="getData"></industry-class>
+                </picker>
+            </view>
+        </view>
+    </view>
+	 <view class="arrowImg mt-59"></view>
+</view>
+
+<!-- 家乡 -->
+<view class="bjColor">
+    <view class="consignee add">
+        <view class="consigneeName">家乡</view>
+        <view class="address" bindtap="translate">{{addresSelect}}</view>
+    </view>
+    <view class="animation-element-wrapper" animation="{{animation}}" style="visibility:{{show ? 'visible':'hidden'}}" bindtap="hiddenFloatView" data-id="444">
+        <view class="animation-element" catchtap="nono">
+            <text class="text left-bt" catchtap="hiddenFloatView" data-id="555">取消</text>
+            <text class="text right-bt" catchtap="citySure" data-id="666">确定</text>
+            <view class="line"></view>
+            <picker-view indicator-style="height: 50rpx;" value="{{value}}" bindchange="bindChange" catchtap="nono">
+                <picker-view-column>
+                    <view wx:for="{{addressItems}}" wx:for-item="item" wx:key="item">
+                        {{item.text}}
+                    </view>
+                </picker-view-column>
+                <picker-view-column>
+                    <view wx:for="{{citys}}" wx:key="index">
+                        {{item.text}}
+                    </view>
+                </picker-view-column>
+                <picker-view-column>
+                    <view wx:for="{{countys}}" wx:key="id">
+                        {{item.text}}
+                    </view>
+                </picker-view-column>
+            </picker-view>
+        </view>
+    </view>
+	 <view class="arrowImg mt-59"></view>
+</view>
+<!-- 我感兴趣的 -->
+<view class="bjColor mt30">
+    <view class="portrait" bindtap="goInterest">
+        <view class="portraitText">我感兴趣的</view>
+        <view class="portraitImg">
+            <text ></text>
+        </view>
+        <view class="arrowImg"></view>
+    </view>
+</view>

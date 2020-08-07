@@ -1,0 +1,178 @@
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view>
+	<view class="topInform">
+		<view class="topImg">
+			<image class="commodity" bindtap="goVideo" src="{{products[0]}}"></image>
+			<view class="groupNum">{{groupbuy_detail.group_type}}人团</view>
+			<image class="state" wx:if="{{groupbuy_detail.cust_groupbuy_state == '1' ||groupbuy_detail.cust_groupbuy_state == '4' || groupbuy_detail.cust_groupbuy_state == '7'}}" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/1121.png"></image>
+			<image class="state" wx:if="{{groupbuy_detail.cust_groupbuy_state == '2' ||groupbuy_detail.cust_groupbuy_state == '5' || groupbuy_detail.cust_groupbuy_state == '8'}}" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/1123.png"></image>
+			<image class="state" wx:if="{{groupbuy_detail.cust_groupbuy_state == '3' ||groupbuy_detail.cust_groupbuy_state == '6' || groupbuy_detail.cust_groupbuy_state == '9'}}" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/1122.png"></image>
+			<view class="topLeft">
+				<view class="name">{{products_info.products_name}}</view>
+				<view class="groupSpec">{{products_spec}}</view>
+				<view class="group_Num">数量:1件</view>
+				<!-- <view class="groupFree">免邮</view> -->
+				<view class="groupMober">
+					<text>￥{{groupbuy_detail.group_price}}</text>
+					<text class="delete">￥{{products_info.products_price}}</text>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 列表  邀请-->
+	<view style="margin-top：33rpx">
+
+		<view class="groupNumTimeTit" wx:if="{{groupbuy_detail.cust_groupbuy_state == '2' ||groupbuy_detail.cust_groupbuy_state == '5' || groupbuy_detail.cust_groupbuy_state == '8'}}">拼团成功</view>
+		<view class="groupNumTimeTit" wx:else>在邀请{{groupbuy_detail.surplus_number}}名用户参团，即可拼团成功</view>
+		<!-- 倒计时 -->
+		<view class="countDown" wx:if="{{groupbuy_detail.cust_groupbuy_state == '1' ||groupbuy_detail.cust_groupbuy_state == '4' || groupbuy_detail.cust_groupbuy_state == '7'}}">
+			剩余
+			<text>{{groupTime}}</text> 结束
+		</view>
+
+		<view class="ap">
+			<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/4@2x.png"></image>
+		</view>
+		<view class="partiCipants clearfix">
+			<!-- 参团人 -->
+			<view class="fullName" wx:for="{{cust_name}}" wx:key="index">
+				<!-- <text class="name">{{item}}</text> -->
+				<image src="{{cust_avatar[index]}}"></image>
+				<text class="founder" wx:if="{{index == 0}}">团长</text>
+			</view>
+			<view class="fullName" wx:for="{{surplus_number}}" wx:key="index">
+				<!-- <text class="name">{{item}}</text> -->
+				<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/e856864b3386615429004cf1c249d2b.png"></image>
+				<!-- <text class="founder"></text> -->
+			</view>
+		</view>
+		<!-- var member_state;//身份字段
+            var is_new;//新老人字段新人1老人2 -->
+		<!-- 参团按钮 -->
+
+		<view class="groupLink">
+			<view class="goList" bindtap="goList" wx:if="{{member_state == '2' || (member_state == '3' && is_new == '1') || (member_state == '3' && is_new == '2') || (member_state == '8') || (member_state=='9' && is_new=='1') || (member_state=='9' && is_new=='2')}}" data-id="">查看订单详情</view>
+
+			<button class="goList" open-type="share" wx:if="{{(member_state == '1' && is_new == '1') || (member_state == '1' && is_new == '2') ||(member_state == '7' && is_new == '1') }}">邀请好友参团</button>
+
+			<button class="goList" bindtap="chooseGroup" wx:if="{{member_state=='4' && is_new=='1'}}">立即参团</button>
+			<!-- <view class="goList" >立即参团</view> -->
+
+			<button class="goList" bindtap="chooseGroup" wx:if="{{member_state=='4' && is_new=='2'}}">立即参团</button>
+
+			<view class="goList" bindtap="goListOrder" wx:if="{{(member_state=='5' && is_new=='1') || (member_state=='5' && is_new=='2') || (member_state=='6' && is_new=='1') || (member_state=='6' && is_new=='2')}}">我来开团</view>
+
+			<button class="goList" open-type="share" wx:if="{{member_state == '7' && is_new == '2'}}">邀请好友参团</button>
+			<!-- <view class="goList" bindtap="goList">更多参团</view> -->
+			<button class="goList" bindtap="chooseGroup" wx:if="{{member_state == undefined && is_new == undefined}}">立即参团</button>
+		</view>
+
+	</view>
+	<view class="boxRule">
+		<view class="similarBlock">一一  火热拼团  一一</view>
+		<view class="commList clearfix" id="tab-con">
+			<view class="commSingle">
+                <view class="listBox " wx:for="{{listData}}" wx:key="index" bindtap="goData" data-name="{{item.video_name}}" data-id='{{item.products_id}}' wx:if="{{index%2 ==0}}" data-index="{{item.products_commonid}}" data-key="{{index}}">
+					<view class="relative">
+						<image mode="widthFix" class="{{item.image_type == 3?'loevImg' :'loevImg1'}}" src="{{item.image}}"></image>
+						<view class="likeLove">
+							<view class="fl loveLeft">
+								<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/51.png"></image>
+								<text>{{item.products_collect}}</text>
+							</view>
+							<view class="fr moneyRight">
+								<text>￥{{item.products_price}}</text>
+							</view>
+						</view>
+					</view>
+					<view class="introDuce">
+						{{item.products_name}}
+					</view>
+				</view>
+			</view>
+			<view class="commSingle">
+				<view class="listBox " wx:for="{{listData}}" wx:key="index" bindtap="goData" data-name="{{item.video_name}}" data-id='{{item.products_id}}' wx:if="{{index%2 !=0}}" data-index="{{item.products_commonid}}" data-key="{{index}}">
+					<view class="relative">
+						<image mode="widthFix" class="{{item.image_type == 3?'loevImg' :'loevImg1'}}" src="{{item.image}}"></image>
+						<view class="likeLove">
+							<view class="fl loveLeft">
+								<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/51.png"></image>
+								<text>{{item.products_collect}}</text>
+							</view>
+							<view class="fr moneyRight">
+								<text>￥{{item.products_price}}</text>
+							</view>
+						</view>
+					</view>
+					<view class="introDuce">
+						{{item.products_name}}
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+
+<view class='maskLayer' wx:if="{{chooseSize}}" bindtap='hideModal'></view>
+<view class="choose gg {{isIphoneX?'isIPX':''}}" wx:if="{{chooseSize}}" animation='{{animationData}}'>
+	<view>
+		<view class="addTop">
+			<view class="product-text">
+				<image class="products-pic" src="{{products[0]}}"></image>
+				<view class="textR clearfix">
+
+					<view class="textX">
+						<text class="money" wx:if="{{data.products_info.promotion_type}}">￥{{data.products_info.promotion_price}}</text>
+						<view wx:if="{{groupbuy}}">
+							<text style="font-size:30rpx; color:#999">{{data.groupbuy_detail.group_type}}人团</text>
+							<text class="money">￥{{data.groupbuy_detail.group_price}}</text>
+							<label style="text-decoration: line-through;font-size: 15px;color: #999; margin-left:15rpx">￥{{data.products_info.products_price}}</label>
+						</view>
+					</view>
+
+					<view class="choiCe">已选：
+						<text>{{chooseText}}</text>
+					</view>
+				</view>
+			</view>
+			<view class="selectsize_content">
+				<view wx:if="{{products_map_spec.length>0}}" wx:for="{{products_map_spec}}" wx:key="index" wx:for-index="fuindex">
+					<view class="selectsize-title">{{item.products_spec_name}}</view>
+					<view class="clearfix " style="margin-left:-25rpx;">
+						<view catchtap="selectGuige" class="selectsize-tab {{(items.isClick == 1) ? 'active' : ''}}" wx:for="{{item.products_spec_value}}" wx:key="index" wx:for-item="items" data-fuindex="{{fuindex}}" data-chindex="{{chindex}}" wx:for-index="chindex" data-specs_value_id="{{items.specs_value_id}}">{{items.specs_value_name}}
+						</view>
+					</view>
+				</view>
+				<!-- 默认 -->
+				<view wx:if="{{products_map_spec.length<=0}}" class="clearfix">
+					<view class="selectsize-title">规格分类</view>
+					<view class="selectsize-tab active" style="margin-left:0">默认</view>
+				</view>
+				<!-- 购买数量 -->
+				<view class="buy" bindtap="gobuy">确定</view>
+			</view>
+		</view>
+	</view>
+	<!-- 拼团弹窗 -->
+</view>
+
+<!-- 代金券 -->
+<view class="voucher-bj" wx:if="{{showVoucher}}">
+	<view class="voucher">
+		<view class="voucher-top">
+			<view>恭喜你</view>
+			<view>领券成功</view>
+		</view>
+		<view class="voucher-cont clearfix" wx:if="{{fiveVOucher}}">
+			<view class="voucher-cont-price fl">
+				<view class="h3"><text>￥</text>5<text style="margin-left:5rpx">元</text></view>
+			</view>
+			<view class="voucher-cont-text fl" style='line-height:50rpx; padding-top:10rpx;'>
+				<view class="h3">拼团畅想</view>
+				<view class="h3">拼团成功</view>
+			</view>
+		</view>
+		<view class="voucher-date">有效期：{{voucherTime}}</view>
+		<view class="voucher-btn" bindtap="hideVoucher">我知道了</view>
+	</view>
+</view>

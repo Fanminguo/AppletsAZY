@@ -1,0 +1,4 @@
+<!--pages/myAssets/myCircleName/myCircleName.wxml-->
+<view class="circle-text">圈子昵称</view>
+<view class="circle-name"><input type="text" bindinput="circleName" maxlength="8" class="circle-input" placeholder="请输入圈子昵称，8个字内"></input></view>
+<view class="btn" bindtap="nameBtn">提交</view>

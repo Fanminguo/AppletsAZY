@@ -1,0 +1,27 @@
+<!--pages/groupOrder/groupList/groupList.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<!-- 商城列表 -->
+<view class="scList">
+    <view class="benner" >
+        <image src="{{banner}}"></image>
+        <view class="white"></view>
+    </view>
+    <view class="assembleList clearfix" wx:for="{{commoData}}" wx:key="index">
+        <button class="assList clearfix" data-id="{{item.products_id2}}" data-products_commonid2="{{item.products_commonid2}}" bindtap="goDetails" data-key="{{index}}" style="position: relative;z-index:10;">
+            <image src="{{item.products_image}}"></image>
+            <view class="assName">{{item.products_name}}</view>
+            <view class="shipping clearfix">
+                <!-- <text class="ml20">新品</text>
+                <text>包邮</text> -->
+            </view>
+            <view class="group">{{item.sale_fic_count}}已成团</view>
+            <view class="btnGroup">
+                <view class="money">￥{{item.groupbuy_price5}}</view>
+                <view class="spell">{{item.free_groupbuy !=0?'去拼团':'0元拼团'}}</view>
+            </view>
+        </button>
+    </view>
+</view>
+<view class='remind' wx:if="{{state==0 && (listData.length > 0 || commoData.length >0)}}">
+    <view>已经到底喽~</view>
+</view>

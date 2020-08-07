@@ -1,0 +1,79 @@
+<!--pages/refundRefund/refundRefund.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<!--导航条-->
+<!-- <view class="navbar">
+    <lable wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">
+        <text>{{item}}</text>
+    </lable>
+</view> -->
+<!--退款-->
+<view  class='total'>
+	<view wx:if="{{listData.length > 0}}">
+		<!-- 外层 -->
+		<view class='cont_count' wx:for="{{listData}}" wx:key="key">
+			<view class='cont_count'>
+				<view>
+					<!-- 店铺 -->
+					<view class='seria'>
+						<label class='seriac_name'>
+							<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/3c7a18dabfe7a07b7479a23e2766f7a.png"></image>
+							<text>{{item.store_name}}</text>
+						</label>
+						<!-- 订单状态 -->
+						<label class='seriac_start' >
+							<text>{{item.handle_state}}</text>
+						</label>
+						<!-- <label class='seriac_start' wx:else>
+							{{item.seller_state}}
+							<image data-id="{{item.order_id}}" bindtap="deleteOrders" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/8ab28d7cddbdb5bfc2a14d3784a6fd3.png"></image>
+						</label> -->
+					</view>
+					<!-- 列表 -->
+					<view class='list' bindtap="goOrderDeta" data-id="{{item.refund_id}}" wx:for="{{item.products_list}}" wx:for-item="list_item" wx:key='key'>
+						<view class="list">
+							<!-- 列表图片 -->
+							<image class='list_img' src='{{list_item.products_img_360}}'></image>
+							<!-- 列表标题 -->
+							<label class='list_name'>
+								{{list_item.products_name}}
+							</label>
+							<!-- 规格 -->
+							<label class="list_ions" wx:if="{{list_item.products_spec != null}}">
+								{{list_item.products_spec}}
+							</label>
+							<!-- 列表价格 -->
+							<label class='list_money'>￥{{list_item.products_price}}</label>
+						</view>
+					</view>
+				</view>
+			</view>
+			<!-- 金额 -->
+			<view class='count_eg'>
+				<view class='count_cent'>
+					<lable class='cont_cen_money'>
+						退款:
+						<text class='cont_ce_mon'>￥{{item.refund_amount}}</text>
+					</lable>
+				</view>
+			</view>
+			<!-- 标签功能 -->
+			<view class='coent_list'>
+				<label class='coent_del' bindtap="goOrderDeta" data-id="{{item.refund_id}}" data-index='{{index}}'>查看详情</label>
+				<label wx:if="{{item.ship_state == 1}}" bindtap="goNumber" class='coent_del' data-id="{{item.refund_id}}" data-index='{{index}}'>物流发货</label>
+			</view>
+		</view>
+	</view>
+</view>
+<!-- 到达底部 -->
+<view wx:if="{{state == 0 && listData.length > 3}}">
+	<view class='cont_bottom'>
+		已经到底喽~
+	</view>
+</view>
+<view class="cont_Image" wx:if="{{state == 0 && listData.length <= 0}}">
+	<view class='cont_count cont_color'>
+		<view class='none_tab'>
+			<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/daf6da3c439cae9953c0ffc5a1617fe.png"></image>
+		</view>
+	</view>
+</view>

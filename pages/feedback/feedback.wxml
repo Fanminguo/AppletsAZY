@@ -1,0 +1,27 @@
+<view class="feed-cont">
+  <view class="feed-list clearfix">
+    <view class="feed-inner {{type == 1 ? 'active' : ''}}" bindtap="bindtype" data-type="1">商品问题</view>
+    <view class="feed-inner {{type == 2 ? 'active' : ''}}" bindtap="bindtype" data-type="2">支付问题</view>
+    <view class="feed-inner {{type == 3 ? 'active' : ''}}" bindtap="bindtype" data-type="3">订单问题</view>
+    <view class="feed-inner {{type == 4 ? 'active' : ''}}" bindtap="bindtype" data-type="4">活动问题</view>
+    <view class="feed-inner {{type == 5 ? 'active' : ''}}" bindtap="bindtype" data-type="5">客服问题</view>
+    <view class="feed-inner {{type == 6 ? 'active' : ''}}" bindtap="bindtype" data-type="6">售后问题</view>
+    <view class="feed-inner {{type == 7 ? 'active' : ''}}" bindtap="bindtype" data-type="7">帐户问题</view>
+    <view class="feed-inner {{type == 0 ? 'active' : ''}}" bindtap="bindtype" data-type="0">其他问题</view>
+  </view>
+  <view class="feed-text">
+    <textarea class="areas" placeholder="请输入您的宝贵建议"  minlength="{{min}}" maxlength="200" bindinput="inputs"></textarea>
+    <view class="feed-text-num">
+        <text class="currentWordNumber">{{currentWordNumber|0}}/200</text>  
+        <text class="hint">{{texts}}</text>  
+    </view>
+  </view>
+</view>
+<view class="tel-cont">
+  <text>手机号：</text>
+  <input type="num" placeholder="请输入您的手机号" bindinput="getTel" maxlength="11" class="tel-text"></input>
+</view>
+<view class="submit" bindtap="submit">提交</view>
+
+
+

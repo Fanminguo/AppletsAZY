@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "视频详情",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": false,
+  "navigationStyle": "custom",
+  "disableScroll": true
+}

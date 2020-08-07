@@ -1,0 +1,35 @@
+/* pages/set/setAccount/zfb/zfb.wxss */
+.title1 {
+  font-size: 32rpx;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 40rpx;
+}
+
+.input {
+  width: 690rpx;
+  height: 80rpx;
+  margin: 0 auto;
+  line-height: 80rpx;
+  margin-top: 142rpx;
+  border-bottom: 1rpx solid rgba(255, 255, 255, 0.5);
+}
+
+.input .weui-input {
+  color: #fff;
+  padding-top: 20rpx;
+}
+
+.zfbbtn {
+  width: 600rpx;
+  height: 88rpx;
+  background: rgba(202, 73, 58, 1);
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 auto;
+  text-align: center;
+  line-height: 88rpx;
+  margin-top: 60rpx;
+}

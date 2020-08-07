@@ -1,0 +1,53 @@
+<!--pages/myNews/newsWaiter/newsWaiter.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view class="newBox" wx:if="{{waiTer.length > 0}}" wx:for="{{waiTer}}" wx:key="index">
+	<view wx:if="{{item.title=='代金券通知'}}">
+		<view class="tiem">{{item.message_time}}</view>
+		<view class="boxText clearfix">
+			<view class="state">{{item.title}}</view>
+			<view class="boxImg">
+				<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/xx_djq_gq@2x.png"></image>
+			</view>
+			<view class="boxName">
+				<view class="name">{{item.message_body}}</view>
+				<!-- <view class="btn">点击查看详情></view> -->
+			</view>
+		</view>
+	</view>
+    <view wx:elif="{{item.title=='直播通知'}}">
+		<view class="tiem">{{item.message_time}}</view>
+		<view class="boxText clearfix">
+			<view class="state">{{item.title}}</view>
+			<view class="boxImg">
+				<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/zhibo1@2x.png"></image>
+			</view>
+			<view class="boxName">
+				<view class="name">{{item.message_body}}</view>
+				<!-- <view class="btn">点击查看详情></view> -->
+			</view>
+		</view>
+	</view>
+    <view wx:else>
+		<view class="tiem">{{item.message_time}}</view>
+		<view class="boxText clearfix">
+			<view class="state">{{item.title}}</view>
+			<view class="boxImg">
+				<image src="{{item.image}}"></image>
+			</view>
+			<view class="boxName">
+				<view class="name">{{item.message_body}}</view>
+				<!-- <view class="btn">点击查看详情></view> -->
+			</view>
+		</view>
+	</view>
+</view>
+<view wx:if="{{waiTer.length <=0 && state==0}}">
+	<view class="empty">
+		<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/xiaoxi_icon.png"></image>
+		<view class="view">暂无消息</view>
+		<view class="text">您还没有任何消息哦</view>
+	</view>
+</view>
+<view class='remind' wx:if="{{state==0 && waiTer.length > 0}}">
+	<view>没有更多了</view>
+</view>

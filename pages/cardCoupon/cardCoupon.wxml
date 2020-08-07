@@ -1,0 +1,125 @@
+<!--pages/cardCoupon/cardCoupon.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<!-- tab切换 -->
+<view class="topTeb">
+    <view class="{{num == index?'active':''}}" wx:for="{{tabList}}" wx:key="item" data-index="{{index}}" bindtap="tabSwitch">{{item.name}}</view>
+</view>
+<view class="box" wx:if="{{num==0}}">
+    <view wx:if="{{appList.length > 0}}">
+        <view wx:for="{{appList}}" wx:key="index"  style="margin-bottom:20rpx">
+            <view class="quanList" data-id="{{item.voucher_store_id}}" data-index="{{item.voucher_type}}" data-voucherId="{{item.voucher_id}}" wx:if="{{item.type==1}}" bindtap="voucherId">
+                <view class="clearfix">
+                    <view class="quanLeft ">
+                        <view class="money">￥
+                            <text>{{item.voucher_limit}}</text>
+                        </view>
+                    </view>
+                    <view class="appPackage ">
+                        <view class="appText">{{item.voucher_title}}</view>
+                        <view class="range">购物立减{{item.voucher_price}}元</view>
+						<view class="range">有效期至：{{item.voucher_end_date_text}}</view>
+
+                    </view>
+                </view>
+            </view>
+			<!-- 0元 -->
+			<view class="quanList" data-id="{{item.voucher_store_id}}" data-index="{{item.voucher_type}}" wx:if="{{item.type ==2 }}" bindtap="voucherId">
+                <view class="clearfix">
+                    <view class="quanLeft ">
+                        <view class="money">￥
+                            <text>{{item.voucher_limit}}</text>	
+                        </view>
+                    </view>
+                    <view class="appPackage ">
+                        <view class="appText">拼团专享代金券</view>
+                        <view class="range">全额抵扣</view>
+						<view class="range">有效期至：{{item.voucher_end_date_text}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+    </view>
+    <view wx:else class="nullImg">
+        <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/kong_youhuiquan@2x.png"></image>
+        <view class="topText">暂无优惠券</view>
+        <view class="text">拼团商城可以找寻到哦</view>
+    </view>
+</view>
+<view wx:if="{{num==1}}" class="box">
+    <view class="giftCard">
+        <view class="cardInfo">
+            <view class="available">可用金额
+                <!-- <image src="https://bj.aizhiyi.com/wap/images/me_icon/z6.png"></image> -->
+            </view>
+            <view class="money">
+                {{money.recharge_account_amounts}}
+                <text class="moneyText">元</text>
+            </view>
+            <view class="frozen" bindtap="goTobepaid" wx:if="{{money.frozen_recharge_remained !='0.00'}}">
+                {{money.frozen_recharge_remained}}元冻结
+            </view>
+
+        </view>
+        <view class="cumLeft">
+            <view class="text">累计金额（元）</view>
+            <view>{{money.recharge_amount_storage}}</view>
+        </view>
+        <!-- 右 -->
+        <view class="cumRight">
+            <view class="text">累计消费（元）</view>
+            <view>{{money.recharge_consume}}</view>
+        </view>
+    </view>
+    <!-- 列表 -->
+    <view class="recordList" wx:if="{{lipinka.length >0}}">
+        <view class="recor" wx:for="{{lipinka}}" wx:key="index" bindtap="goDetail" data-id="{{item.recode_id}}" data-index="{{item.pay_sn}}" data-num="{{item.all_recharge_amount}}">
+            <view class="listTop clearfix">
+                <view class="left" wx:if="{{item.type==1}}">礼品卡绑定</view>
+                <view class="left" wx:if="{{item.type==2}}">购物抵现</view>
+                <view class="left" wx:if="{{item.type==3}}">购物抵现</view>
+                <view class="left" wx:if="{{item.type==4}}">退款退货</view>
+                <view class="left" wx:if="{{item.type==5}}">购物抵现</view>
+                <view class="left" wx:if="{{item.type==6}}">购物抵现</view>
+                <view class="right increase" wx:if="{{item.type == 1}}">+{{item.change_amount}}</view>
+                <view class="right " wx:if="{{item.type == 2}}">{{item.change_amount}}</view>
+                <view class="right " wx:if="{{item.type == 3}}">{{item.change_amount}}</view>
+                <view class="right increase" wx:if="{{item.type == 4}}">+{{item.change_amount}}</view>
+                <view class="right " wx:if="{{item.type == 5}}">{{item.change_amount}}</view>
+                <view class="right increase" wx:if="{{item.type == 6}}">+{{item.change_amount}}</view>
+            </view>
+            <view class="listRight clearfix">
+                <view class="left">{{item.add_time}}</view>
+                <view class="right" wx:if="{{item.type==5}}">待支付</view>
+                <view class="right" wx:if="{{item.type==6}}">已取消订单</view>
+            </view>
+        </view>
+    <view style="height:115rpx;width:750rpx"></view>
+
+    </view>
+    <view class="listkong"  wx:if="{{lipinka.length <=0}}">
+        <view class="textA">暂无任何绑定</view>
+        <view class="textB">请点击下方绑定礼品卡</view>
+        <view class="bgImg"></view>
+    </view>
+    <view class="btnButtom" bindtap="showModal">
+        绑定礼品卡
+    </view>
+</view>
+
+<!-- <view wx:if="{{state == 0}}">
+    已经到底了~
+</view> -->
+<!--屏幕背景变暗的背景 -->
+<view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+<!--弹出框 -->
+<view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
+    <view class="denseText">添加礼品卡</view>
+    <view class="denseInput">
+        <input bindinput="bindKeyInput" placeholder="请输入礼品卡12位卡密" />
+        <view class="error">{{errorOne}}</view>
+    </view>
+    <view class="denseBtn" bindtap="binding">
+        <text>确认绑定</text>
+    </view>
+</view>

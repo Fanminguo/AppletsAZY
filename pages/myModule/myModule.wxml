@@ -1,0 +1,93 @@
+<!--pages/myModule/myModule.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<!-- 底部tab -->
+<view class="botBox">
+    <view class="footer-nav {{isIphoneX?'isIPX':''}}">
+        <view class='footer-nav-tab' bindtap="toindex">首页</view>
+        <view class='footer-nav-tab' bindtap='goproduct_class'>分类</view>
+		<view class='footer-nav-tab' bindtap="goactivity"><view class="zq-icon"></view></view>
+        <view class='footer-nav-tab' bindtap='tofollow'>购物车
+           <view wx:if="{{caetNum > 0 && caetNum<=9 }}" class="cartNum2">{{caetNum}}</view>
+           <view wx:if="{{caetNum > 9}}" class="cartNum">{{caetNum}}</view>
+        </view>
+        <view class='footer-nav-tab active'>我的</view>
+    </view>
+    <view class="topImg ">
+        <!-- 名称背景 -->
+        <view class="botImg">
+            <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/163f8026925fb09f06d648d09425327.png"></image>
+        </view>
+        <!-- 头像 用户名 -->
+        <view class="nameIma" bindtap="personalData">
+		<!-- <view class="nameIma"> -->
+            <view class="nameHead">
+                <image src="{{custName.avatar}}"></image>
+            </view>
+            <view class="nameText">
+                <view class="userName">
+                    {{custName.cust_nickname}}
+                </view>
+                <view class="spokesman" wx:if="{{custName.level >0}}"><image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/V1.png"></image> 中华文化代言人</view>
+
+            </view>
+        </view>
+        <!-- 二维码 -->
+        <!-- <view class="leftCode">
+            <image class="code" src="https://bj.aizhiyi.com/wap/images/me_icon/code_member.png"></image>
+            <view class="leftText">邀好友享返现</view>
+            <image class="left" src="https://bj.aizhiyi.com/wap/images/me_icon/name.png"></image>
+        </view> -->
+        <view class="tabDence clearfix">
+            <view class="goodFriend" bindtap="goFriend">
+                <view class="goodText">{{custName.friendCount}}</view>
+                <view>关注好友</view>
+            </view>
+            <view class="baby" bindtap="goBaby">
+                <view class="badyText">{{custName.favorites_products}}</view>
+                <view>关注商品</view>
+            </view>
+            <view class="shop" bindtap="goShop">
+                <view class="shopText">{{custName.favorites_store}}</view>
+                <view>关注店铺</view>
+            </view>
+        </view>
+    </view>
+    <view class="orderList">
+        <view class="topList" bindtap="orderLogin">
+            <view class="miName">我的订单</view>
+            <view class="wholeList">全部订单
+                <image src="https://bj.aizhiyi.com/wap/images/me_icon/name.png"></image>
+            </view>
+        </view>
+        <view class="orderState">
+            <view class="behalf" wx:for="{{stateList}}" wx:key="index" bindtap="{{item.order}}">
+				<view class="redDot" wx:if="{{index == 0 && order_nopay_count >0}}">
+					{{order_nopay_count}}
+				</view>
+				<view class="redDot" wx:if="{{index == 1 && order_noreceipt_count >0}}">
+					{{order_noreceipt_count}}
+				</view>
+				<view class="redDot" wx:if="{{index == 2 && order_notakes_count >0}}">
+					{{order_notakes_count}}
+				</view>
+				<view class="redDot" wx:if="{{index == 3 && order_noeval_count >0}}">
+					{{order_noeval_count}}
+				</view>
+				<view class="redDot" wx:if="{{index == 4 && order_return >0}}">
+					{{order_return}}
+				</view>
+                <image src="{{item.imgName}}"></image>
+                <view>{{item.text}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="workList">
+        <view class="workSing" wx:for="{{spellList}}" wx:key="index" bindtap="{{item.click}}">
+            <image class="workLeft" src="{{item.spellImg}}"></image>
+            <view class="workSword {{item.workSword1}}">
+                <view>{{item.spellName}}</view>
+                <image class="workRight" src="https://bj.aizhiyi.com/wap/images/me_icon/name.png"></image>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,154 @@
+<!--pages/myAssets/yPorcelain/yPorcelain.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view>
+	<!-- 头部卡片 -->
+	<view class="card-top">
+		<view class="card-text">
+			<text>可提现余额</text>
+			<image bindtap="switch" src="{{eye?eye1:eye2}}"></image>
+		</view>
+		<image class="warning" bindtap="exhibition" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/gouwuche_tishi1@2x.png"></image>
+		<view class="amountNum">
+			<text>{{eye?receiveMoney:asterisk}}</text>元
+		</view>
+		<view class="unlocked">
+			<text bindtap="goOrderList" wx:if="{{frozen>0}}">{{eye?frozen:asterisk}}元即将到账</text>
+		</view>
+		<view class="currency clearfix">
+			<view class="flex-row ">
+				<view class="currency-class">累计收益(元)</view>
+				<view class="balance">{{eye?totalMoney:asterisk}}</view>
+			</view>
+			<view class="flex-row">
+				<view class="currency-class">累计提现(元)</view>
+				<view class="balance">{{eye?extractMoney:asterisk}}</view>
+			</view>
+			<view class="dotted"></view>
+		</view>
+	</view>
+	<!-- tab切换 -->
+	<!-- <view class="tab">
+		<view class="btns">
+			<view wx:for="{{btns}}" data-index="{{index}}" wx:key="index" class="{{index==active?'cur':''}}" bindtap="toggle">
+				<view>
+					{{item}}
+				</view>
+			</view>
+		</view> -->
+	<view class="tabTop {{tabFixed?'small_navFix':''}}" id="tab-con">
+		<scroll-view scroll-x="true" scroll-left="{{scrollLeft}}">
+			<view class="btns">
+				<view class="{{index==active?'cur':''}}" wx:for="{{btns}}" wx:key="index" data-index="{{index}}" bindtap="switchNav">
+					<view>
+						{{item}}
+					</view>
+				</view>
+			</view>
+		</scroll-view>
+	</view>
+	<view class="tab">
+		<view class="cons">
+			<!-- 明细 -->
+			<view wx:if="{{active == 0}}">
+				<view class="record clearfix" wx:for="{{listData}}" wx:key="index" bindtap="goOrder" data-custName="{{item.custName}}" data-isExtract="{{item.isExtract}}" data-isRefund='{{item.isRefund}}' data-money="{{item.money}}" data-orderTime="{{item.orderTime}}" data-paySn="{{item.paySn}}" data-sn="{{item.sn}}" data-orderTime2="{{item.orderTime2}}" data-extractType="{{item.extractType}}" data-extract_sn="{{item.extract_sn}}" data-ident="{{item.ident}}" data-status="{{item.status}}" data-phone="{{item.phone}}">
+					<view class="record-img fl">
+						<image wx:if="{{item.isRefund==0}}" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/icon_tixian@2x.png"></image>
+						<image wx:else src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/icon_gouwufanxian@2x.png"></image>
+					</view>
+					<view class="record-text fr">
+						<text class="record-type" wx:if="{{item.isRefund==1}}">{{item.custName}}{{item.isRefund==1?'退款':''}}</text>
+						<text class="record-type" wx:elif="{{item.isRefund==0}}">{{item.custName}}购物返现</text>
+						<text class="record-type" wx:elif="{{item.extractType=='微信'}}">微信提现</text>
+						<text class="record-type" wx:elif="{{item.extractType=='支付宝'}}">支付宝提现</text>
+						<text class="record-number" wx:if="{{item.extractType=='微信' || item.extractType=='支付宝'}}">-{{item.money}}</text>
+						<text class="record-number succBg" wx:elif="{{item.isRefund==0}}">+{{item.money}}</text>
+						<text class="record-number" wx:else>-{{item.money}}</text>
+					</view>
+					<view class="record-text time fr">
+						<text class="record-type">{{item.orderTime}}</text>
+						<text class="record-number fz24" wx:if="{{item.extractType=='微信' || item.extractType=='支付宝'}}">{{item.status}}</text>
+						<text class="record-number fz24" wx:else></text>
+					</view>
+					<view class="record clearfix"></view>
+				</view>
+				<view style="height:90rpx"></view>
+				<view class="dibuTab clearfix">
+					<view data-id="0" class="transfer" bindtap="makeMoney">去赚钱</view>
+					<view data-id="1" class="change" bindtap="withDrawal">去提现</view>
+				</view>
+				<view class="blankPage" wx:if="{{listData.length <= 0}}">
+					暂无任何明细
+				</view>
+			</view>
+			<view wx:if="{{active == 1}}">
+				<!-- follow  true为已关注  false为未关注 -->
+				<view class="friendsList clearfix" wx:for="{{listData}}" wx:key="index">
+					<image src="{{item.custAvatar}}"></image>
+					<image class="type" wx:if="{{item.type==1}}" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/fensi.png"></image>
+					<view class="list-text">
+						<view class="nameText">{{item.nickname}}</view>
+						<view class="timeText">{{item.addTime}}</view>
+					</view>
+					<view class="{{!item.follow?'followAdmin':''}} followPeople" data-id="{{item.id}}" data-follow="{{item.follow}}" bindtap="followFans">{{!item.follow?'关注':'已关注'}}</view>
+				</view>
+				<view class="blankPage" wx:if="{{listData.length <= 0}}">
+					暂无任何粉丝
+				</view>
+			</view>
+			<view wx:if="{{active == 2}}">
+				<view class="friendsList clearfix" wx:for="{{listData}}" wx:key="index" wx:if="{{item.money > 0}}">
+					<image src="{{item.avatar}}"></image>
+					<image class="type" wx:if="{{index<3}}" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/first.png"></image>
+					<image class="type" wx:else src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/number2.png"></image>
+					<text class="numberText">N.{{index +1}}</text>
+					<view class="list-text">
+						<view class="nameText">{{item.custName}}</view>
+						<view class="timeText">{{item.custTime}}</view>
+					</view>
+					<view class="contribution mr43">{{item.money}}元</view>
+				</view>
+				<view class="blankPage" wx:if="{{listData.length <= 0}}">
+					暂无任何排名
+				</view>
+			</view>
+		</view>
+	</view>
+
+	<!-- yicibi规则 -->
+	<view class="yici-bj" wx:if="{{yiciRule}}" bindtap="exhibition"></view>
+	<view class="yici-rule" wx:if="{{yiciRule}}">
+		<view class="yici-top">代言费返现规则</view>
+	<scroll-view scroll-y="true" class="content-rule">
+			<view class="rule-One">一、代言费返现规则</view>
+			<view>1. 分享给好友专属大礼包(仅限新用户领取)，领取您专属邀请的好友，即为您的粉丝；</view>
+			<view>2. 粉丝每次下单并确认收货，您将获得代言费返现奖励，代言费奖励按照好友订单金额的6%；</view>
+			<view>3. 返现奖励发放后会冻结15天，15天内若好友未发生退款，则15天后立即解冻。若冻结期间好友发生退款，则会从冻结的返现中扣除相应的奖励。代言费返现解冻后，可用于提现；</view>
+			<view>4. 代言费返现奖励，可提现，可累计，可提现至微信、支付宝账户。</view>
+			<view class="rule-One" style="margin-top:32rpx;margin-bottom:16rpx">二、注意事项 </view>
+			<view>1. 代金券、礼品卡、易瓷币等其它抵现的金额不计算在代言费返现金额中；</view>
+			<view>2. 代言费返现奖励，仅限非活动的商品(如：限时购、拼团等)；</view>
+			<view>3. 通过不正当手段获得的返现奖励，爱之依有权撤销相关奖励和订单；</view>
+			<view>4. 如有任何疑问，请联系爱之依客服：400-090-8860（9：30-18:00）</view>
+		</scroll-view>
+		<view class="guanbi">
+			<image bindtap="exhibition" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/close-circle@2x.png"></image>
+		</view>
+	</view>
+
+	<!-- 提现 -->
+	<view class="yici-bj" wx:if="{{carry}}"></view>
+	<view class="carry-bj" wx:if="{{carry}}">
+		<view class="carry-title">提现至</view>
+		<view class="carry-wx" bindtap="carryWx">
+			<image class="wx-img" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/weixin@2x.png"></image>
+			<view class="wx-text">微信</view>
+			<image class="wx-right" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/jinru@2x.png"></image>
+		</view>
+		<view class="carry-wx" bindtap="carryZfb">
+			<image class="wx-img" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/zhifubao@2x.png"></image>
+			<view class="wx-text">支付宝</view>
+			<image class="wx-right" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/jinru@2x.png"></image>
+		</view>
+		<view class="carry-btn" bindtap="carryType">取消</view>
+	</view>
+</view>

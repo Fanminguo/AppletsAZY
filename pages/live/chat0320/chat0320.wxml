@@ -1,0 +1,7 @@
+<!--pages/live/chat0320/chat0320.wxml-->
+ <button bindtap="contBtn" >创建连接</button>
+<button bindtap="sendBtn">发送内容</button>
+<button bindtap="byeBtn">关闭连接</button>
+<input placeholder="请输入" bindinput="input"></input>
+ 
+<textarea>{{logmsg}}</textarea>

@@ -1,0 +1,41 @@
+<!--pages/banner/exchange/exchange.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view>
+	<view class="buy-top"></view>
+	<view class="buy-address">
+		<view class="has-address" wx:if="{{data.true_name}}" bindtap="toaddress">
+			<view class="icon-add"></view>
+			<view class="icon-ri"></view>
+			<view class="buy-address-member clearfix">
+				<text>收货人：</text>
+				<text class="true_name">{{data.true_name}}</text>
+				<text class="mob_phone fr">{{data.mob_phone}}</text>
+			</view>
+			<view class="buy-address-cont">
+				<text>收货地址：</text>
+				<text>{{data.area_info}}{{data.address}}</text>
+			</view>
+		</view>
+		<view class="default-address" wx:if="{{!data.true_name}}" bindtap="address">
+			<view class="default-address-icon"></view>
+			<view class="default-address-text">新建收货地址</view>
+		</view>
+	</view>
+	<!-- 兑换码 -->
+	<view class="code clearfix">
+		<view class="codeName">兑换码:</view>
+		<input class="weui-input" bindinput="bindKeyInput" placeholder="请输入兑换码" />
+	</view>
+	<view class="code-Btn" bindtap="formBtn">确认兑换</view>
+	<view class="rule">
+		<view>兑换码规则：</view>
+		<view>1.兑换码仅能在爱之依平台使用；</view>
+		<view>2.每个兑换码只能使用一次；</view>
+		<view>3.兑换码仅能在有效期内使用；</view>
+		<view>4.如若不能兑换商品，可联系客服，或检查时间是否过了有效期。</view>
+	</view>
+
+
+
+
+</view>

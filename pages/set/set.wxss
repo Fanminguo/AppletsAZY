@@ -1,0 +1,5 @@
+/* pages/set/set.wxss */
+.set-cont{padding-left: 30rpx;}
+.set-menu{ height: 100rpx; line-height: 100rpx;color:rgba(255,255,255,0.9);font-size:28rpx; border-bottom: solid 2rpx #31333F;
+position: relative}
+.set-menu .icon{ width: 47rpx; height: 51rpx; position: absolute; right: 30rpx; top: 50%; margin-top: -25.5rpx;background: url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/67.png") no-repeat center center; background-size: cover; opacity: 1}

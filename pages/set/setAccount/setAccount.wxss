@@ -1,0 +1,22 @@
+/* pages/set/setAccount/setAccount.wxss */
+@import '../set.wxss';
+
+.set-text {
+  float: right;
+  margin-right: 69rpx;
+  font-size: 23rpx;
+  color: rgba(255, 255, 255, 0.6);
+}
+.set-menu .icon {
+	width: 25rpx;
+	height: 30rpx;
+	position: absolute;
+	right: 30rpx;
+	top: 66%;
+	margin-top: -25.5rpx;
+	background: url("https: //bj.aizhiyi.com/wap/test/wap/xcxImg/67.png") no-repeat center center;
+	background-size: cover;
+	opacity: 1;
+	
+	}
+	

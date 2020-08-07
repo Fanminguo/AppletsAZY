@@ -1,0 +1,86 @@
+<!--pages/myNews/index/index.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view class="topBox">
+    <!-- 物流 -->
+    <view class="box" bindtap="logistics">
+        <view class="boxImg">
+            <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/x_1@2x.png"></image>
+			<view class="redDot" wx:if="{{deliver_count > 0}}">{{deliver_count}}</view>
+        </view>
+        <view class="boxContent clearfix">
+            <view class="boxLeft clearfix">
+                <view class="name">交易物流</view>
+                <view class="tiem">{{tiem}}</view>
+            </view>
+            <view class="clearfix text">
+                <view class="w450">{{deliver}}</view>
+            </view>
+        </view>
+    </view>
+    <!-- 	账户 -->
+    <view class="box" bindtap="account">
+        <view class="boxImg">
+            <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/x_2@2x.png"></image>
+			<view class="redDot" wx:if="{{account_count > 0}}">{{account_count}}</view>
+        </view>
+        <view class="boxContent clearfix">
+            <view class="boxLeft clearfix">
+                <view class="name">账号通知</view>
+                <view class="tiem">{{notify}}</view>
+            </view>
+            <view class="clearfix text">
+                <view class="w450">{{notifyMessage}}</view>
+            </view>
+        </view>
+    </view>
+	<!-- 服务通知 -->
+	<view class="box" bindtap="service">
+        <view class="boxImg">
+            <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/x_3@2x.png"></image>
+			<view class="redDot" wx:if="{{service_count > 0}}">{{service_count}}</view>
+        </view>
+        <view class="boxContent clearfix">
+            <view class="boxLeft clearfix">
+                <view class="name">服务通知</view>
+                <view class="tiem">{{service}}</view>
+            </view>
+            <view class="clearfix text">
+                <view class="w450">{{serviceMessage}}</view>
+            </view>
+        </view>
+    </view>
+	<!-- 互动通知 -->
+	<view class="box" bindtap="interaction">
+        <view class="boxImg">
+            <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/x_4@2x.png"></image>
+			<view class="redDot" wx:if="{{tourist_review_count > 0}}">{{tourist_review_count}}</view>
+        </view>
+        <view class="boxContent clearfix">
+            <view class="boxLeft clearfix">
+                <view class="name">互动通知</view>
+                <view class="tiem">{{tourist}}</view>
+            </view>
+            <view class="clearfix text">
+                <view class="w450">{{touristReview}}</view>
+            </view>
+        </view>
+    </view>
+	<!-- 客服小依 -->
+	<!-- <view class="box">
+        <view class="boxImg">
+            <image src=""></image>
+        </view>
+        <view class="boxContent clearfix">
+            <view class="boxLeft clearfix">
+                <view class="name">客服小依</view>
+                <view class="tiem">2019</view>
+            </view>
+            <view class="clearfix text">
+                <view class="w450">您预约的商品[高端大气上档次低…</view>
+            </view>
+        </view>
+    </view> -->
+</view>
+ <view class='remind' wx:if="{{state==0}}">
+        <view>没有更多了</view>
+</view>

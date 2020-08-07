@@ -1,0 +1,58 @@
+<form bindsubmit="formSubmit">
+	<view wx:for="{{comList}}" wx:key="index">
+		<view data-id="{{item.pc_id}}" data-num="{{item.products_id}}" class="comList">
+			<!-- 顶部信息 -->
+			<view class="topOrder clearfix">
+				<view class="topImg">
+					<image src="{{item.geval_productsimage}}"></image>
+				</view>
+				<view class="topMoney">
+					<view class="topName">{{item.geval_productsname}}</view>
+					<view class="topText">{{item.geval_products_spec}}</view>
+					<view class="topNum">￥{{item.geval_productsprice}}</view>
+				</view>
+			</view>
+			<view class="pingjia clearfix">
+				<view class="pingjiaText">{{item.geval_content}}</view>
+
+			</view>
+			<view class="section reasonText">
+				<view style="font-size: 30rpx;color: rgba(255,255,255,.8);margin-bottom: 15rpx;">追加评论</view>
+				<textarea bindblur="bindTextAreaBlur" name="products[{{item.geval_id}}][comment]" bindinput="bindTextAreaBlur" maxlength="{{max}}" placeholder="商品您还满意吗？说说它的优点与缺点吧">
+                </textarea>
+				<!-- <text class="currentWordNumber">{{currentWordNumber|0}}/{{max}}</text> -->
+			</view>
+			<!-- 上传图片 -->
+			<!-- <view class="imgList">
+                <view class="portrait" bindtap='upShopLogo' placeholder="" data-id="{{item.rec_id}}" data-name="1">
+                    <view class="portraitImg">
+                        <image src="{{item.avatar}}"></image>
+                        <input class="imgShow" type="text" name="products[{{item.rec_id}}][evaluate_image][0]" value="{{item.evaluate_image1}}" placeholder="{{item.evaluate_image1}}"></input>
+                    </view>
+                </view>
+                <view class="portrait" bindtap='upShopLogo' data-id="{{item.rec_id}}" data-name="2">
+                    <view class="portraitImg">
+                        <image src="{{item.avatarTow}}"></image>
+                        <input class="imgShow" type="text" name="products[{{item.rec_id}}][evaluate_image][1]" value="{{item.evaluate_image2}}" placeholder="{{item.evaluate_image2}}"></input>
+                    </view>
+                </view>
+                <view class="portrait" bindtap='upShopLogo' data-id="{{item.rec_id}}" data-name="3">
+                    <view class="portraitImg">
+                        <image src="{{item.avatarthree}}"></image>
+                        <input class="imgShow" type="text" name="products[{{item.rec_id}}][evaluate_image][2]" value="{{item.evaluate_image3}}" placeholder="{{item.evaluate_image3}}"></input>
+                    </view>
+                </view>
+            </view> -->
+		</view>
+
+		<!-- 发布按钮 -->
+		<!-- <view class="btn" data-id="{{item.order_id}}"  formType="submit">
+            发布
+        </view> -->
+
+	</view>
+	<view class="btn">
+		<button class="btn" formType="submit">发布</button>
+	</view>
+
+</form>

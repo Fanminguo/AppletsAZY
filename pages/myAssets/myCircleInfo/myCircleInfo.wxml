@@ -1,0 +1,100 @@
+<!--pages/myAssets/myCircleInfo/myCircleInfo.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view class="header">
+   <view class="circle-info"  bindtap="goInfo">
+     <view class="circle-info-img one" wx:if="{{data.momentsDetailArr.length==1}}">
+        <image src="{{data.momentsDetailArr[0].avatar}}"></image></view>
+     <view class="circle-info-img two" wx:if="{{data.momentsDetailArr.length==2}}">
+        <image src="{{data.momentsDetailArr[0].avatar}}"></image>
+        <image src="{{data.momentsDetailArr[1].avatar}}"></image>
+     </view>
+     <view class="circle-info-img three" wx:if="{{data.momentsDetailArr.length==3}}">
+         <image src="{{data.momentsDetailArr[0].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[1].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[2].avatar}}"></image>
+     </view>
+     <view class="circle-info-img four" wx:if="{{data.momentsDetailArr.length==4}}">
+         <image src="{{data.momentsDetailArr[0].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[1].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[2].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[3].avatar}}"></image>
+     </view>
+     <view class="circle-info-img five" wx:if="{{data.momentsDetailArr.length==5}}">
+         <image src="{{data.momentsDetailArr[0].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[1].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[2].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[3].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[4].avatar}}"></image>
+     </view>
+     <view class="circle-info-img six" wx:if="{{data.momentsDetailArr.length==6}}">
+         <image src="{{data.momentsDetailArr[0].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[1].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[2].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[3].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[4].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[5].avatar}}"></image>
+     </view>
+     <view class="circle-info-img seven" wx:if="{{data.momentsDetailArr.length==7}}">
+         <image src="{{data.momentsDetailArr[0].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[1].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[2].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[3].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[4].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[5].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[6].avatar}}"></image>
+     </view>
+     <view class="circle-info-img eight" wx:if="{{data.momentsDetailArr.length==8}}">
+         <image src="{{data.momentsDetailArr[0].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[1].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[2].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[3].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[4].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[5].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[6].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[7].avatar}}"></image>
+     </view>
+     <view class="circle-info-img nine" wx:if="{{data.momentsDetailArr.length>8}}">
+         <image src="{{data.momentsDetailArr[0].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[1].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[2].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[3].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[4].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[5].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[6].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[7].avatar}}"></image>
+         <image src="{{data.momentsDetailArr[8].avatar}}"></image>
+     </view>
+     <view class="circle-info-cont">
+        <view class="circle-info-name">{{data.momentsName}}</view>
+        <view class="circle-info-cont-label clearfix">
+           <view class="circle-info-label1 fl"><view class="circle-num-icon"></view>{{data.custCount}}人</view>
+           <view class="circle-info-label2 fl">{{data.pc_label_name}}圈</view>
+        </view>
+        <view class="circle-icon"></view>
+        <view class="circle-icon1"></view>
+     </view>
+  </view>
+</view>
+<view class="circle-cont">
+   <view class="circle-text clearfix" bindtap="gomore">
+     <text class="circle-text-info fl">圈内成员</text>
+     <text class="circle-text-num fr">查看圈内{{data.custCount}}人</text> <view class="circle-icon1"></view>
+   </view>
+   <view class="circle-all clearfix">
+      <view class="circle-list" wx:for="{{data.momentsDetailArr}}"  wx:key="index">
+        <image src="{{item.avatar}}"></image>
+        <view class="circle-pname">{{item.nickname}}</view>
+      </view>
+   </view>
+</view>
+<view class="circle-name" bindtap="editName">
+   <view class="circle-text clearfix">
+      <text class="circle-text-info fl">圈子名称</text>
+      <text class="circle-text-num fr">{{data.momentsName}}</text> <view class="circle-icon1"></view>
+   </view>
+</view>
+<view class="circle-name exit" bindtap="exit">
+   <view class="circle-text clearfix">
+      <text class="circle-text-info">退出圈子</text>
+   </view>
+</view>

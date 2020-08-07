@@ -1,0 +1,10 @@
+<view>
+    <view class="boxView">
+        <view class="singleView" wx:for="{{list}}" wx:key="index" data-index="{{index}}">
+            <view class="topText">{{item.pc_label_name}}圈</view>
+            <view class="list clearfix" >
+                <view bindtap="selection" data-id="{{twoItem.pc_label_id}}" wx:for="{{item.pc_label_2}}" wx:for-item="twoItem" wx:key="key"class="second">{{twoItem.pc_label_name}}</view>
+            </view>
+        </view>
+    </view>
+</view>

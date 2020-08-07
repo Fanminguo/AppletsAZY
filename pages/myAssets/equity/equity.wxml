@@ -1,0 +1,15 @@
+<!--pages/myAssets/equity/equity.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view>
+	<view class="quanyi">
+		<image mode="widthFix" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/cd1.png"></image>
+		<image mode="widthFix" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/cd2.png"></image>
+		<image mode="widthFix" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/cd3.png"></image>
+		<image mode="widthFix" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/cd4.png"></image>
+		<image mode="widthFix" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/cd5.png"></image>
+		<image mode="widthFix" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/cd97.png"></image>
+		<image mode="widthFix" wx:if="{{level>0}}" class="noEndorsement" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/cd002.png"></image>
+		<image mode="widthFix" wx:else bindtap="goIndex" class="endorsement" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/cd001.png"></image>
+		<button open-type='share'  wx:if="{{level>0}}" data-type="store-share" class="storeShare"></button>
+	</view>
+</view>

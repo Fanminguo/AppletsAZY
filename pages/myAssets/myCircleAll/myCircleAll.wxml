@@ -1,0 +1,7 @@
+<!--pages/myAssets/myCircleAll/myCircleAll.wxml-->
+<view class="circle-all clearfix">
+      <view class="circle-list" wx:for="{{data.custList}}"  wx:key="index">
+        <image src="{{item.avatar}}"></image>
+        <view class="circle-pname">{{item.nickname}}</view>
+      </view>
+  </view>

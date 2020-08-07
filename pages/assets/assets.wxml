@@ -1,0 +1,17 @@
+<!--pages/assets/assets.wxml-->
+<view class="title" style="padding-top:{{topHeight}}px">赚钱秘籍</view>
+<image mode="widthFix" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/75.png"></image>
+<image mode="widthFix" style="position:relative;top:-2rpx;" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/76.png"></image>
+<view style="position:relative">
+  <image mode="widthFix" style="position:relative;top:-2rpx;" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/77.png"></image>
+  <button class="share" open-type='share'></button>
+</view>
+<image mode="widthFix" style="position:relative;top:-2rpx;" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/78.png"></image>
+<image mode="widthFix" style="position:relative;top:-2rpx;" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/79.png"></image>
+<view class="footer-nav {{isIphoneX?'isIPX':''}}">
+    <button style="position:relative; z-index:10" bindtap='goindex'class='footer-nav-tab' open-type="getUserInfo"  bindgetuserinfo="getUserInfo">发现</button>
+    <button style="position:relative; z-index:10" bindtap='goproduct_class' class='footer-nav-tab' open-type="getUserInfo"  bindgetuserinfo="getUserInfo">分类</button>
+    <button style="position:relative; z-index:10" class='footer-nav-tab '><view class="zq-icon"></view></button>
+    <button style="position:relative; z-index:10" class='footer-nav-tab' bindtap='gocart' open-type="getUserInfo"  bindgetuserinfo="getUserInfo">购物车</button>
+    <button style="position:relative; z-index:10" class='footer-nav-tab' bindtap='tomy' open-type="getUserInfo"  bindgetuserinfo="getUserInfo">我的</button>
+</view> 

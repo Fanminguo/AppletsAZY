@@ -1,0 +1,92 @@
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<form bindsubmit="formSubmit">
+	<view wx:for="{{comList}}" wx:key="index">
+		<view data-id="{{item.pc_id}}" data-num="{{item.products_id}}" class="comList">
+			<!-- 顶部信息 -->
+			<view class="topOrder clearfix">
+				<view class="topImg">
+					<image src="{{item.products_image_url}}"></image>
+				</view>
+				<view class="topMoney">
+					<view class="topName">{{item.products_name}}</view>
+					<view class="topText">{{item.products_spec}}</view>
+					<view class="topNum">￥{{item.products_price}}</view>
+				</view>
+			</view>
+			<view class="section reasonText">
+				<textarea bindblur="bindTextAreaBlur" name="products[{{item.rec_id}}][comment]" bindinput="bindTextAreaBlur" maxlength="{{max}}" placeholder="商品您还满意吗？说说它的优点与缺点吧" data-index="{{index}}">
+                </textarea>
+				<!-- <text class="currentWordNumber">{{currentWordNumber|0}}/{{max}}</text> -->
+			</view>
+			<!-- 上传图片 -->
+			<!-- <view class="imgList">
+                <view class="portrait" bindtap='upShopLogo' placeholder="" data-id="{{item.rec_id}}" data-name="1">
+                    <view class="portraitImg">
+                        <image src="{{item.avatar}}"></image>
+                        <input class="imgShow" type="text" name="products[{{item.rec_id}}][evaluate_image][0]" value="{{item.evaluate_image1}}" placeholder="{{item.evaluate_image1}}"></input>
+                    </view>
+                </view>
+                <view class="portrait" bindtap='upShopLogo' data-id="{{item.rec_id}}" data-name="2">
+                    <view class="portraitImg">
+                        <image src="{{item.avatarTow}}"></image>
+                        <input class="imgShow" type="text" name="products[{{item.rec_id}}][evaluate_image][1]" value="{{item.evaluate_image2}}" placeholder="{{item.evaluate_image2}}"></input>
+                    </view>
+                </view>
+                <view class="portrait" bindtap='upShopLogo' data-id="{{item.rec_id}}" data-name="3">
+                    <view class="portraitImg">
+                        <image src="{{item.avatarthree}}"></image>
+                        <input class="imgShow" type="text" name="products[{{item.rec_id}}][evaluate_image][2]" value="{{item.evaluate_image3}}" placeholder="{{item.evaluate_image3}}"></input>
+                    </view>
+                </view>
+            </view> -->
+			
+		</view>
+
+		<!-- 发布按钮 -->
+		<!-- <view class="btn" data-id="{{item.order_id}}"  formType="submit">
+            发布
+        </view> -->
+
+	</view>
+    <!-- 描述相符 -->
+			<view class="score">
+				<view class="describe">描述相符</view>
+				<view class="stars">
+					<block wx:for="{{describe_1}}" wx:key="index" wx:for-item="describe">
+						<image catchtap='in_xin' id='{{index+1}}' data-id="{{item.products_id}}" data-in='use_sc2' src='https://bj.aizhiyi.com/wap/images/me_icon/icon_star_pre.png'></image>
+					</block>
+					<block wx:for="{{describe_2}}" wx:key="index" wx:for-item="describe">
+						<image catchtap='in_xin' id='{{index+1}}' data-id="{{item.products_id}}" data-in='use_sc' src='https://bj.aizhiyi.com/wap/images/me_icon/icon_star_nor.png'></image>
+					</block>
+				</view>
+			</view>
+			<!-- 服务态度 -->
+			<view class="score">
+				<view class="describe">服务态度</view>
+				<view class="stars">
+					<block wx:for="{{service_1}}" wx:key="index" wx:for-item="service">
+						<image catchtap='service' id='{{index+1}}' data-id="{{item.products_id}}" data-in='use_sc2' src='https://bj.aizhiyi.com/wap/images/me_icon/icon_star_pre.png'></image>
+					</block>
+					<block wx:for="{{service_2}}" wx:key="index" wx:for-item="service">
+						<image catchtap='service' id='{{index+1}}' data-id="{{item.products_id}}" data-in='use_sc' src='https://bj.aizhiyi.com/wap/images/me_icon/icon_star_nor.png'></image>
+					</block>
+				</view>
+			</view>
+			<!-- 发货速度 -->
+			<view class="score">
+				<view class="describe">发货速度</view>
+				<view class="stars" data-id="{{item.products_id}}">
+					<block wx:for="{{speed_1}}" wx:key="index" wx:for-item="speedItem">
+						<image catchtap='speed' id='{{index+1}}' data-id="{{item.products_id}}" data-in='use_sc2' src='https://bj.aizhiyi.com/wap/images/me_icon/icon_star_pre.png'></image>
+					</block>
+					<block wx:for="{{speed_2}}" wx:key="index" wx:for-item="speedItem">
+						<image catchtap='speed' id='{{index+1}}' data-id="{{item.products_id}}" data-in='use_sc' src='https://bj.aizhiyi.com/wap/images/me_icon/icon_star_nor.png'></image>
+					</block>
+					<input type="text" class="imgShow" name="products[score]" value="5" placeholder="{{item.speed_1}}"></input>
+				</view>
+			</view>
+	<view class="btn">
+		<button class="btn" formType="submit">发布</button>
+	</view>
+
+</form>

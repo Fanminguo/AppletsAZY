@@ -1,0 +1,28 @@
+<!--pages/addressList/addressList.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view>
+	<view class="addList" wx:for="{{ressList}}" wx:key="index">
+		<view class="addressName" data-id="{{item.address_id}}" bindtap="goSubm">
+			<view class="consi">
+				<text class="consignee">收货人:</text>
+				<text class="name">{{item.true_name}}</text>
+				<text class="number">{{item.mob_phone}}</text>
+				<text class="moren" wx:if="{{item.is_default !=0 || item.is_default ==1}}">默认</text>
+			</view>
+			<view class="detailed">{{item.area_info}}{{item.address}}</view>
+		</view>
+		<view class="bianji">
+			<text  bindtap="goModify" data-id="{{item.address_id}}">编辑</text>
+		</view>
+	</view>
+	<view class="addressKong" wx:if="{{ressList.length <=0}}">
+		<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/address4@2x.png"></image>
+        <view class="topText">暂无收货地址</view>
+        <view class="text">您还没有设置收货地址哦，<text bindtap="getAddress">去添加+</text></view>
+	</view>
+	<view class="addList" style="background:none">
+	</view>
+	<view class="botbtn" wx:if="{{ressList.length >=1}}">
+		<view class="buttom" bindtap='getAddress'>+添加收货地址</view>
+	</view>
+</view>

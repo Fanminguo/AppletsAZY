@@ -1,0 +1,12 @@
+<!--pages/edit_mobile1/edit_mobile1.wxml-->
+<view class="edit-cont">
+   <view class="edit-inner">
+     <input placeholder-class="phcolor" type="number" bindinput="getMobile" class="input" placeholder="请输入新手机号"></input>
+   </view>
+   <view class="edit-inner">
+     <input placeholder-class="phcolor" type="number" bindinput="tel_code" class="input" placeholder="请输入短信验证码"></input>
+     <button class="get-btn" disabled='{{disabled}}' bindtap="goGetCode">{{code}}</button>
+   </view>
+</view>
+<view class="edit-btn" bindtap="edit">提交</view>
+

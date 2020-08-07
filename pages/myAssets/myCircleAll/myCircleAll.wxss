@@ -1,0 +1,4 @@
+.circle-list{ width: 100rpx; float: left; margin:0 23rpx 35rpx 23rpx}
+.circle-list image{ width: 100rpx; height: 100rpx; border-radius: 50%;}
+.circle-pname{ font-size: 24rpx; color: #ffffff; text-align: center; white-space: nowrap; width: 100%; 
+  overflow: hidden; text-overflow:ellipsis;}

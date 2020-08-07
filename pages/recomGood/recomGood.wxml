@@ -1,0 +1,22 @@
+<!-- 加载 -->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view class="shopList" wx:for="{{listData}}" wx:key="index">
+    <view class="shopImg clearfix">
+        <image class="fl shopTU" src="{{item.cust_avatar}}"></image>
+        <view class="fl shopBox">
+            <view class="shopName" wx:if="{{item.cust_nickname}}">{{item.cust_nickname}}</view>
+			 <view class="shopName" wx:else>{{item.cust_name}}</view>
+			<view class="people">{{item.text}}</view>
+        </view>
+		<view class="fl">
+			<view class="{{!item.follow?'butFollow':'active'}}" data-index="{{index}}" data-id="{{item.cust_id}}" bindtap="followShop">{{item.SearchText}}</view>
+		</view>
+		<view class="delete fl"  bindtap="deleteOrder" data-index="{{index}}">
+			<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/guanzhu_cuohao@2x_wps.png"></image>
+		</view>
+    </view>
+</view>
+
+<view class="bottom" wx:if="{{hasmore}}">
+	暂时没有更多了~
+</view>

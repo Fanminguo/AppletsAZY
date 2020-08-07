@@ -1,0 +1,32 @@
+/* pages/set/setAccount/wallet/wallet.wxss */
+@import '../../../edit_mobile1/edit_mobile1.wxss';
+
+.editBtn {
+  width: 600rpx;
+  height: 88rpx;
+  background: rgba(202, 73, 58, 1);
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  margin: 0 auto;
+  line-height: 88rpx;
+  margin-top: 50rpx;
+}
+button[disabled] {
+  color: #CA493A !important;
+  background: none !important;
+  border: solid 1rpx #CA493A;
+  
+  }
+  
+.textList{
+	width: 680rpx;
+	margin: 0 auto;
+	margin-top: 35rpx;
+	font-size:24rpx;
+	color:rgba(155,155,155,1);
+}
+.textList view{
+	margin-top: 5rpx;
+}

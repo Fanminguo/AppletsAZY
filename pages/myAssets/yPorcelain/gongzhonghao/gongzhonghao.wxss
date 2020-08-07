@@ -1,0 +1,12 @@
+/* pages/myAssets/yPorcelain/gongzhonghao/gongzhonghao.wxss */
+page{
+	background: #eee4d3;
+}
+.gongzhong{
+	position: absolute;
+	height: 100%;
+}
+.gongzhong image{
+	width: 100vw;
+	display: block;
+}

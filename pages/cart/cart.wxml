@@ -1,0 +1,69 @@
+<!--pages/cart/cart.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view wx:if="{{cartList !=''}}">
+  <view class='cont {{ isEdit ? "edit":""}}'>
+    <!-- <view class="edit-btn" bindtap="edit_cart">{{editText}}</view> -->
+    <view class="cart-store" wx:for="{{cartList}}" wx:for-index="groupIndex" wx:key="index" >
+      <view class="store-top">
+        <checkbox-group class="store-chbox" bindchange="checkall" data-index="{{groupIndex}}" >
+            <checkbox checked='{{item.checkeedAll}}' class="ckstore"></checkbox>
+        </checkbox-group>
+        <text class="store-name" bindtap="gostore" data-store_id="{{item.store_id}}">{{item.store_name}}</text>
+      </view>
+          <view class="products-list" wx:for="{{item.products}}"  wx:for-item="products" wx:key="index">
+            <scroll-view  scroll-x="true" scroll-left="{{scroll0}}" style="width:100%">
+               <view style="width:860rpx">
+                  <checkbox-group bindchange="Checks1" data-index="{{groupIndex}}"  data-id="{{products.cart_id}}">
+                    <view class="products-info">
+                        <checkbox checked="{{products.checked}}" class="ckproduct"></checkbox>
+                        <image class="products-img" bindtap="govideo" data-products_video="{{products.video_name}}" data-products_commonid="{{products.products_commonid}}" data-products_id="{{products.products_id}}" src="{{products.products_image_url}}"></image>
+                        <view class="products-name" bindtap="govideo" data-products_video="{{products.video_name}}" data-products_commonid="{{products.products_commonid}}" data-products_id="{{products.products_id}}"> 
+                        <view class="acti-icon" wx:if="{{products.products_promotion_type==10}}">团购</view>
+                        <view class="acti-icon" wx:if="{{products.products_promotion_type==2}}">限时购</view>
+                        {{products.products_name}} </view>
+                        <view class="products-js">{{products.products_spec}}</view>
+                        <view class="products-total clearfix">
+                          <view class="products-price fl"><text>￥</text>{{products.products_price}}</view>
+                          <!-- <view class="products-mum fr">x<text>{{products.products_num}}</text></view> -->
+                        </view>
+                        <view class="clearfix">
+                          <view class="value-box clearfix">
+                            <view class="minus fl" data-id="{{products.cart_id}}" bindtap="bindreduce">-</view>
+                            <input type="num"  disabled='disabled' class="buy-num fl" readonly value="{{products.products_num}}"></input>
+                            <view class="add fr" data-id="{{products.cart_id}}" bindtap="bindadd">+</view>
+                          </view>
+                        </view>
+                        
+                    </view>
+                  </checkbox-group>
+                   
+               </view>
+               <view class="del-cart" data-id="{{products.cart_id}}" bindtap="del_product">删除</view>
+            </scroll-view>
+            
+          </view>
+    </view>
+  </view>
+  <view style="height:100rpx;"></view>
+  <view class="cart-bottom clearfix">
+    <view class="cart-bottom-left fl">
+      <checkbox-group bindchange="AllTap"  class="ckall" data-index="{{index}}">
+          <checkbox checked='{{checkedAll}}'>全选</checkbox>
+        </checkbox-group> 
+        <!-- <checkbox class="ckall" data-index="{{index}}"  bindchange="AllTap">全选</checkbox> -->
+        <view class="cart-price fr">
+          合计:<text class="cart-price-icon">￥</text><text class="total-price">{{totalPrice}}</text>
+        </view>
+    </view>
+    <view wx:if="{{editText=='管理'}}" class="cart-btn fr" bindtap="gobuy" >结算({{totalNum}})</view>
+    <view wx:if="{{editText=='完成'}}" class="cart-btn fr" bindtap="delBtn">删除</view>
+  </view>
+</view>
+<view class="cart-null" wx:if="{{cartList==''}}">
+   <view class="cart-null-text">购物车为空</view>
+   <view>
+     <text>没有更多产品,</text><text class="goindex" bindtap="goindex">发现更多精品 > </text>
+   </view>
+   
+</view>
+

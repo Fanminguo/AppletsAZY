@@ -1,0 +1,20 @@
+<!--pages/live/report/report.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view class="report-title">请选择您认为的违规类型</view>
+<view class="report-list"  wx:for="{{list}}" wx:key="index" data-inner="{{item.report_reason}}" data-id="{{item.id}}" bindtap="godetail">{{item.report_reason}}<view class="report-list-icon"></view></view>
+
+<!-- 截图弹窗 -->
+<view class="imgDialog" wx:if="{{is_showDialog}}">
+    <view class="imgDialog-cont">
+        <view class="imgDialog-contTe">
+          <view class="imgDialog-cont-text">举报中需要<text>相关证明</text>作为凭证</view>
+          <view class="imgDialog-cont-text">请事先准备</view>
+        </view>
+        <image class="imgDialog-img" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/129.png"></image>
+        <view class="imgDialog-bottom">
+           <view class="imgDialog-bottom-return" bindtap="return">返回</view>
+           <view class="imgDialog-bottom-ok" bindtap="imgDialogHIde">准备好了</view>
+        </view>
+    </view>
+    
+</view>

@@ -1,0 +1,50 @@
+<view>
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+    <view class="category">
+        <view class="refund-type">{{seller_title}}</view>
+        <view class="refund-speed">{{seller_text}}</view>
+        <view class="refund-text">{{seller_tishi}}</view>
+        <view class="refund-text">{{seller_tishi2}}</view>
+        <view class="refund-text">{{seller_tishi3}}</view>
+
+        <view class="clearfix category-btn-list">
+           <view class="category-btn" wx:if="{{refund_info.seller_state ==1}}" data-refund_id='{{refund_info.refund_id}}' bindtap="revoke" style="margin-right:18rpx">撤销申请</view>
+           <!-- <view class="category-btn" wx:if="{{refund_info.seller_state ==1}}">修改申请</view> -->
+           <!-- <view class="category-btn">重新申请</view> -->
+           <view class="category-btn"  wx:if="{{refund_info.ship_state == 1}}" data-refund_id='{{refund_info.refund_id}}' bindtap="goNumber">填写物流单号</view>
+        </view>
+    </view>
+    <view class="info pricelist" wx:if="{{refund_info.admin_state == 3}}">
+      <view class="pricelist-all">退款总金额<text>￥{{refund_info.refund_amount}}</text></view>
+      <view class="pricelist-info" wx:if="{{detail_array.pay_amount>0}}">退回{{detail_array.refund_code}}<text>￥{{detail_array.pay_amount}}</text></view>
+      <view class="pricelist-info" wx:if="{{detail_array.recharge_amount>0}}">退回礼品卡<text>￥{{detail_array.recharge_amount}}</text></view>
+      <view class="pricelist-info" wx:if="{{detail_array.yici_amount>0}}">退回易瓷币<text>￥{{detail_array.yici_amount}}</text></view>
+    </view>
+    <view class="info">
+       <view class="info-title">退款信息</view>
+       <view class="goods-info" wx:if="{{refund_info.products_list.length==1}}">
+          <image src="{{refund_info.products_list[0].products_img_360}}"></image>
+          <view class="goods-info-title">{{refund_info.products_list[0].products_name}}</view>
+          <view class="goods-info-type">{{refund_info.products_list[0].products_spec}} </view>
+       </view>
+       <view class="" wx:if="{{refund_info.products_list.length>1}}">
+          <view class="goods-list clearfix">
+            <view class="goods-list-info" wx:for="{{refund_info.products_list}}" wx:key="index" wx:for-index="index">
+                <image src="{{item.products_img_360}}"></image>
+                <view class="goods-list-info-price">￥<text>{{item.products_price}}</text></view>
+            </view>
+          </view>
+       </view>
+    </view>
+    <view class="info info-list">
+      <view>订单类型：{{refund_info.reason_info}}</view>
+      <view>退款金额：¥{{refund_info.refund_amount}}</view>
+      <view>商品数量：{{refund_info.products_num}}</view>
+      <view>申请时间：{{refund_info.add_time}}</view>
+      <view>退款编号：{{refund_info.refund_sn}}</view>
+      
+    </view>
+    <view class="kefu" bindtap="kefu">
+        <view class="kefu-icon"></view><text>联系客服</text>
+      </view>
+</view>

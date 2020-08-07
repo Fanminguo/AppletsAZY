@@ -1,0 +1,86 @@
+<!--pages/refundAll/refundAll.wxml-->
+<!-- 顶部提示 -->
+<view class="introduce">
+	<text>申请退款后，本单享有的优惠将一并取消; "*"为必填项。</text>
+</view>
+
+<view>
+	<view class="goods-list clearfix" wx:for="{{orderList}}" wx:key="index">
+		<view class="goods-list-info"  >
+			<image src="{{item.products_img_360}}"></image>
+			<view class="goods-list-info-price ">{{item.products_name}}</view>
+            <!-- <view class="goods-list-info-guige ">{{item.products_name}}</view> -->
+		</view>
+	</view>
+</view>
+
+<!-- 退款类型 -->
+<view class="section wrapInp">
+	<view class="section__title inpType">退款类型
+		<text>*</text>
+	</view>
+	<picker class="textInp" bindchange="bindPickerChange" value="{{refund}}" range="{{refundArray}}">
+		<view class="picker">
+			{{refundArray[refund]}}
+		</view>
+	</picker>
+</view>
+<!-- 收货状态 -->
+<view class="section wrapInp">
+	<view class="section__title inpType">收货状态
+		<text>*</text>
+	</view>
+	<picker class="textInp" bindchange="receivingType" value="{{receiv}}" range="{{receivArray}}">
+		<view class="picker">
+			{{receivArray[receiv]}}
+		</view>
+	</picker>
+</view>
+<!-- 退款原因 -->
+<view class="section wrapInp">
+	<view class="section__title inpType">退款原因
+		<text>*</text>
+	</view>
+	<picker class="textInp" bindchange="reasonList" value="{{reason}}" range="{{array}}" range-key="text" data-id="value">
+		<view class="picker">
+			{{array[reason].text}}
+		</view>
+	</picker>
+</view>
+<!-- 退款原因 -->
+<view class="section reasonText">
+	<textarea bindblur="bindTextAreaBlur" placeholder="请输入退款原因" />
+	</view>
+<!-- 上传图片 -->
+<view class="imgList">
+    <view class="portrait" bindtap='upShopLogo' data-id="1">
+        <view class="portraitImg">
+            <image src="{{avatar}}"></image>
+        </view>
+    </view>
+	 <view class="portrait" bindtap='upShopLogo' data-id="2">
+        <view class="portraitImg">
+            <image src="{{avatarTow}}"></image>
+        </view>
+    </view>
+	 <view class="portrait" bindtap='upShopLogo' data-id="3">
+        <view class="portraitImg">
+            <image src="{{avatarthree}}"></image>
+        </view>
+    </view>
+</view>
+<!-- 退款金额 -->
+<view class="section wrapInp">
+    <view class="section__title inpType">退款金额
+        <text>*</text>
+    </view>
+    <view class="textInp">
+        <view class="picker">
+           {{numMoney}}
+        </view>
+    </view>
+</view>
+<!-- 提交按钮 -->
+<view class="btn" bindtap="submiSsion">
+	申请退款
+</view>

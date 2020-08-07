@@ -1,0 +1,82 @@
+<!--pages/myAssets/myCircle/myCircle.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view wx:if="{{momentsList.length<1}}" class="circle-null">
+   <view class="circle-banner"></view>
+   <view class="btn" bindtap="getName"></view>
+</view>
+<view class="btn1"  bindtap="getName">创建</view>
+<view wx:if="{{momentsList.length>0}}">
+  <view class="circle-info" wx:for="{{momentsList}}"  wx:key="index" bindtap="goInfo" data-code="{{item.code}}">
+     <view class="circle-info-img one" wx:if="{{item.avatar.length==1}}"><image src="{{item.avatar[0]}}"></image></view>
+     <view class="circle-info-img two" wx:if="{{item.avatar.length==2}}">
+        <image src="{{item.avatar[0]}}"></image>
+        <image src="{{item.avatar[1]}}"></image>
+     </view>
+     <view class="circle-info-img three" wx:if="{{item.avatar.length==3}}">
+         <image src="{{item.avatar[0]}}"></image>
+         <image src="{{item.avatar[1]}}"></image>
+         <image src="{{item.avatar[2]}}"></image>
+     </view>
+     <view class="circle-info-img four" wx:if="{{item.avatar.length==4}}">
+         <image src="{{item.avatar[0]}}"></image>
+         <image src="{{item.avatar[1]}}"></image>
+         <image src="{{item.avatar[2]}}"></image>
+         <image src="{{item.avatar[3]}}"></image>
+     </view>
+     <view class="circle-info-img five" wx:if="{{item.avatar.length==5}}">
+         <image src="{{item.avatar[0]}}"></image>
+         <image src="{{item.avatar[1]}}"></image>
+         <image src="{{item.avatar[2]}}"></image>
+         <image src="{{item.avatar[3]}}"></image>
+         <image src="{{item.avatar[4]}}"></image>
+     </view>
+     <view class="circle-info-img six" wx:if="{{item.avatar.length==6}}">
+         <image src="{{item.avatar[0]}}"></image>
+         <image src="{{item.avatar[1]}}"></image>
+         <image src="{{item.avatar[2]}}"></image>
+         <image src="{{item.avatar[3]}}"></image>
+         <image src="{{item.avatar[4]}}"></image>
+         <image src="{{item.avatar[5]}}"></image>
+     </view>
+     <view class="circle-info-img seven" wx:if="{{item.avatar.length==7}}">
+         <image src="{{item.avatar[0]}}"></image>
+         <image src="{{item.avatar[1]}}"></image>
+         <image src="{{item.avatar[2]}}"></image>
+         <image src="{{item.avatar[3]}}"></image>
+         <image src="{{item.avatar[4]}}"></image>
+         <image src="{{item.avatar[5]}}"></image>
+         <image src="{{item.avatar[6]}}"></image>
+     </view>
+     <view class="circle-info-img eight" wx:if="{{item.avatar.length==8}}">
+         <image src="{{item.avatar[0]}}"></image>
+         <image src="{{item.avatar[1]}}"></image>
+         <image src="{{item.avatar[2]}}"></image>
+         <image src="{{item.avatar[3]}}"></image>
+         <image src="{{item.avatar[4]}}"></image>
+         <image src="{{item.avatar[5]}}"></image>
+         <image src="{{item.avatar[6]}}"></image>
+         <image src="{{item.avatar[7]}}"></image>
+     </view>
+     <view class="circle-info-img nine" wx:if="{{item.avatar.length>8}}">
+         <image src="{{item.avatar[0]}}"></image>
+         <image src="{{item.avatar[1]}}"></image>
+         <image src="{{item.avatar[2]}}"></image>
+         <image src="{{item.avatar[3]}}"></image>
+         <image src="{{item.avatar[4]}}"></image>
+         <image src="{{item.avatar[5]}}"></image>
+         <image src="{{item.avatar[6]}}"></image>
+         <image src="{{item.avatar[7]}}"></image>
+         <image src="{{item.avatar[8]}}"></image>
+     </view>
+     <view class="circle-info-cont">
+        <view class="circle-info-name">{{item.name}}</view>
+        <view class="circle-info-cont-label clearfix">
+           <view class="circle-info-label1 fl"><view class="circle-num-icon"></view>{{item.count}}人</view>
+           <view class="circle-info-label2 fl">{{item.pc_label_name}}</view>
+        </view>
+        <view class="circle-icon"></view>
+        <view class="circle-icon1"></view>
+     </view>
+  </view>
+</view>
+

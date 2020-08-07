@@ -1,0 +1,297 @@
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<!--导航条-->
+<view class="navbar">
+	<lable wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">
+		<text>{{item}}</text>
+	</lable>
+</view>
+<!--全部-->
+<!-- hidden="{{currentTab!==0}}" -->
+<view class='total'>
+	<view wx:if="{{listData.length > 0}}">
+		<!-- 外层 -->
+		<view class='cont_count' wx:for="{{listData}}" wx:key="key">
+			<view wx:for="{{item.order_list}}" wx:for-item="order_list_item" wx:key='key'>
+				<!-- 店铺 -->
+				<view class='seria'>
+					<label class='seriac_name' data-id="{{order_list_item.store_id}}" bindtap="goShopHome">
+						<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/3c7a18dabfe7a07b7479a23e2766f7a.png"></image>
+						<text>{{order_list_item.store_name}}</text>
+					</label>
+					<!-- 订单状态 -->
+					<!-- <label class='seriac_start' hidden="{{order_list_item.order_state != 0}}">
+						{{order_list_item.order_state == 0?'已取消':''}}
+						<image data-id='{{order_list_item.order_id}}' bindtap="deleteOrders" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/8ab28d7cddbdb5bfc2a14d3784a6fd3.png"></image>
+					</label>
+					<label class='seriac_start' hidden="{{order_list_item.order_state != 40}}">
+						{{order_list_item.order_state == 40 && order_list_item.evaluation_state == 1?'交易完成':'' }}
+						{{order_list_item.order_state == 40 && order_list_item.evaluation_state == 0?'待评论':'' }}
+						<image data-id='{{order_list_item.order_id}}' bindtap="deleteOrders" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/8ab28d7cddbdb5bfc2a14d3784a6fd3.png"></image>
+					</label>
+					<label class='seriac_start'>
+						{{order_list_item.order_state == 10?'待付款':''}} {{order_list_item.order_state == 20?'待发货':''}} {{order_list_item.order_state == 30?'已发货':''}} {{order_list_item.order_state == 50?'确认收货':''}}
+					</label> -->
+					<label class='seriac_start' wx:if="{{order_list_item.is_groupbuy != 1}}">
+						<text wx:if="{{order_list_item.if_evaluation}}">待评价</text>
+						<text wx:elif="{{order_list_item.if_refunded}}">已退款</text>
+						<text wx:elif="{{order_list_item.if_returned}}">已退货</text>
+						<label wx:else>{{order_list_item.state_desc}}
+							<image wx:if="{{order_list_item.state_desc == '已取消' || order_list_item.state_desc == '交易完成'}}" data-id='{{order_list_item.order_id}}' bindtap="deleteOrders" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/8ab28d7cddbdb5bfc2a14d3784a6fd3.png"></image>
+						</label>
+					</label>
+				</view>
+				<view class='list' data-id="{{order_list_item.order_id}}" bindtap="goOrderDeta" wx:for="{{order_list_item.extend_order_products}}" wx:for-item="list_item" wx:key='key'>
+					<image class='list_img' src='{{list_item.products_image_url}}'></image>
+					<label class='list_name'>
+						{{list_item.products_name}}
+					</label>
+					<label class="list_ions" wx:if="{{list_item.products_spec != null}}">
+						{{list_item.products_spec}}
+					</label>
+					<label class='list_money'>￥ {{list_item.products_price}}</label>
+					<label class="list_num">x {{list_item.products_num}}</label>
+				</view>
+				<view class='count_eg' wx:if="{{item.order_state!=10}}">
+
+					<view class='count_cent'>
+						<lable class='cont_cen_money'>
+							合计:
+							<text class='cont_ce_mon'>￥{{order_list_item.products_amount}}</text>
+						</lable>
+						<label class='cont_cent_name'>
+							共{{order_list_item.productsNum}}件商品
+						</label>
+					</view>
+				</view>
+				<view class='coent_list clearfix' wx:if="{{order_list_item.order_state !=10 && order_list_item.state_desc !='已取消'}}">
+					<label class='refund' wx:if="{{order_list_item.if_lock}}" data-index='{{index}}'>退款/退货中</label>
+
+
+					<label class='coent_del color' wx:if="{{order_list_item.order_state==20 && !order_list_item.if_delivery_remind && !order_list_item.if_lock}}" bindtap="deliver" data-id="{{order_list_item.order_id}}" data-index='{{index}}'>提醒发货</label>
+
+					<label class='coent_del remind' wx:if="{{order_list_item.order_state==20 && order_list_item.if_delivery_remind && !order_list_item.if_lock}}" data-id="{{order_list_item.order_id}}" bindtap="reminded" data-index='{{index}}'>已提醒</label>
+
+
+
+					<label class='coent_del color' wx:if="{{order_list_item.if_receive}}" data-num="{{order_list_item.pay_sn}}" data-id="{{order_list_item.order_id}}" bindtap="confirMation" data-store_id="{{order_list_item.store_id}}" data-index='{{index}}'>确认收货</label>
+					<!-- 去评论 -->
+					<label class='coent_del' wx:if="{{!order_list_item.if_lock && order_list_item.if_evaluation}}" data-num="{{order_list_item.pay_sn}}" data-id="{{order_list_item.order_id}}" data-index='{{index}}' bindtap="goComment">去评论</label>
+					<!-- <label class='coent_del' wx:if="{{!order_list_item.if_lock && order_list_item.if_evaluation_again}}" data-num="{{order_list_item.pay_sn}}" data-id="{{order_list_item.order_id}}" data-index='{{index}}'>追加评价</label> -->
+					<label class='coent_del' bindtap="goLogistics" wx:if="{{order_list_item.if_deliver}}" data-id="{{order_list_item.order_id}}" data-index='{{index}}'>查看物流</label>
+                    <label class='coent_del' bindtap="kefu">联系客服</label>
+				</view>
+			</view>
+
+			<view wx:if="{{item.order_state == 10}}" class="btnClass">
+				<view class='count_eg'>
+					<view class='count_cent'>
+						<lable class='cont_cen_money'>
+							合计:
+							<text class='cont_ce_mon'>￥{{item.pay_amount}}</text>
+						</lable>
+						<label class='cont_cent_name'>
+							共{{item.productsNum}}件商品
+						</label>
+					</view>
+				</view>
+				<label class='coent_del btnColor' data-id="{{item.pay_sn}}" bindtap="pay">去支付</label>
+				<label class='coent_del' bindtap="quxao" data-id="{{item.pay_sn}}">取消订单</label>
+			</view>
+		</view>
+
+	</view>
+</view>
+
+<!--代付款-->
+<!-- <view hidden="{{currentTab!==1}}" class='total'>
+    <view wx:if="{{listData.length > 0}}">
+        <view class='cont_count' wx:for="{{listData}}" wx:key="key">
+            <view wx:for="{{item.order_list}}" wx:for-item="order_list_item" wx:key='key'>
+                <view class='seria'>
+                    <label class='seriac_name' data-id="{{order_list_item.store_id}}" bindtap="goShopHome">
+                        <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/3c7a18dabfe7a07b7479a23e2766f7a.png"></image>
+                        <text>{{order_list_item.store_name}}</text>
+                    </label>
+                    <label class='seriac_start'>
+                        {{order_list_item.order_state == 10?'待付款':''}}
+                    </label>
+                </view>
+                <view class='list' data-id="{{order_list_item.order_id}}" bindtap="goOrderDeta" wx:for="{{order_list_item.extend_order_products}}" wx:for-item="list_item" wx:key='key'>
+                    <image class='list_img' src='{{list_item.products_image_url}}'></image>
+                    <label class='list_name'>
+                        {{list_item.products_name}}
+                    </label>
+                    <label class="list_ions" wx:if="{{list_item.products_spec != null}}">
+                        {{list_item.products_spec}}
+                    </label>
+                    <label class='list_money'>￥ {{list_item.products_price}}</label>
+                    <label class="list_num">x {{list_item.products_num}}</label>
+                </view>
+            </view>
+            <view class='count_eg'>
+                <view class='count_cent'>
+                    <lable class='cont_cen_money'>
+                        合计:
+                        <text class='cont_ce_mon'>￥{{item.pay_amount}}</text>
+                    </lable>
+                    <label class='cont_cent_name'>
+                        共{{item.productsNum}}件商品
+                    </label>
+                </view>
+            </view>
+            <view class='coent_list clearfix'>
+                <view wx:if="{{payment == 10}}">
+                    <label class='coent_del btnColor' data-id="{{item.pay_sn}}" bindtap="pay">去支付</label>
+                    <label class='coent_del' bindtap="quxao" data-id="{{item.pay_sn}}">取消订单</label>
+                </view>
+            </view>
+        </view>
+    </view>
+</view> -->
+<!-- 代发货 -->
+<!-- <view hidden="{{currentTab!==2}}" class='total'>
+    <view wx:if="{{listData.length > 0}}">
+        <view class='cont_count' wx:for="{{listData}}" wx:key="key">
+            <view wx:for="{{item.order_list}}" wx:for-item="order_list_item" wx:key='key'>
+                <view class='seria'>
+                    <label class='seriac_name' data-id="{{order_list_item.store_id}}" bindtap="goShopHome">
+                        <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/3c7a18dabfe7a07b7479a23e2766f7a.png"></image>
+                        <text>{{order_list_item.store_name}}</text>
+                    </label>
+                    <label class='seriac_start'>
+                        {{order_list_item.order_state == 20?'待发货':''}}
+                    </label>
+                </view>
+                <view class='list' data-id="{{order_list_item.order_id}}" bindtap="goOrderDeta" wx:for="{{order_list_item.extend_order_products}}" wx:for-item="list_item" wx:key='key'>
+                    <image class='list_img' src='{{list_item.products_image_url}}'></image>
+                    <label class='list_name'>
+                        {{list_item.products_name}}
+                    </label>
+                    <label class="list_ions" wx:if="{{list_item.products_spec != null}}">
+                        {{list_item.products_spec}}
+                    </label>
+                    <label class='list_money'>￥ {{list_item.products_price}}</label>
+                    <label class="list_num">x {{list_item.products_num}}</label>
+                </view>
+                <view class='count_eg'>
+                    <view class='count_cent'>
+                        <lable class='cont_cen_money'>
+                            合计:
+                            <text class='cont_ce_mon'>￥{{order_list_item.products_amount}}</text>
+                        </lable>
+                        <label class='cont_cent_name'>
+                            共{{order_list_item.productsNum}}件商品
+                        </label>
+                    </view>
+                </view>
+
+                <view class='coent_list clearfix' wx:if="{{payment == 20}}">
+                    <label class='coent_del color' wx:if="{{order_list_item.order_state==20 && !order_list_item.if_delivery_remind && !order_list_item.if_lock}}" bindtap="deliver" data-id="{{order_list_item.order_id}}" data-index='{{index}}'>提醒发货</label>
+                    <label class='coent_del remind' wx:if="{{order_list_item.order_state==20 && order_list_item.if_delivery_remind && !order_list_item.if_lock}}" data-id="{{order_list_item.order_id}}" bindtap="reminded" data-index='{{index}}'>已提醒</label>
+                </view>
+            </view>
+        </view>
+    </view>
+</view> -->
+<!-- 待收货 -->
+<!-- <view hidden="{{currentTab!==3}}" class='total'>
+    <view wx:if="{{listData.length > 0}}">
+        <view class='cont_count' wx:for="{{listData}}" wx:key="key">
+            <view wx:for="{{item.order_list}}" wx:for-item="order_list_item" wx:key='key'>
+                <view class='seria'>
+                    <label class='seriac_name' data-id="{{order_list_item.store_id}}" bindtap="goShopHome">
+                        <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/3c7a18dabfe7a07b7479a23e2766f7a.png"></image>
+                        <text>{{order_list_item.store_name}}</text>
+                    </label>
+                    <label class='seriac_start'>
+                        {{order_list_item.order_state == 30?'待收货':''}}
+                    </label>
+                </view>
+                <view class='list' data-id="{{order_list_item.order_id}}" bindtap="goOrderDeta" wx:for="{{order_list_item.extend_order_products}}" wx:for-item="list_item" wx:key='key'>
+                    <image class='list_img' src='{{list_item.products_image_url}}'></image>
+                    <label class='list_name'>
+                        {{list_item.products_name}}
+                    </label>
+                    <label class="list_ions" wx:if="{{list_item.products_spec != null}}">
+                        {{list_item.products_spec}}
+                    </label>
+                    <label class='list_money'>￥ {{list_item.products_price}}</label>
+                    <label class="list_num">x {{list_item.products_num}}</label>
+                </view>
+                <view class='count_eg'>
+                    <view class='count_cent'>
+                        <lable class='cont_cen_money'>
+                            合计:
+                            <text class='cont_ce_mon'>￥{{order_list_item.products_amount}}</text>
+                        </lable>
+                        <label class='cont_cent_name'>
+                            共{{order_list_item.productsNum}}件商品
+                        </label>
+                    </view>
+                </view>
+                <view class='coent_list clearfix' wx:if="{{order_list_item.order_state != 0}}">
+                    <label class='coent_del color' wx:if="{{order_list_item.if_receive}}" data-num="{{order_list_item.pay_sn}}" data-id="{{order_list_item.order_id}}" data-index='{{index}}' bindtap="confirMation">确认收货</label>
+                    <label class='coent_del' bindtap="goLogistics" wx:if="{{order_list_item.if_deliver}}" data-id="{{order_list_item.order_id}}" data-index='{{index}}'>查看物流</label>
+                </view>
+            </view>
+        </view>
+    </view>
+</view> -->
+<!-- <view hidden="{{currentTab!==4}}" class='total'>
+    <view wx:if="{{listData.length > 0}}">
+        <view class='cont_count' wx:for="{{listData}}" wx:key="key">
+            <view wx:for="{{item.order_list}}" wx:for-item="order_list_item" wx:key='key'>
+                <view class='seria'>
+                    <label class='seriac_name' data-id="{{order_list_item.store_id}}" bindtap="goShopHome">
+                        <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/3c7a18dabfe7a07b7479a23e2766f7a.png"></image>
+                        <text>{{order_list_item.store_name}}</text>
+                    </label>
+                    <label class='seriac_start' hidden="{{order_list_item.order_state != 0}}">
+                        {{order_list_item.order_state == 0?'已取消':''}}
+                        <image data-id='{{order_list_item.order_id}}' bindtap="deleteOrders" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/8ab28d7cddbdb5bfc2a14d3784a6fd3.png"></image>
+                    </label>
+                    <label class='seriac_start' hidden="{{order_list_item.order_state != 40}}">
+                        {{order_list_item.order_state == 40 && order_list_item.evaluation_state == 1?'交易完成':'' }} {{order_list_item.order_state == 40 && order_list_item.evaluation_state == 0?'待评论':'' }}
+                        <image data-id='{{order_list_item.order_id}}' bindtap="deleteOrders" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/8ab28d7cddbdb5bfc2a14d3784a6fd3.png"></image>
+                    </label>
+                </view>
+                <view class='list' data-id="{{order_list_item.order_id}}" bindtap="goOrderDeta" wx:for="{{order_list_item.extend_order_products}}" wx:for-item="list_item" wx:key='key'>
+                    <image class='list_img' src='{{list_item.products_image_url}}'></image>
+                    <label class='list_name'>
+                        {{list_item.products_name}}
+                    </label>
+                    <label class="list_ions" wx:if="{{list_item.products_spec != null}}">
+                        {{list_item.products_spec}}
+                    </label>
+                    <label class='list_money'>￥ {{list_item.products_price}}</label>
+                    <label class="list_num">x {{list_item.products_num}}</label>
+                </view>
+                <view class='count_eg'>
+                    <view class='count_cent'>
+                        <lable class='cont_cen_money'>
+                            合计:
+                            <text class='cont_ce_mon'>￥{{order_list_item.products_amount}}</text>
+                        </lable>
+                        <label class='cont_cent_name'>
+                            共{{order_list_item.productsNum}}件商品
+                        </label>
+                    </view>
+                </view>
+              
+            </view>
+        </view>
+    </view>
+</view> -->
+<!-- 到达底部 -->
+<view wx:if="{{state == 0 && listData.length > 2}}">
+	<view class='cont_bottom'>
+		已经到达底部喽~
+	</view>
+</view>
+<view class="cont_Image" wx:if="{{state == 0 && listData.length <= 0}}">
+	<view class=''>
+		<view class='none_tab'>
+			<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/daf6da3c439cae9953c0ffc5a1617fe.png"></image>
+		</view>
+	</view>
+</view>

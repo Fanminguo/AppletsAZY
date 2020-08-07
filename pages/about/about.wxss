@@ -1,0 +1,8 @@
+/* pages/about/about.wxss */
+.logo{ width: 122rpx; height: 122rpx; margin: 0 auto 0; display: block}
+.about-test{ font-size: 28rpx; color:rgba(255,255,255,0.9); text-align: center; margin: 30rpx 0}
+.about-info{font-size:28rpx;color:rgba(255,255,255,0.9); line-height: 40rpx; margin: 0 30rpx;}
+.about-top{padding: 60rpx 0 35rpx 0;}
+.about-nav{ margin: 28rpx 0 0 0}
+.about-nav-info{ height: 105rpx; line-height: 105rpx; color:rgba(255,255,255,0.9);font-size:28rpx; margin: 0 0 0 30rpx; border-bottom:solid 2rpx #31333F; position: relative}
+.about-nav-info .icon{ width: 47rpx; height: 51rpx; position: absolute; right: 30rpx; top: 50%; margin-top: -25.5rpx;background: url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/67.png") no-repeat center center; background-size: cover; opacity: 0.3}

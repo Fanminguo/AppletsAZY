@@ -1,0 +1,84 @@
+<!--pages/notice/notice.wxml-->
+<view class="notice-title">火热活动</view>
+<view class="notice-nav clearfix">
+  <view class="notice-nav-li" style="margin-left:23rpx;">
+    <view class="notice-nav-li-bj">
+       <view class="notice-bj-title">1元抢购</view>
+       <view class="notice-bj-line"></view>
+       <view class="notice-bj-text">快乐一元 好运连连</view>
+    </view>
+    <image src="{{data.now.freebuy[0].products_image}}"></image>
+  </view>
+  <view class="notice-nav-li" bindtap="togroup">
+    <view class="notice-nav-li-bj">
+       <view class="notice-bj-title">拼团</view>
+       <view class="notice-bj-line"></view>
+       <view class="notice-bj-text">省着团 不如拼团购</view>
+    </view>
+    <image src="{{data.now.groupbuy[0].products_image}}"></image>
+  </view>
+  <view class="notice-nav-li" bindtap="tolimit">
+    <view class="notice-nav-li-bj">
+       <view class="notice-bj-title">限时购</view>
+       <view class="notice-bj-line"></view>
+       <view class="notice-bj-text">手快有 手慢无</view>
+    </view>
+    <image src="{{data.now.xianshi[0].products_image}}"></image>
+  </view>
+</view>
+<view class="nav-tabList clearfix">
+  <view class="nav-tab {{num ==1?'active':''}}" bindtap="tab" data-num="1">活动预告</view>
+  <view class="nav-tab {{num ==2?'active':''}}" data-num="2" bindtap="tab">上期活动</view>
+</view>
+<view class="notice-list" wx:if="{{num ==1}}">
+  <view class="notice-list-li">
+    <image src="{{data.next.freebuy[0].products_image}}"></image>
+    <text class="name">1元抢大礼 </text>
+    <text class="date">{{data.next.freebuy[0].start_time}}</text>
+    <view class="icon"></view>
+  </view>
+  <view class="notice-list-li" bindtap="togroup">
+    <image src="{{data.next.groupbuy[0].products_image}}"></image>
+    <text class="name">拼团</text>
+    <text class="date">每周五更新</text>
+    <view class="icon"></view>
+  </view>
+  <view class="notice-list-li" bindtap="tolimit">
+    <image src="{{data.next.activity[0].products_image}}"></image>
+    <text class="name">限时购 </text>
+    <text class="date">{{data.next.activity[0].start_time}}</text>
+    <view class="icon"></view>
+  </view>
+  <view class="notice-list-li">
+    <image src="{{data.next.activity.products_image}}"></image>
+    <text class="name">{{data.next.activity.title}}</text>
+    <text class="date">{{data.next.activity.start_time}}</text>
+    <view class="icon"></view>
+  </view>
+</view>
+<view class="notice-list" wx:if="{{num ==2}}">
+  <view class="notice-list-li">
+    <image src="{{data.last.freebuy[0].products_image}}"></image>
+    <text class="name">上期1元抢大礼 </text>
+    <text class="date">{{data.last.freebuy[0].start_time}}</text>
+    <view class="icon"></view>
+  </view>
+  <view class="notice-list-li" bindtap="togroup">
+    <image src="{{data.last.groupbuy[0].products_image}}"></image>
+    <text class="name">拼团</text>
+    <text class="date">{{data.last.groupbuy[0].end_time2}}</text>
+    <view class="icon"></view>
+  </view>
+  <view class="notice-list-li" bindtap="tolimit">
+    <image src="{{data.last.xianshi[0].products_image}}"></image>
+    <text class="name">限时购 </text>
+    <text class="date">{{data.last.xianshi[0].end_time}}</text>
+    <view class="icon"></view>
+  </view>
+  <view class="notice-list-li">
+    <image src="{{data.last.activity.products_image}}"></image>
+    <text class="name">{{data.last.activity.title}}</text>
+    <text class="date">{{data.last.activity.start_time}}</text>
+    <view class="icon"></view>
+  </view>
+</view>

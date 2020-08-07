@@ -1,0 +1,8 @@
+var jtr = {
+  jsonExt: function (value) {
+    return JSON.parse(value);
+  }
+}
+module.exports = {
+  jsonExt: jtr.jsonExt
+}

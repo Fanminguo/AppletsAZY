@@ -1,0 +1,37 @@
+<!--pages/hot/hot.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<image wx:if="{{data.banner_image}}" class="hot-banner" src="{{data.banner_image}}"></image>
+<view class="list">
+   <view class="list-top clearfix">
+     <view class="list-top-title fl"><image class="group-icon" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/41.png"></image>拼团</view>
+     <view class="list-more fr" bindtap="togroup">查看更多 > </view>
+   </view>
+   <view class="list-inner clearfix">
+     <view class="hot" wx:for="{{data.groupbuy}}" wx:key="index">
+       <view class="hot-image"  bindtap="govideo" data-video_name="{{item.video_name}}"  data-products_id="{{item.products_id}}" data-products_commonid="{{item.products_commonid}}">
+         <image src="{{item.image}}"></image>
+         <view class="products-inner-price">
+            <view class="fr"><image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/51.png"></image>{{item.products_collect}}</view>
+        </view>
+       </view>
+       <view style="padding-bottom:15rpx;"><view class="hot-name">{{item.products_name}}</view></view>
+     </view>
+   </view>
+</view>
+<view class="list" style="margin-top:60rpx; margin-bottom:120rpx;">
+   <view class="list-top clearfix">
+     <view class="list-top-title fl"><image class="limit-icon" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/39.png"></image>限时购</view>
+     <view class="list-more fr" bindtap="tolimit">查看更多 > </view>
+   </view>
+   <view class="list-inner clearfix">
+     <view class="hot" wx:for="{{data.xianshi}}" wx:key="index">
+       <view class="hot-image"  bindtap="govideo" data-video_name="{{item.video_name}}"  data-products_id="{{item.products_id}}" data-products_commonid="{{item.products_commonid}}">
+         <image src="{{item.image}}"></image>
+         <view class="products-inner-price">
+            <view class="fr"><image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/51.png"></image>{{item.products_collect}}</view>
+        </view>
+       </view>
+       <view style="padding-bottom:15rpx;"><view class="hot-name">{{item.products_name}}</view></view>
+     </view>
+   </view>
+</view>

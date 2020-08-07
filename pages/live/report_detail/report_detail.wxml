@@ -1,0 +1,35 @@
+
+<view class="section wrapInp">
+    <view class="section__title inpType">举报理由:</view>
+    <view class="picker">{{inner}}</view>
+</view>
+
+<view class="section wrapInp">
+    <view class="section__title inpType">举报理由(选填)</view>
+</view>
+
+<view class="section reasonText">
+    <textarea bindblur="bindTextAreaBlur" minlength="{{min}}" maxlength="{{max}}" bindinput="bindTextAreaBlur" value="{{value}}" placeholder="请详细描述举报理由" />
+    <text class="wordsNum">{{currentWordNumber|0}}/{{max}}</text>
+</view>
+<!-- 上传图片 -->
+<view class="imgList">
+    <view class="portrait" bindtap='upShopLogo' data-id="1">
+        <view class="portraitImg">
+            <image src="{{avatar}}"></image>
+        </view>
+    </view>
+	 <view class="portrait" bindtap='upShopLogo' data-id="2">
+        <view class="portraitImg">
+            <image src="{{avatarTow}}"></image>
+        </view>
+    </view>
+	 <view class="portrait" bindtap='upShopLogo' data-id="3">
+        <view class="portraitImg">
+            <image src="{{avatarthree}}"></image>
+        </view>
+    </view>
+</view>
+<!-- 提交按钮 -->
+<view class="btn" bindtap="submiSsion">提交</view>
+

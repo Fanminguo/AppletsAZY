@@ -1,0 +1,17 @@
+/* pages/banner/success/success.wxss */
+@import '../../success/success';
+.topInform{
+	height: auto;
+	margin-bottom: 80rpx;
+}
+
+.banner{
+	width: 728rpx;
+	height: 140rpx;
+	margin: 0 auto;
+	margin-bottom: 50rpx;
+}
+.banner image{
+	width: 728rpx;
+	height: 140rpx;
+}

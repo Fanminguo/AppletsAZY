@@ -1,0 +1,64 @@
+/* pages/endorsement/share/share.wxss */
+page {
+  background: #010101;
+}
+
+.gongzhong {
+  position: relative;
+  height: 100%;
+}
+
+.gongzhong .image {
+  width: 100vw;
+  display: block;
+}
+
+.gongzhong .nameImg {
+  position: absolute;
+  top: 46rpx;
+  left: 68rpx;
+  width: 300rpx;
+  height: 300rpx;
+  border-radius: 50%;
+}
+
+.buttom-btn {
+  position: absolute;
+  bottom: 48rpx;
+  left: 152rpx;
+  width: 446rpx;
+  height: 90rpx;
+  margin: 0 auto;
+  border-radius: 8rpx;
+}
+
+.cust_nickname {
+  position: absolute;
+  top: 248rpx;
+  right: 160rpx;
+  width: 29rpx;
+  height: 192rpx;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+}
+.text{width:54rpx;height:274rpx;border-radius:8rpx;border:2rpx solid rgba(255,255,255,0.9); position: absolute; right:72rpx; top: 80rpx;
+color: #fff; text-align: center; font-size: 28rpx;}
+page{background:url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/zc43.png") no-repeat center center; background-size: cover; height: 968rpx; width: 100%; color: #fff;}
+.name .icon{width:3rpx;height:17rpx; margin: 0 auto; background: #fff; margin-bottom: 10rpx;}
+.name{ position: absolute; right: 160rpx; top: 200rpx; color: #fff; width: 54rpx; font-size: 28rpx; text-align: center;}
+.circle-name{ padding-top: 400rpx; padding-left: 68rpx;}
+.circle-all{ padding-top: 25rpx; padding-left: 182rpx;}
+.equity{ padding-left: 70rpx; margin-top:0; font-size: 26rpx; line-height: 50rpx; position: relative;}
+.equity-title{ margin-bottom: 20rpx; font-weight: bold;}
+.code-cont{width:168rpx;height:201rpx;background:rgba(37,37,37,0.7);border-radius:8rpx; position: absolute; right: 50rpx; top: 0;}
+.code{width:154rpx;height:154rpx;position: relative;
+  top: 7rpx;
+  }
+.code-text{font-size:20rpx; text-align: center;color:rgba(255,255,255,0.9); letter-spacing: 4rpx;}
+.share-btn{width:446rpx;height:90rpx; font-size: 30rpx; text-align: center; line-height:90rpx; background-color: #D33D3C; margin:0 auto;
+border-radius: 8rpx; margin-top: 80rpx;}
+.logo-icon{background:url("https://bj.aizhiyi.com/wap/images/me_icon/name62.png") no-repeat center center; width: 44rpx; height: 44rpx;
+position: absolute; left:50%; top: 65rpx; margin-left: -22rpx; background-size: cover;}
+.code-cont-bg{ width: 77px; height: 77px; margin: 0 auto;}

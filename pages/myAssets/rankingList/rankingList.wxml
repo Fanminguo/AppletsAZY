@@ -1,0 +1,54 @@
+<!--pages/myAssets/rankingList/rankingList.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view>
+	<view class="ownName">
+		<view class="nameLeft">
+			<view class="noun">我的排名</view>
+			<view class="number">{{ranking}}</view>
+		</view>
+		<view class="middle">
+			<image src="{{avatar}}" class="nameImg"></image>
+			<view class="name">{{cust_nickname}}</view>
+			<view class="spokesman" wx:if="{{cust_assets_info.level>0}}">
+				<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/V1.png"></image> 中华文化代言人
+			</view>
+		</view>
+		<view class="nameRight">
+			<view class="noun">我的收益</view>
+			<view class="number">{{now_year_totalMoney}}</view>
+		</view>
+		<view class="rule" bindtap="showRule">规则></view>
+	</view>
+	<view class="list">
+		<view class="listSingle" wx:for="{{rankingList}}" wx:key="index">
+			<image class="bjImg" wx:if="{{index==0}}" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/phb_1@2x.png"></image>
+			<image class="bjImg" wx:if="{{index==1}}" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/phb_2@2x.png"></image>
+			<image class="bjImg" wx:if="{{index==2}}" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/phb_3@2x.png"></image>
+			<view class="listtherr" wx:if="{{index>2}}">
+				<text>{{index+1}}.</text>
+				<image class="arrow" style="left:{{index >8?'10rpx':''}}" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/paihangbang_icon_sanjiao@2x.png"></image>
+			</view>
+			<view class="nameListimg">
+				<image src="{{item.avatar}}" class="listImg"></image>
+				<view class="listName">{{item.cust_name}}</view>
+			</view>
+			<view class='listNum'>{{item.total_assets}}</view>
+		</view>
+	</view>
+
+	<view class="yici-bj" wx:if="{{yiciRule}}" bindtap="showRule"></view>
+	<view class="yici-rule" wx:if="{{yiciRule}}">
+		<view class="yici-top">排行榜规则</view>
+		<view class="content-rule">
+			<view class="rule-One"></view>
+			<view>1. 从注册会员后开始计算累计计算，代言费+易瓷币的总和</view>
+			<view>2. 已消费、提现金额任计算在内</view>
+			<view>3. 排行榜每月的最后一天更新</view>
+			<view>4. 排行榜只显示前20名，名次只记录钱一百名成员</view>
+			<view>5. 若两名会员的收益一样，则按照时间的先后顺序排列</view>
+		</view>
+		<view class="guanbi">
+			<image bindtap="showRule" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/close-circle@2x.png"></image>
+		</view>
+	</view>
+</view>

@@ -1,0 +1,47 @@
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view class="newBox" wx:if="{{inform.length > 0}}" wx:for="{{inform}}" wx:key="index">
+	<view class="tiem">{{item.shipping_time}}</view>
+	<!-- message_classify=3购买   详情 -->
+	<view class="boxText clearfix"  data-id="{{item.order_id}}" wx:if="{{item.message_classify == 3}}" bindtap="goOrder">
+		<view class="state">{{item.title}}</view>
+		<view class="boxImg">
+			<image src="{{item.products_image_url}}"></image>
+		</view>
+		<view class="boxName">
+			<view class="name">{{item.order_logistics}}</view>
+			<view class="btn">点击查看详情></view>
+		</view>
+	</view>	
+	<!-- ，message_classify=2退款	详情 -->
+	<view class="boxText clearfix"  data-id="{{item.order_id}}" wx:if="{{item.message_classify == 2}}" bindtap="goOrder">
+		<view class="state">{{item.title}}</view>
+		<view class="boxImg">
+			<image src="{{item.products_image_url}}"></image>
+		</view>
+		<view class="boxName">
+			<view class="name">{{item.order_logistics}}</view>
+			<view class="btn">点击查看详情></view>
+		</view>
+	</view>
+	<!-- message_classify=1    		物流	 -->
+	<view class="boxText clearfix"  data-id="{{item.order_id}}" wx:if="{{item.message_classify == 1}}" bindtap="goDetails">
+		<view class="state">{{item.title}}</view>
+		<view class="boxImg">
+			<image src="{{item.products_image_url}}"></image>
+		</view>
+		<view class="boxName">
+			<view class="name">{{item.order_logistics}}</view>
+			<view class="btn">点击查看详情></view>
+		</view>
+	</view>
+</view>	
+ <view class='remind' wx:if="{{state==0 && inform.length > 0}}">
+        <view>到达底部喽~</view>
+</view>
+<view wx:if="{{inform.length <= 0 && state == 0}}">
+	<view class="empty">
+		<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/xiaoxi_icon.png"></image>
+		<view class="view">暂无消息</view>
+		<view class="text">您还没有任何消息哦</view>
+	</view>
+</view>

@@ -1,0 +1,241 @@
+/* pages/myAssets/transferYici/transferYici.wxss */
+.box-text {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 70rpx;
+  margin-bottom: 35rpx;
+  position: relative;
+  text-align: center;
+}
+
+.box-text image {
+  width: 30rpx;
+  height: 27rpx;
+  float: left;
+  position: absolute;
+  top: 8rpx;
+  left: 35%;
+}
+
+.box-text view {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.box-address {
+  width: 470rpx;
+  font-size: 38rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 auto;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.box-most {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(155, 155, 155, 1);
+  text-align: center;
+  margin-top: 21rpx;
+  margin-bottom: 91rpx;
+}
+
+.amount {
+  width: 600rpx;
+  margin: 0 auto;
+  margin-top: 33rpx;
+}
+
+.amount-frame {
+  width: 180rpx;
+  height: 112rpx;
+  border-radius: 12rpx;
+  border: 1rpx solid rgba(98, 98, 98, 1);
+  margin-bottom: 33rpx;
+  float: left;
+}
+
+.amount-number {
+  font-size: 30rpx;
+  font-family: PingFangHK-Medium, PingFangHK;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 17rpx;
+  margin-bottom: 5rpx;
+}
+
+.amount-text {
+  font-size: 20rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 28rpx;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.middle {
+  margin-left: 4%;
+  margin-right: 4%;
+}
+
+.select {
+  border: 1rpx solid rgba(211, 61, 52, 1);
+}
+
+.select1 {
+  color: #D33D34;
+}
+
+.btn-nextStep {
+  width: 600rpx;
+  height: 88rpx;
+  background: rgba(202, 73, 58, 1);
+  border-radius: 44rpx;
+  line-height: 88rpx;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 69rpx;
+  color: #FFFFFF;
+  margin-bottom: 68rpx;
+}
+
+.box-tips {
+  width: 750rpx;
+  height: 238rpx;
+  background: rgba(29, 31, 40, 1);
+}
+
+.box-tips view {
+  width: 564rpx;
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(153, 153, 153, 1);
+  margin-left: 72rpx;
+}
+
+.tips {
+  padding-top: 40rpx;
+  padding-bottom: 10rpx;
+}
+
+/*  */
+.turn-bj {
+  background: rgba(0, 0, 0, 1);
+  opacity: 0.6;
+  width: 100vw;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 88;
+}
+
+.true-box {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 750rpx;
+  height: 765rpx;
+  border-radius: 26rpx 26rpx 0rpx 0rpx;
+  background: #161824;
+  z-index: 99;
+}
+
+.top-confirm {
+  height: 94rpx;
+  width: 750rpx;
+  border-radius: 26rpx 26rpx 0 0;
+  border-bottom: 1rpx solid rgba(255, 255, 255, 0.05);
+  color: #fff;
+  text-align: center;
+  position: relative;
+  line-height: 94rpx;
+}
+
+.top-confirm image {
+  width: 34rpx;
+  height: 34rpx;
+  position: absolute;
+  top: 30rpx;
+  left: 27rpx;
+}
+
+.money {
+  height: 95rpx;
+  font-size: 68rpx;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 95rpx;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 54rpx;
+}
+
+.money text {
+  font-size: 34rpx;
+}
+
+.detailed {
+  font-size: 28rpx;
+  color: rgba(102, 102, 102, 1);
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 20rpx;
+}
+
+.listType {
+  width: 707px;
+  margin: 0 auto;
+}
+
+.middle-list {
+  width: 690rpx;
+  margin-bottom: 15rpx;
+  border-bottom: 1rpx solid rgba(255, 255, 255, 0.05);
+  margin-left: 55rpx;
+  line-height: 68rpx;
+}
+
+.middle-list .text {
+  float: left;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #666666;
+}
+
+.middle-list .text-type {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.8);
+  float: right;
+  width: 350rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: right;
+}
+
+.btn-bottom {
+  width: 702rpx;
+  height: 88rpx;
+  background: rgba(202, 73, 58, 1);
+  color: #fff;
+  border-radius: 40rpx;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 32rpx;
+  line-height: 88rpx;
+  margin-top: 73rpx;
+}

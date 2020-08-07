@@ -1,0 +1,165 @@
+<!--pages/myAssets/yPorcelain/yPorcelain.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view>
+	<!-- 头部卡片 -->
+	<view class="card-top">
+		<view class="card-text">
+			<text>可用余额</text>
+			<image bindtap="switch" src="{{eye?eye1:eye2}}"></image>
+		</view>
+		<image class="warning" bindtap="exhibition" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/gouwuche_tishi1@2x.png"></image>
+		<view class="amountNum">
+			<text>{{eye?yici_info.account_available_num:asterisk}}</text>个
+		</view>
+		<view class="unlocked">
+			<text bindtap="goOrderList" wx:if="{{yici_info.account_send_lock_num >0}}">{{eye?yici_info.account_send_lock_num:asterisk}}个即将到账</text>
+		</view>
+		<view class="currency clearfix">
+			<view class="flex-row ">
+				<view class="currency-class">累计余额(个)</view>
+				<view class="balance">{{eye?yici_info.account_total_num:asterisk}}</view>
+			</view>
+			<view class="flex-row">
+				<view class="currency-class">累计消费(个)</view>
+				<view class="balance">{{eye?yici_info.account_all_num:asterisk}}</view>
+			</view>
+			<view class="dotted"></view>
+		</view>
+	</view>
+	<!-- tab切换 -->
+	<view class="tabTop {{tabFixed?'small_navFix':''}}" id="tab-con">
+		<scroll-view scroll-x="true" scroll-left="{{scrollLeft}}">
+			<view class="btns">
+				<view class="{{index==active?'cur':''}}" wx:for="{{btns}}" wx:key="index" data-index="{{index}}" bindtap="switchNav">
+					<view>
+						{{item}}
+					</view>
+				</view>
+			</view>
+		</scroll-view>
+	</view>
+
+	<view class="tab">
+
+		<view class="cons">
+			<!-- 明细 -->
+			<!-- yici_receive_type 易瓷币操作类型 0-任务 1-易瓷币增 2-易瓷币减 3-新增店铺 4-新增代理 5-邀请好友 6-购物成功返现 7-购物抵现 8-转出 9-转入 -->
+			<view wx:if="{{active == 0}}">
+				<view class="record clearfix" wx:for="{{yici_record_info}}" wx:key="index" data-account="{{item.account}}" data-admin_verify_state="{{item.admin_verify_state}}" data-operator_time="{{item.operator_time}}" data-remark="{{item.remark}}" data-rollout_id="{{item.rollout_id}}" data-rollout_sn="{{item.rollout_sn}}" data-should_send_num="{{item.should_send_num}}" data-yici_receive_id="{{item.yici_receive_id}}" data-products_name="{{item.products_name}}" data-yici_receive_name="{{item.yici_receive_name}}" data-yici_receive_type="{{item.yici_receive_type}}" data-order_sn="{{item.order_sn}}" data-order_id="{{item.order_id}}"  bindtap="goOrder">
+					<view class="record-img fl">
+						<image wx:if="{{item.yici_receive_type == 8}}" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/icon_zhunchu@2x.png"></image>
+						<image wx:elif="{{item.yici_receive_type == 9}}" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/icon_zhuanru@2x(1).png"></image>
+						<image wx:else src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/icon_gouwudixian@2x(1).png"></image>
+					</view>
+					<view class="record-text fr">
+						<text class="record-type" wx:if="{{item.yici_receive_type == 8}}">转出</text>
+						<text class="record-type" wx:else>{{item.yici_receive_name}}</text>
+						<text class="record-number succBg" wx:if="{{item.yici_receive_type == 1 || item.yici_receive_type == 0}}"> +{{item.should_send_num}}</text>
+						<text class="record-number succBg" wx:elif="{{item.yici_receive_type == 6 }}"> +{{item.should_send_num}}</text>
+						<text class="record-number" wx:else>{{item.should_send_num}}</text>
+					</view>
+					<view class="record-text time fr">
+						<text class="record-type">{{item.operator_time}}</text>
+						<text class="record-number fz24"  wx:if="{{item.admin_verify_state !=''}}">{{item.admin_verify_state}}</text>
+					</view>
+					<view class="record clearfix"></view>
+				</view>
+				<view style="height:90rpx"></view>
+				<view class="dibuTab clearfix">
+					<view data-id="0" class="transfer" bindtap="transfer">转入</view>
+					<view data-id="1" bindtap="transferYici" class="change">转出</view>
+				</view>
+				<view class="blankPage" wx:if="{{yici_record_info.length <= 0}}">
+					暂无任何明细
+				</view>
+			</view>
+			<view wx:if="{{active == 1}}">
+				<view class="dynamic clearfix" wx:for="{{article_info}}" wx:key="index" bindtap="goLanding" data-article_id="{{item.article_id}}">
+					<view class="fl Copywriting">
+						<view class="text">{{item.article_title}}</view>
+						<view class="text1">易瓷币 {{item.read_amount}}人阅读</view>
+					</view>
+					<view class="fr bennerImg">
+						<image src="{{item.article_image}}"></image>
+					</view>
+				</view>
+			</view>
+			<view wx:if="{{active == 2}}">
+				<view class="task clearfix">
+					<view class="task-img fl">
+						<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/icon_gouwujianli.png"></image>
+					</view>
+					<view class="task-text fr">
+						<view class="task-type">购物赚奖励</view>
+						<view class="task-rule">奖易瓷币=实付款*10%</view>
+						<view class="success" bindtap="goIndex">去逛逛</view>
+					</view>
+				</view>
+				<view class="task clearfix">
+					<view class="task-img fl">
+						<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/icon_xiazaiapp.png"></image>
+					</view>
+					<view class="task-text fr">
+						<view class="task-type">下载登录app</view>
+						<view class="task-rule">+2易瓷币</view>
+						<view class="success" wx:if="{{app_status==1}}" bindtap="loadApp">去下载</view>
+						<view class="success" wx:if="{{app_status==2}}" data-receive_type="app_login" bindtap="lingqu">待领取</view>
+						<view class="success successBg" wx:if="{{app_status==3}}">已完成</view>
+					</view>
+				</view>
+				<view class="task clearfix">
+					<view class="task-img fl">
+						<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/icon_wanshan.png"></image>
+					</view>
+					<view class="task-text fr">
+						<view class="task-type">完善个人资料</view>
+						<view class="task-rule">+2易瓷币</view>
+						<view class="success " wx:if="{{data_status==1}}" bindtap="goData">去完善</view>
+						<view class="success " wx:if="{{data_status==2}}" data-receive_type="data" bindtap="lingqu">待领取</view>
+						<view class="success successBg" wx:if="{{data_status==3}}">已完成</view>
+					</view>
+				</view>
+				<view class="task clearfix">
+					<view class="task-img fl">
+						<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/icon_guanzhu.png"></image>
+					</view>
+					<view class="task-text fr">
+						<view class="task-type">关注公众号</view>
+						<view class="task-rule">+1易瓷币</view>
+						<view class="success " bindtap="goGongzhong" wx:if="{{gzh_status==1}}">去关注</view>
+						<view class="success " wx:elif="{{gzh_status==2}}" data-receive_type="gzh" bindtap="lingqu">待领取</view>
+						<view class="success successBg" wx:elif="{{gzh_status==3}}">已完成</view>
+					</view>
+				</view>
+
+			</view>
+		</view>
+	</view>
+
+	<!-- yicibi规则 -->
+	<view class="yici-bj" wx:if="{{yiciRule}}" bindtap="exhibition"></view>
+	<view class="yici-rule" wx:if="{{yiciRule}}">
+		<view class="yici-top">易瓷币规则</view>
+		<scroll-view scroll-y="true" class="content-rule">
+			<view class="rule-One">一、获取规则</view>
+			<view>1. 完成易瓷币奖励任务后，领取奖励</view>
+			<view>2. 订单实付款大于50元(包含)，根据实付款的金额奖励一定的易瓷币</view>
+			<view>3. 代金券、礼品卡等抵现金额不计算在实付款内</view>
+			<view class="rule-One" style="margin-top:32rpx;margin-bottom:16rpx">二、获取规则</view>
+			<view>1个易瓷币可抵现1元</view>
+			<view>2. 首次使用易瓷币订单抵现，易瓷币账户中可用余额需累计到50个以上(包含)，才可使用抵现，非首次订单抵现，则不限制</view>
+			<view>3. 首次转出易瓷币，易瓷币账户中可用余额需累计到50个以上(包含)，才可转出，非首次转出易瓷币，则不限制</view>
+			<view>4. 易瓷币转出手续费以具体页面显示为准</view>
+			<view>5. 请认真核对钱包地址，若因钱包地址输入错误，造成的损失由个人负责</view>
+		</scroll-view>
+		<view class="guanbi">
+			<image bindtap="exhibition" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/close-circle@2x.png"></image>
+		</view>
+	</view>
+<view class="code-cont" wx:if="{{hideCode}}">
+   <view class="code-bj" bindtap="guanbi1"></view>
+   <view class="code-close" bindtap="guanbi1"></view>
+   <view class="code-img"></view>
+   <view class="code-text">截屏微信扫码下载APP</view>
+</view>
+</view>

@@ -1,0 +1,91 @@
+/* pages/myAssets/transfer/transfer.wxss */
+.box-title {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 63rpx;
+  margin-bottom: 65rpx;
+}
+
+.box-code {
+  width: 354rpx;
+  height: 359rpx;
+  margin: 0 auto;
+  position: relative;
+}
+
+.box-code image {
+  width: 354rpx;
+  height: 359rpx;
+  margin: 0 auto;
+}
+
+.canvas-code {
+  position: absolute;
+  width: 322rpx;
+  height: 322rpx;
+  top: 15rpx;
+  left: 15rpx;
+  margin:0 auto;
+}
+
+.box-address {
+  width: 375rpx;
+  height: 84rpx;
+  font-size: 30rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 auto;
+  text-align: center;
+  word-wrap: break-word;
+  margin-top: 61rpx;
+  position: relative;
+}
+
+.box-address image {
+  position: absolute;
+  top: 50rpx;
+  right: -25rpx;
+  width: 20rpx;
+  height: 20rpx;
+}
+
+.box-btn {
+  width: 600rpx;
+  height: 88rpx;
+  background: rgba(202, 73, 58, 1);
+  border-radius: 44rpx;
+  line-height: 88rpx;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 69rpx;
+  margin-bottom: 68rpx;
+  font-size: 30rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+}
+
+.box-tips {
+  width: 750rpx;
+  height: 315rpx;
+  background: rgba(29, 31, 40, 1);
+}
+
+.box-tips view {
+  width: 564rpx;
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(153, 153, 153, 1);
+  margin-left: 72rpx;
+}
+
+.tips {
+  padding-top: 40rpx;
+  padding-bottom: 10rpx;
+}

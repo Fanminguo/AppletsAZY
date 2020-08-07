@@ -1,0 +1,15 @@
+<view class="gongzhong">
+	<image mode="widthFix" class="image" wx:if="{{level >=1}}"  src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/bg....png"></image>
+	<image mode="widthFix" class="image" wx:else  src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/qz_bg1.png"></image>
+	<image src="{{avatar}}" class="nameImg"></image>
+	<image class="buttom-btn" wx:if="{{level >=1}}"  src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/qz_a123nniu.png"></image>
+	<image class="buttom-btn" wx:else  bindtap="goIndex" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/anniu.png?1"></image>
+	<view class="cust_nickname">
+		{{cust_nickname}}
+	</view>
+	<view class="code-cont">
+			<!-- <canvas class="code" canvas-id="myQrcode" /> -->
+		<canvas class='code' style="width:{{qrcode_w}}px; height:{{qrcode_w}}px;" canvas-id='myQrcode' ></canvas>
+
+		</view>
+</view>

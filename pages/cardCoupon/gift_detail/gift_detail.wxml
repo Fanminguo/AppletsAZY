@@ -1,0 +1,59 @@
+<!--pages/cardCoupon/gift_detail/gift_detail.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view class="box">
+	<view class="money" wx:if="{{information.type == 1 ||information.type == 4}}">{{information.change_amount}}</view>
+	<view class="money"wx:else>{{information.change_amount}}</view>
+    <view class="state" wx:if="{{information.type == 1}}">绑定成功</view>
+	<view class="state" wx:if="{{information.type == 2}}">抵现成功</view>
+	<view class="state" wx:if="{{information.type == 3}}">抵现成功</view>
+	<view class="state" wx:if="{{information.type == 4}}">退款成功</view>
+	<view class="state" wx:if="{{information.type == 5}}">抵现成功</view>
+	<view class="state" wx:if="{{information.type == 6}}">抵现成功</view>
+    <view class="detailed clearfix">
+        <view class="list">
+            订单类型
+            <text  wx:if="{{information.type==1}}">礼品卡绑定</text>
+            <text  wx:if="{{information.type==2}}">购物抵现</text>
+            <text  wx:if="{{information.type==3}}">购物抵现</text>
+            <text  wx:if="{{information.type==4}}">退款退货</text>
+            <text  wx:if="{{information.type==5}}">购物抵现</text>
+            <text  wx:if="{{information.type==6}}">购物抵现</text>
+        </view>
+        <view class="list">
+            商品名称
+            <text class="name">{{information.products_name}}</text>
+        </view>
+        <view class="list">
+            支付时间
+            <text>{{information.add_time}}</text>
+        </view>
+        <view class="list" wx:if="{{information.type==1}}">
+            绑定卡号
+            <text>{{information.recode_sn}}</text>
+        </view>
+		<view class="list" wx:if="{{information.type==2}}">
+            订单编号
+            <text>{{information.recode_sn}}</text>
+        </view>
+		<view class="list" wx:if="{{information.type==3}}">
+            订单编号
+            <text>{{information.recode_sn}}</text>
+        </view>
+		<view class="list" wx:if="{{information.type==4}}">
+            退款编号
+            <text>{{information.recode_sn}}</text>
+        </view>
+		<view class="list" wx:if="{{information.type==5}}">
+            订单编号
+            <text>{{information.order_sn}}</text>
+        </view>
+		<view class="list" wx:if="{{information.type==6}}">
+            订单编号
+            <text>{{information.order_sn}}</text>
+        </view>
+    </view>
+</view>
+<view class="btnOrder claerfix" bindtap="goOrder" data-id="{{information.order_id}}">
+    <text>订单详情</text>
+    <image src="https://bj.aizhiyi.com/wap/images/me_icon/z12.png"></image>
+</view>

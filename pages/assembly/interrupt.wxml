@@ -1,0 +1,9 @@
+<!--pages/assembly/interrupt.wxml-->
+<view>
+	<view class="topBox">
+		<image src="./image/q_wangluo@2x.png"></image>
+		<view class="topTitle">暂无网络链接</view>
+		<view class="text">刷新一下找它回来</view>
+		<view class="btn" bindtap="addInfo" >刷新</view>
+	</view>
+</view>

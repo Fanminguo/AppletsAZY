@@ -1,0 +1,51 @@
+<view>
+	<!-- <radio-group class='radio-group' bindchange="radioChange"> -->
+	<view class="topInformation" wx:if="{{!wancheng}}">手机号：{{mobile}}，已绑定在另一个账号上，无法绑定在前账号。</view>
+	<view class="topInformation" wx:if="{{wancheng}}">【冲突账号】已被删除，手机号{{mobile}}，已经从【冲突账号】释放，并绑定在【当前账号】上</view>
+	<view class="accountList" wx:for="{{custList}}" wx:if="{{item.now == '当前账号'}}" wx:key="index">
+		<view class="text">{{item.now}}</view>
+		<view class="problem clearfix">
+			<view class="img-portrait fl">
+				<image src="{{item.cust_avatar}}"></image>
+			</view>
+			<view class="left-content fl">
+				<view class="name">{{item.cust_nickname}}</view>
+				<view class="content-text">会员名：{{item.cust_name}}</view>
+				<view class="content-text">粉丝：{{item.followCount}} 礼品卡：{{item.recharge_account_amounts}}</view>
+				<view class="content-text">代言费：{{item.totalMoney}} 易瓷币：{{item.yiciMoney}}</view>
+			</view>
+			<!-- <view class="fr">
+					<radio class="radio" value="{{item.cust_id}}" data-cust_id="{{item.cust_id}}" color="#CA493A" />
+				</view> -->
+		</view>
+	</view>
+	<view class="accountList" wx:for="{{custList}}" wx:if="{{item.now == '冲突账号'}}" wx:key="index">
+		<view class="text clearfix">
+			<text class="fl {{wancheng?'shanchu':''}}">{{item.now}}</text>
+			<text class="zhuxiao fl" wx:if="{{wancheng}}">已注销</text>
+		</view>
+		<view class="problem clearfix ">
+			<view class="img-portrait fl">
+				<image src="{{item.cust_avatar}}"></image>
+			</view>
+			<view class="left-content fl">
+				<view class="name" wx:if="{{item.cust_nickname == null}}">{{item.cust_name}}</view>
+				<view class="name" wx:if="{{item.cust_nickname != null}}">{{item.cust_nickname}}</view>
+				<view class="content-text">会员名：{{item.cust_name}}</view>
+				<view class="content-text">粉丝：{{item.followCount}} 礼品卡：{{item.recharge_account_amounts}}</view>
+				<view class="content-text">代言费：{{item.totalMoney}} 易瓷币：{{item.yiciMoney}}</view>
+			</view>
+			<!-- <view class="fr">
+					<radio class="radio" value="{{item.cust_id}}" data-cust_id="{{item.cust_id}}" color="#CA493A" />
+				</view> -->
+		</view>
+	</view>
+	<!-- </radio-group> -->
+	<view class="btn-bottom" wx:if="{{!wancheng}}">
+		<view class="btn-Cancellation" bindtap="solve_number">注销冲突账号</view>
+		<view class="btn-replace" bindtap="solve_genghuan">换个手机号重试</view>
+	</view>
+	<view class="btn-bottom" wx:if="{{wancheng}}" bindtap="ok">
+		<view class="btn-Cancellation">完成</view>
+	</view>
+</view>

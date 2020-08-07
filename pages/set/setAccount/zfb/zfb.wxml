@@ -1,0 +1,14 @@
+<!--pages/set/setAccount/zfb/zfb.wxml-->
+<view>
+	<view class="title1">添加提现账号</view>
+	<view class="input">
+		<input class="weui-input" bindinput="bindKeyInputName" value="" placeholder="请输入支付宝名称" placeholder-style="color:#9B9B9B" />
+	</view>
+	<view class="input" style="margin-top:0">
+		<input class="weui-input" bindinput="bindKeyInputNumber" value="" placeholder="请输入支付宝账号" placeholder-style="color:#9B9B9B" />
+	</view>
+	<view class="input" style="margin-top:0">
+		<input class="weui-input" bindinput="bindKeyInput" maxlength='11' value="" placeholder="请输入手机号" placeholder-style="color:#9B9B9B" />
+	</view>
+	<view class="zfbbtn" bindtap="tijiao">提交</view>
+</view>

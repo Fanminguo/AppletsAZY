@@ -1,0 +1,36 @@
+<!--pages/refundRefund/returnNumber/returnNumber.wxml-->
+<view>
+    <!-- <view class="load_wrap" wx:if="{{!hide}}"></view> -->
+    <!-- 商品信息 -->
+    <view class="order clearfix">
+        <view wx:for="{{orderData}}" wx:key="index">
+            <image class="fl" src="{{item.products_image}}"></image>
+            <view class="orderText fl">{{item.products_name}}</view>
+            <view class="specifications fl">{{item.products_spec}}</view>
+        </view>
+
+    </view>
+    <!-- 列表单号 -->
+    <view class="list clearfix">
+        <view class="portrait">
+            <view class="portraitText">物流公司：</view>
+            <picker bindchange="bindPickerChange" value="{{array[index].value}}" range-key="{{'text'}}" range="{{array}}"  mode='selector'>
+                <view class="portraitImg">
+                    <text>{{arrayNum}}</text>
+                </view>
+            </picker>
+			<view class="arrowImg"></view>
+        </view>
+    </view>
+    <view class="list clearfix">
+        <view class="view">
+            <view class="fl">
+                物流单号：
+            </view>
+            <input class="fl" bindinput="bindKeyInput" placeholder="请输入物流单号" />
+        </view>
+    </view>
+    <view class="buttom">
+        <view bindtap="formData">提交</view>
+    </view>
+</view>

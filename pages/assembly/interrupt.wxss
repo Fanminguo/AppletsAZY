@@ -1,0 +1,47 @@
+/* pages/assembly/interrupt.wxss */
+.topBox {
+	width: 100vw;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 99999;
+	background: #161824;
+}
+
+.topBox image {
+	margin-top: 249rpx;
+	margin-left: 110rpx;
+	width: 530rpx;
+	height: 334rpx;
+}
+
+.topTitle {
+	font-size: 34rpx;
+	color: rgba(255, 255, 255, 0.9);
+	margin: 0 auto;
+	margin-top: 108rpx;
+	text-align: center;
+}
+
+.text {
+	font-size: 28rpx;
+	color: rgba(255, 255, 255, 0.6);
+	text-align: center;
+	margin-top: 20rpx;
+}
+
+.btn {
+	width: 462rpx;
+	height: 89rpx;
+	background: rgba(57, 59, 68, 1);
+	border-radius: 8rpx;
+	font-size: 30rpx;
+	color: rgba(255, 255, 255, 0.9);
+	text-align: center;
+	line-height: 89rpx;
+	margin: 0 auto;
+	margin-top: 126rpx;
+}

@@ -1,0 +1,2 @@
+/* pages/myAssets/yPorcelain/landingPage/landingPage.wxss */
+@import "../../../../wxParse/wxParse.wxss";

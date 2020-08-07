@@ -1,0 +1,185 @@
+/* 顶部信息 */
+page{
+	background:rgba(22,24,36,1);
+}
+button {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 14px;
+    padding-right: 14px;
+    box-sizing: border-box;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    line-height: 2.55555556;
+    border-radius: 5px;
+    -webkit-tap-highlight-color: transparent;
+    overflow: hidden;
+    color: #000;
+    background-color: #f8f8f8;
+}
+.imgShow{
+	width: 0rpx;
+	height: 0rpx;
+	
+}
+
+
+.topOrder {
+    width: 750rpx;
+    height: 180rpx;
+    margin-bottom: 20rpx;
+}
+
+.topOrder .topImg {
+    width: 140rpx;
+    height: 140rpx;
+    padding: 20rpx 20rpx 0 30rpx;
+    float: left;
+}
+
+.topOrder .topImg image {
+    width: 100%;
+    height: 100%;
+}
+
+/* 金额 */
+
+/* .topMoney {
+    float: left;
+} */
+
+.topMoney .topName {
+    font-size: 32rpx;
+   color:rgba(255,255,255,0.9);
+    margin-top: 25rpx;
+    margin-bottom: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+	width: 480rpx;
+}
+
+.topMoney .topText {
+    font-size: 28rpx;
+    color:rgba(255,255,255,0.6);
+    margin-top: 5rpx;
+    margin-bottom: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.topMoney .topNum {
+    font-size: 28rpx;
+    color: #d33d3c;
+}
+
+/* 文本域 */
+
+.reasonText {
+    width: 750rpx;
+    margin: 0 auto;
+    padding: 20rpx 20rpx;
+    font-size: 28rpx;
+    color: #666;
+    line-height: 40rpx;
+    height: 220rpx;
+    border: 0;
+    /* -webkit-appearance: none;
+    font-family: "Microsoft YaHei",Helvetica,sans-serif,Arial;
+    resize: none; */
+}
+
+.reasonText textarea {
+    height: 200rpx;
+	color:rgba(255,255,255,0.9);
+}
+
+.currentWordNumber {
+    float: right;
+    margin-right: 35rpx;
+}
+
+/* 上传图片 */
+
+.imgList {
+    width: 750rpx;
+    height: 250rpx;
+    margin-top: 25rpx;
+    line-height: 250rpx;
+}
+
+.portrait {
+    padding-top: 50rpx;
+    padding-left: 25rpx;
+    width: 160rpx;
+    float: left;
+}
+
+.portraitImg {
+    width: 144rpx;
+    height: 144rpx;
+    margin-right: 20rxp;
+    background: url(https://bj.aizhiyi.com/wap/test/wap/xcxImg/11111101.png) no-repeat;
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+}
+
+.portraitImg image {
+    width: 144rpx;
+    height: 144rpx;
+}
+
+/* 评分 */
+
+.score {
+    width: 750rpx;
+    
+    height: 50rpx;
+    line-height: 50rpx;
+    padding-bottom: 20rpx;
+	color:rgba(255,255,255,0.9);
+}
+
+.score .describe {
+    float: left;
+    margin-right: 45rpx;
+    margin-top: 6rpx;
+    margin-left: 25rpx;
+}
+
+.score .stars {
+    float: left;
+    height: 40rpx;
+    line-height: 40rpx;
+    padding: 12rpx 0;
+}
+
+.score .stars image {
+    height: 40rpx;
+    width: 40rpx;
+    display: inline-block;
+	margin-left: 10rpx;
+}
+
+.comList {
+    margin-bottom: 50rpx;
+}
+
+/* 发布 */
+
+.btn {
+    width: 700rpx;
+    color: #fff;
+    background: #d33d3c;
+    height: 80rpx;
+    line-height: 80rpx;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 12rpx;
+    margin-top: 20rpx;
+    margin-bottom: 50rpx;
+}

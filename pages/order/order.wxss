@@ -1,0 +1,436 @@
+/* 顶部菜单切换 */
+
+page {
+    background: #161824;
+}
+
+.cont_Image {
+    width: 750rpx;
+    height: 1090rpx;
+    margin-top: -20rpx;
+}
+
+.none_tab image {
+    display: block;
+    margin: 0 auto;
+    margin-top: 190rpx;
+    padding-buttom: 190rpx;
+    width: 530rpx;
+    height: 334rpx;
+}
+
+.navbar {
+    display: flex;
+    background: #161824;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    width: 750rpx;
+}
+
+.none_tab {
+    color: #999;
+    font-size: 32rpx;
+}
+
+/* 默认选中菜单 */
+
+.navbar .item {
+    position: relative;
+    flex: auto;
+    font-size: 27rpx;
+    width: 100rpx;
+    text-align: center;
+    line-height: 80rpx;
+    color: rgba(255, 255, 255, 0.6);
+    /* border-bottom: 6rpx solid #ddd; */
+}
+
+/* 选中菜单样式 */
+
+.navbar .item.active {
+    color: rgba(250, 250, 250, 0.9);
+}
+
+/* 字体 */
+
+.navbar .item.active:after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4rpx;
+}
+
+.total {
+    margin-top: 110rpx;
+}
+
+/* 全部 */
+
+.cont_count {
+    padding-top: 6rpx;
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 25rpx;
+    background-color: #1d1f2b;
+}
+
+/* 编号 */
+
+.seria {
+    position: relative;
+    display: inline-block;
+    width: 90%;
+    height: 100rpx;
+    line-height: 100rpx;
+    /* background-color: yellow; */
+}
+
+/* 订单lab */
+
+.seriac_name {
+    position: absolute;
+    font-size: 28rpx;
+    color: rgba(255, 255, 255, 0.9);
+    left: 0rpx;
+}
+
+.seriac_name image {
+    width: 25rpx;
+    height: 23rpx;
+}
+
+.seriac_name text {
+    margin-left: 15rpx;
+}
+
+/* 订单状态 */
+
+.seriac_start {
+    position: absolute;
+    right: 0rpx;
+    color: #d33d3c;
+    font-size: 28rpx;
+}
+
+.seriac_start image {
+    width: 34rpx;
+    height: 31rpx;
+}
+
+/* 列表 */
+
+.list {
+    position: relative;
+    width: 90%;
+    display: inline-block;
+    padding-bottom: 10rpx;
+    height: 200rpx;
+}
+
+/* 按钮颜色 */
+
+/* 
+.color {
+    color: #d33d3c !important;
+    border: 1rpx solid #d33d3c;
+} */
+
+/* 退款退货中 */
+
+.refund {
+    z-index: 1;
+    display: block;
+    font-size: 0.8rem;
+    color: #d33d3c;
+    display: inline-block;
+	float: left;
+}
+
+/* 去支付按钮 */
+
+.btnColor {
+    color: #fff !important;
+    background: #d33d3c !important;
+    border: none !important;
+}
+
+/* 已提醒 */
+
+.remind {
+    background-color: #161824 !important;
+    color: #fff !important;
+    border: 0;
+}
+
+/* 列表图片 */
+
+.list_img {
+    position: absolute;
+    width: 144rpx;
+    height: 144rpx;
+    left: 0rpx;
+    top: 30rpx;
+	border-radius:5rpx; 
+}
+
+/* 列表标题 */
+
+.list_name {
+    position: absolute;
+    text-align: left;
+    top: 30rpx;
+    left: 180rpx;
+    color: rgba(255, 255, 255, 0.9);
+    width: 350rpx;
+    font-size: 28rpx;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
+
+/* 规格 */
+
+.list_ions {
+    position: absolute;
+    text-align: left;
+    top: 70rpx;
+    left: 180rpx;
+    color: rgba(255, 255, 255, 0.9);
+    width: 350rpx;
+    font-size: 24rpx;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+/* 列表价格 */
+
+.list_money {
+    position: absolute;
+    font-size: 32rpx;
+    left: 170rpx;
+    bottom: 30rpx;
+    color: #d33d3c;
+}
+
+/* 总和 */
+
+.count_eg {
+    position: relative;
+    width: 100%;
+    height: 90rpx;
+    line-height: 90rpx;
+}
+
+/* 总和居中 */
+
+.count_cent {
+    position: relative;
+    width: 90%;
+    display: inline-block;
+    height: 90rpx;
+    line-height: 90rpx;
+    border-top: 2rpx solid #31333f;
+}
+
+/* 商品数量 */
+
+.cont_cent_name {
+    position: relative;
+    font-size: 28rpx;
+    float: right;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.cont_ce_mon {
+    font-size: 32rpx;
+    color: #d33d3c;
+}
+
+/* 总计金额 */
+
+.cont_cen_money {
+    position: relative;
+    font-size: 28rpx;
+    margin-right: 15rpx;
+    margin-left: 15rpx;
+    float: right;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* 标签功能 */
+
+.coent_list {
+    width: 700rpx;
+    /* height: 130rpx; */
+    line-height: 67rpx;
+    background-color: #1d1f2b;
+    border-radius: 24rpx;
+    margin: 0 auto;
+}
+
+/* 取消订单 */
+
+.coent_del {
+    float: right;
+    margin-right: 20rpx;
+    display: inline-block;
+    width: 170rpx;
+    text-align: center;
+    height: 68rpx;
+    border: 1rpx solid #b3b2b2;
+    font-size: 28rpx;
+    line-height: 68rpx;
+    margin-bottom: 20rpx;
+    border-radius: 10rpx;
+    color: #b3b2b2;
+}
+
+/* 取消 */
+
+/* .coent_log_base {
+    position: absolute;
+    top: 30%;
+	right: 40rpx;
+    color: darkgoldenrod;
+    display: inline-block;
+    width: 170rpx;
+    height: 68rpx;
+    text-align: center;
+    border: 1rpx solid darkgoldenrod;
+    font-size: 30rpx;
+    line-height: 68rpx;
+} */
+
+.cont_bottom {
+    padding-top: 6rpx;
+    width: 700rpx;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 25rpx;
+    margin-bottom: 25rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    color: rgba(153,153,153,1);
+	font-size: 24rpx;
+}
+
+/*弹出框  */
+
+.shelter {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled='true', startColorstr='#BF000000', endColorstr='#BF000000');
+    background: rgba(0, 0, 0, 0.75);
+    background: rgba(0, 0, 0, 0.6);
+    height: 100% !important;
+}
+
+.wrapper {
+    width: 560rpx;
+    height: 747rpx;
+    background-image: url(https://bj.aizhiyi.com/wap/images/me_icon/long_dialog.png?111);
+    top: 50rpx !important;
+    background-size: 100% 100%;
+    background-position: bottom;
+    margin: 0 auto;
+}
+
+.s-dialog-content {
+    min-height: 100rpx;
+    margin-top: 120rpx;
+    padding: 0 5rpx;
+    text-align: center;
+    font-size: 28rpx;
+    line-height: 42rpx;
+}
+
+.s-dialog-content .tips {
+    width: 500rpx;
+    text-align: center;
+    font-size: 28rpx;
+    color: #333;
+    margin: 0 auto;
+    line-height: 100rpx;
+    letter-spacing: 1rpx;
+    margin-left: 10%;
+}
+
+.s-dialog-content label {
+    display: block;
+    padding-top: 45rpx;
+}
+
+.s-dialog-btn-wapper view {
+    display: inline-block;
+    width: 49%;
+    font-size: 34rpx;
+    font-weight: normal;
+    line-height: 48rpx;
+    text-align: center;
+    color: #666;
+}
+
+.s-dialog-btn-cancel {
+    color: #999 !important;
+}
+
+.s-dialog-btn-wapper view span {
+    display: block;
+    width: 190rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 8rpx;
+}
+
+.s-dialog-btn-wapper .s-dialog-btn-ok span {
+    background-color: #d33d3c;
+    color: #fff;
+}
+
+.s-dialog-btn-wapper .s-dialog-btn-cancel span {
+    border: 2rpx solid #d33d3c;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #d33d3c;
+}
+
+.s-dialog-content radio {
+    float: right;
+    margin-right: 20rpx;
+    /* width: 34rpx;
+	height: 34rpx; */
+}
+
+/* 全部订单去支付样式 */
+
+.btnClass {
+    height: 185rpx;
+}
+
+/* 单个商品数量 */
+
+.list_num {
+    height: 40rpx;
+    font-size: 25rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.6);
+    position: absolute;
+    right: 7rpx;
+    top: 145rpx;
+}

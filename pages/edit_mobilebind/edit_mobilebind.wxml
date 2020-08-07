@@ -1,0 +1,19 @@
+
+<view class="edit-cont">
+   <view class="edit-inner text">
+     <input placeholder-class="phcolor" type="number" bindinput="old_mobile" class="input-yzm input" maxlength="11" placeholder="请输入原手机号"></input>
+   </view>
+   <view class="edit-inner text">
+     <input placeholder-class="phcolor" type="number" bindinput="new_mobile" class="input-yzm input" placeholder="请输入新手机号"></input>
+   </view>
+   <view class="edit-inner">
+     <input placeholder-class="phcolor" type="text" bindinput="tu_code" class="input-yzm input" placeholder="请输入4位验证码"></input>
+     <image class="code" src="{{codeSrc}}" alt="点击更新验证码" bindtap="getsrc"> </image>
+   </view>
+   <view class="edit-inner" style="border-bottom:0">
+     <input placeholder-class="phcolor" type="number"  bindinput="tel_code" class="input" placeholder="请输入短信验证码"></input>
+     <button class="get-btn" disabled='{{disabled}}' bindtap="goGetCode">{{code}}</button>
+   </view>
+</view>
+<view class="edit-btn" bindtap="edit">提交</view>
+

@@ -1,0 +1,99 @@
+/* pages/shopHome/videoNotice/videoNotice.wxss */
+@import '../videoWhole/videoWhole.wxss';
+
+
+.azyImg {
+  width: 50rpx;
+  height: 50rpx;
+  background: url('https://bj.aizhiyi.com/wap/images/me_icon/name62.png') no-repeat center center;
+  background-size: cover;
+  line-height: 52rpx;
+  margin: 13rpx 0 13rpx 8rpx;
+}
+
+.store-share-icon {
+  background: url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/50.png") no-repeat center center;
+  background-size: cover;
+  width: 54rpx;
+  height: 54rpx;
+  display: inline-block;
+  position: relative;
+  top: 15rpx;
+  margin-right: 5rpx;
+}
+
+.share {
+  width: 69rpx;
+  height: 69rpx;
+  background: url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/zc16.png") no-repeat center center;
+  background-size: cover;
+  margin-bottom: 5rpx;
+  position: absolute;
+  right: 22rpx;
+  bottom: 90rpx;
+}
+
+.acti-icon {
+  display: inline-block;
+  width: 78rpx;
+  height: 32rpx;
+  font-size: 22rpx;
+  text-align: center;
+  line-height: 32rpx;
+  background: rgba(202, 73, 58, 1);
+  border-radius: 8rpx 0px 8rpx 0px;
+}
+
+.live-list-money label {
+  text-decoration: line-through;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 24rpx;
+  margin-left: 20rpx;
+}
+
+/* 订阅 */
+.head-tiem {
+  position: fixed;
+  left: 26rpx;
+  bottom: 90rpx;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 34px;
+  z-index: 8888;
+
+}
+
+.timer {
+  font-size: 30rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  color: rgba(255, 255, 255, 1);
+  padding: 13rpx 33rpx 13rpx 13rpx;
+  line-height: 52rpx;
+  /* width: 260rpx; */
+}
+
+.follow {
+  text-align: center;
+  color: #fff;
+  width: 126rpx; 
+  height: 52rpx;
+  background: rgba(211, 61, 52, 1);
+  border-radius: 26rpx;
+  margin: 13rpx 8rpx 13rpx 0;
+  font-size: 24rpx;
+  line-height: 52rpx;
+}
+
+.head-tiem .active {
+  color: rgb(255, 255, 255, 0.6);
+  background: #9B3029;
+
+}
+
+.process-container {
+  position: fixed;
+  bottom: 15rpx;
+  left: 0;
+  width: 758rpx;
+  margin-left: 0;
+
+}

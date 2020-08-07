@@ -1,0 +1,6 @@
+/* pages/myAssets/myCircleName/myCircleName.wxss */
+.circle-text{ font-size: 28rpx; color:rgba(255,255,255,0.9); margin:10rpx 36rpx 30rpx}
+.circle-name{height:98rpx;background:rgba(29,31,43,1); line-height: 98rpx;}
+.circle-input{ height: 98rpx; padding-left: 36rpx; color: #fff;}
+.btn{width:600rpx;height:88rpx;background:rgba(211,61,52,1);border-radius:8rpx; margin:96rpx auto 0; text-align: center; color: #ffffff;
+line-height: 88rpx;}

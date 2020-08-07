@@ -1,0 +1,31 @@
+/* pages/myAssets/equity/equity.wxss */
+.quanyi{
+	position: relative;
+	height: auto;
+}
+.quanyi image{
+	width: 100vw;
+	height: auto;
+	vertical-align: top;
+}
+.quanyi .endorsement{
+	position: absolute;
+	bottom: 15%;
+	left: 24%;
+	width:398rpx;
+	height: 102rpx;
+}
+.quanyi .noEndorsement{
+	position: absolute;
+	bottom: 15%;
+	left: 24%;
+	width:398rpx;
+	height: 102rpx;
+}
+.storeShare{
+	position: absolute;
+	bottom: 15%;
+	left: 24%;
+	width:398rpx;
+	height: 102rpx;
+}

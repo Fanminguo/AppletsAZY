@@ -1,0 +1,4 @@
+<!--pages/personalData/meCode/meCode.wxml-->
+<view class="codeImg">
+	<image class="imagesize" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/1@3x.png"></image>
+</view>

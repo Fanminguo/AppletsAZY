@@ -1,0 +1,32 @@
+<!--pages/logistics/logistics.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view wx:if="{{is_showNull}}">
+    <view class="header-cont"></view>
+    <view class="cont">
+      <view class="prod-info">
+        <image class="prod-info-img" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/81.png"></image>
+        <view class="prod-info-state">{{data.order_state}}</view>
+        <view class="prod-info-ordersn">订单编号：{{data.order_sn}}</view>
+        <view class="prod-info-kuaidi">{{data.express_name}}：{{data.shipping_code}}</view>
+      </view>
+      <view class="log-list">
+        <view class="log-inner clearfix" wx:for="{{data.deliver_info}}" wx:key="{{index}}">
+            <view class="log-time">
+              <view class="log-time-h3">{{item.ftime}}</view>
+            </view>
+            <view class="log-info">
+              <view class="log-info-icon">
+              </view>
+              <view class="log-info-text">
+                <view class="log-info-p">{{item.context}}</view>
+              </view>
+            </view>
+        </view>
+      </view>
+    </view>
+</view>
+<view class="null" wx:if="{{!is_showNull}}">
+   <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/80.png"></image>
+   <view class="null-title">空空如也</view>
+</view>
+

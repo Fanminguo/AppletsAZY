@@ -1,0 +1,138 @@
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view>
+
+	<!-- 店铺信息 -->
+	<view class="head-store" style="top:{{topHeight}}px">
+		<image src="{{store_info.store_avatar}}"></image>
+		<view class="head-store-text" bindtap="goLive">
+			<view>{{store_info.store_name}}</view>
+			<view>{{store_info.store_collect}}粉丝 | {{anchornotice_info.notice_address!=''?anchornotice_info.notice_address:'火星'}}</view>
+		</view>
+	</view>
+	<view class="head-tiem clearfix">
+		<view class="fl azyImg"></view>
+		<view class="timer fl">{{anchornotice_time}}</view>
+		<!-- <view>{{followText}}</view> -->
+		<view  class="fl {{!follow? 'follow':'follow active'}}" wx:if="{{status ==1}}" bindtap="gostatus" >立即查看</view>
+		<!-- <view  class="fl {{!follow? 'follow':'follow active'}}" wx:elif="{{status == 2}}" bindtap="gostatus2" >看直播</view> -->
+		<view  class="fl {{!follow? 'follow':'follow active'}}" wx:elif="{{status==0 || status==2}}" bindtap="menuClick" data-store_id="{{store_info.store_id}}" data-num="1">{{SearchText}}</view>
+	</view>
+	<view class="exit" style="top:{{topHeight+48}}px" bindtap="byeReturn"></view>
+	<!-- 视频 -->
+	<view style="position: relative;height:100%" wx:if="{{anchornotice_info.notice_video}}">
+		<video id="videoplayer" bindtap="doubleClick" bindended="bindended2" bindplay='bindplay' bindwaiting="bindwaiting" custom-cache="{{false}}"   enable-progress-gesture="false" loop="{{loop}}" controls="{{controls}}" style="height: 100vh;width: 100vw;position: absolute;top: 0;left: 0;" objectFit="cover" src="{{anchornotice_info.notice_video}}" autoplay="true" bindtimeupdate="videoUpdate"></video>
+		<view class='process-container'>
+			<view class='slider-container'>
+				<slider bindchange="sliderChange" bindchanging="sliderChanging" blockSize="20" step="1" value="{{sliderValue}}" backgroundColor="#B7B7B7" activeColor="#FFFFFF" block-color="#F3F3F6" />
+			</view>
+		</view>
+		<image class="play-btn" bindtap="doubleClick" wx:if="{{!playState && !animationShow}}" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/tj_zanting.png"></image>
+	</view>
+	<view style="position: relative;height:100vw;width: 100vw;" class="back-img" wx:else>
+		<!-- <image mode="aspectFit" style="width:100%;height:100%" src="{{anchornotice_info.notice_image}}"></image> -->
+		<image src="{{anchornotice_info.notice_image}}" mode="aspectFill" style="height: 100vh;width: 100vw;display: block;"></image>
+	</view>
+	<!-- 底部弹出框 -->
+	<!-- <view class="products-bottom-name-chakan" data-store_id="{{store_id}}" data-notice_id="{{notice_id}}" bindtap="shoplist">
+		<image class="fl" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/119.png"></image>
+		<view class="cartNum2" style="color:none;left:53rpx;top:53rpx">{{products_basket_count}}</view>
+	</view> -->
+	<!-- <view class="gocart" bindtap="gocart">
+		<view wx:if="{{caetNum > 0 && caetNum<=9 }}" class="cartNum2">{{caetNum}}</view>
+		<view wx:if="{{caetNum > 9}}" class="cartNum">{{caetNum}}</view>
+	</view> -->
+
+	<button open-type='share' data-id="" class='share'></button>
+	<!-- 商品弹出框-->
+	<view class="list-dialog {{an}}">
+		<view class="list-dialog-bj" bindtap="closebj"></view>
+		<view class="live-list">
+			<!-- top-whole -->
+			<view class="live-list-top {{id!=2 && yugaoJianman.voucher_t_limit ?'top-whole':''}}">全部商品：{{goodsList.products_basket_count}}
+				<!--  top-delete -->
+				<view class="close-list {{id!=2 && yugaoJianman.voucher_t_limit ?'top-delete':''}}" bindtap="clsoelist"></view>
+			</view>
+			<view class="live-list-top clearfix" wx:if="{{id!=2 && yugaoJianman.voucher_t_limit}}">
+				<view class="live-img">
+					<image class="fl" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/140.png"></image>
+				</view>
+				<view class="live-view fl">代金券满{{yugaoJianman.voucher_t_limit}}减{{yugaoJianman.voucher_t_price}}元</view>
+			</view>
+			<view class="live-list-cont">
+				<view class="live-list-in" wx:for="{{goodsList.products_basket_list}}" wx:key="index">
+					<view class="hot-goods" wx:if="{{index==0}}"></view>
+					<view class="goods-num" wx:if="{{index !=0}}">{{index}}</view>
+					<view class="live-list-img" bindtap="govideo" data-products_id="{{item.products_id}}" data-products_commonid="{{item.products_commonid}}">
+						<image src="{{item.products_image}}"></image>
+					</view>
+
+					<view class="live-list-title" bindtap="govideo" data-products_id="{{item.products_id}}" data-products_commonid="{{item.products_commonid}}">
+						<view class="acti-icon" wx:if="{{item.products_promotion_type==10}}">拼团</view>
+						<view class="acti-icon" wx:if="{{item.products_promotion_type==2}}">限时购</view>
+						{{item.products_name}}
+					</view>
+					<view class="live-list-money" wx:if="{{item.products_promotion_type ==0}}"><text>￥</text>{{item.products_price}}</view>
+					<view class="live-list-money" wx:if="{{item.products_promotion_type ==2 || item.products_promotion_type==10}}">
+						<text>￥</text>{{item.products_promotion_price}}<label>￥{{item.products_price}}</label>
+					</view>
+
+					<view class="choose" bindtap="getgoods" data-products_id="{{item.products_id}}">立即购买</view>
+				</view>
+				<view style="height:50rpx"></view>
+				<view class="empty" wx:if="{{goodsList.products_basket_count <= 0}}">
+					<view class="empty-title">暂无商品</view>
+					<view class="empty-text">这个主播很懒，没有添加商品</view>
+				</view>
+			</view>
+
+		</view>
+	</view>
+	<!-- 选规格 -->
+	<view class="choosclass {{an1}}">
+		<view>
+			<view class="addTop">
+				<view class="product-text">
+					<image class="products-pic" src="{{imgUrls[0]}}"></image>
+					<view class="textR clearfix">
+						<view class="textX">
+							<text class="money">{{goods_price}}</text>
+						</view>
+						<view class="choiCe">已选：
+							<text>{{chooseText}}</text>
+						</view>
+					</view>
+				</view>
+				<view class="selectsize_content">
+					<view wx:if="{{products_map_spec.length>0}}" wx:for="{{products_map_spec}}" wx:key="index" wx:for-index="fuindex">
+						<view class="selectsize-title">{{item.products_spec_name}}</view>
+						<view class="clearfix " style="margin-left:-25rpx;">
+							<view catchtap="selectGuige" class="selectsize-tab {{(items.isClick == 1) ? 'active' : ''}}" wx:for="{{item.products_spec_value}}" wx:key="index" wx:for-item="items" data-fuindex="{{fuindex}}" data-chindex="{{chindex}}" wx:for-index="chindex" data-specs_value_id="{{items.specs_value_id}}">{{items.specs_value_name}}
+							</view>
+						</view>
+					</view>
+					<!-- 默认 -->
+					<view wx:if="{{products_map_spec.length<=0}}" class="clearfix">
+						<view class="selectsize-title">规格分类</view>
+						<view class="selectsize-tab active" style="margin-left:0">默认</view>
+					</view>
+					<!-- 购买数量 -->
+					<view class="clearfix">
+						<view class="fl selectsize-title">数量</view>
+						<view class="num-cont clearfix fr">
+							<view class="reduce" bindtap='bindMinus'>-</view>
+							<input class="num" type="num" value="{{num}}"></input>
+							<view class="add {{minusStatus}}" bindtap='bindPlus'>+</view>
+						</view>
+					</view>
+				</view>
+				<view class="buy  fr" bindtap="gobuy" style="position:static; margin-top:15rpx;">立即购买</view>
+				<view bindtap="joincart" class="buy fl" style="position:static; margin-top:15rpx;">加入购物车</view>
+			</view>
+		</view>
+	</view>
+</view>
+
+<!-- <view class="bj-topBox"></view>
+<view class="topBox">
+	<view class="text">直播已经结束关注主播接受开播提醒</view>
+</view> -->

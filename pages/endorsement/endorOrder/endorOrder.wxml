@@ -1,0 +1,47 @@
+<!--pages/myAssets/detailed/detailed.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view>
+	<view class="box-top">
+		<view class="amount" wx:if="{{extractType=='微信'||extractType=='支付宝'}}">-{{money}}</view>
+		<view class="amount" wx:elif="{{isRefund==1}}">-{{money}}</view>
+		<view class="amount" wx:elif="{{isRefund==0}}">+{{money}}</view>
+		<view class="box-type" wx:if="{{status!='undefined'}}">{{status}}</view>
+		<view class="box-type" wx:elif="{{isRefund==1}}">退款</view>
+		<view class="box-type" wx:elif="{{isRefund==0}}">返现到账</view>
+	</view>
+	<view class="box-middle">
+		<view class="middle-list clearfix">
+			<view class="text">订单类型</view>
+			<view class="text-type" wx:if="{{extractType=='微信'}}">微信提现</view>
+			<view class="text-type" wx:elif="{{extractType == '支付宝'}}">支付宝提现</view>
+			<view class="text-type" wx:elif="{{isRefund == 1}}">代言费退款</view>
+			<view class="text-type" wx:elif="{{isRefund == 0}}">代言费返现</view>
+		</view>
+		<view class="middle-list clearfix" wx:if="{{isRefund==1 || isRefund==0}}">
+			<view class="text">我的粉丝</view>
+			<view class="text-type">{{custname}}</view>
+		</view>
+		<view class="middle-list clearfix" wx:if="{{extractType=='微信' || extractType=='支付宝'}}">
+			<view class="text">收款账户</view>
+			<view class="text-type">{{phone}}</view>
+		</view>
+		<view class="middle-list clearfix" wx:if="{{isRefund==1}}">
+			<view class="text">订单编号</view>
+			<view class="text-type">{{paysn}}</view>
+		</view>
+		<view class="middle-list clearfix" wx:if="{{isRefund==0}}">
+			<view class="text">收款账号</view>
+			<view class="text-type">{{cust_nickname}}</view>
+		</view>
+		<view class="middle-list clearfix" wx:if="{{extractType=='微信' || extractType=='支付宝' || isRefund==1 || isRefund==0}}">
+			<view class="text">到账时间</view>
+			<view class="text-type">{{ordertime}}</view>
+		</view>
+		
+	</view>
+
+	<view class="objection" bindtap="goKefu">
+		<text>对此单有疑问</text>
+		<image src="https://bj.aizhiyi.com/wap/images/me_icon/name.png"></image>
+	</view>
+</view>

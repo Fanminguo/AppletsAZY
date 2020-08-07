@@ -1,0 +1,59 @@
+<!--pages/addressList/address/address.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<!-- 收货人 -->
+<view class="consignee">
+    <view class="consigneeName">收货人</view>
+    <input class='peopleName' bindinput='verifyName' type='text' placeholder='请输入收货人真实姓名' placeholder-class='placeholder' value="{{true_name}}"></input>
+</view>
+<!-- 手机号码 -->
+<view class="consignee">
+    <view class="consigneeName">手机号码</view>
+    <input class='peopleName' pattern="[0-9]" type="number" placeholder='请输入收货人手机号' maxlength='11' value="" bindinput="mobileInput" value="{{mob_phone}}" ></input>
+</view>
+<!-- 所在地区 -->
+<view class="consignee add">
+    <view class="consigneeName">所在地区</view>
+    <view class="address {{addresSelect=='请输入省、市、县区'?'textColor':'textColor1'}}">{{addresSelect}}</view>
+    <button class="animation-button" bindtap="translate"></button>
+</view>
+<view class="animation-element-wrapper" animation="{{animation}}" style="visibility:{{show ? 'visible':'hidden'}}" bindtap="hiddenFloatView" data-id="444">
+    <view class="animation-element" catchtap="nono">
+        <text class="left-bt" catchtap="hiddenFloatView" data-id="555">取消</text>
+        <text class="right-bt" catchtap="citySure" data-id="666">确定</text>
+        <view class="line"></view>
+        <picker-view indicator-style="height: 50rpx;" value="{{value}}" bindchange="bindChange" catchtap="nono">
+            <picker-view-column>
+                <view wx:for="{{addressItems}}" wx:for-item="item" wx:key="item">
+                    {{item.text}}
+                </view>
+            </picker-view-column>
+            <picker-view-column>
+                <view wx:for="{{citys}}" wx:key="index">
+                    {{item.text}}
+                </view>
+            </picker-view-column>
+            <picker-view-column>
+                <view wx:for="{{countys}}" wx:key="key">
+                    {{item.text}}
+                </view>
+            </picker-view-column>
+        </picker-view>
+    </view>
+</view>
+<!-- 详细地址 -->
+<view class="consignee">
+    <view class="consigneeName">详细地址</view>
+    <input bindinput="detailed" class='peopleName' type="text" placeholder='请输入详细地址，如街道，楼牌号等' value="{{area_info}}"></input>
+</view>
+<!-- 默认 -->
+<view class="default clearfix">
+	<view class="{{id == 0?'circular':'active'}}" data-id="{{id}}" bindtap="circular"></view>
+	<view class="defaText">设为默认收货地址</view>
+</view>
+<view class="btnPreservation" wx:if="{{!btnTwo}}">
+	<view bindtap="btnPreservation">保存</view>
+</view>
+<view class="btnEditBox" wx:if="{{btnTwo}}">
+	<view class="add" bindtap="btnEdit">保存</view>
+	<view class="romove" bindtap="btnDelete">删除</view>
+</view>

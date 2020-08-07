@@ -1,0 +1,476 @@
+<import src="../../wxParse/wxParse.wxml" />
+<wxs module="filters" src="../../utils/filters.wxs"></wxs>
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view wx:if="{{data !=''}}">
+	<!-- <view class="nav-bl" wx:if="{{!is_nav}}">
+  <view class="nav-bl-dian" bindtap="shownav">
+    <view class="dian"></view>
+    <view class="dian"></view>
+    <view class="dian"></view>
+  </view>
+</view>
+<view class="nav-bj"  bindtap="shownav" wx:if="{{is_nav}}"></view> -->
+
+	<view class="nav" wx:if="{{is_nav}}">
+		<view class="nav-inner">
+			<view class="nav-info" bindtap="goindex">
+				<view class="nav-icon index"></view>首页
+			</view>
+			<!-- <view class="nav-info"><view class="nav-icon"></view>赚钱</view> -->
+			<view class="nav-info" bindtap="gomy">
+				<view class="nav-icon my"></view>我的
+			</view>
+			<view class="nav-info" bindtap="gonews">
+				<view class="nav-icon news"></view>消息
+			</view>
+			<view class="nav-info" bindtap="gocart">
+				<view class="nav-icon cart"></view>购物车
+			</view>
+		</view>
+	</view>
+	<view class="img-lb" bindtap="doubleTap" bindtouchstart="touchStart" bindtouchend="touchEnd">
+		<swiper autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" current="{{swiperCurrent}}" bindchange="swiperChange">
+			<block wx:for="{{imgUrls}}" wx:key="index">
+				<swiper-item>
+					<image src="{{item}}" class="slide-image" width="355" height="150" />
+				</swiper-item>
+			</block>
+		</swiper>
+		<view class="dots">
+			<block wx:for="{{imgUrls}}" wx:key="idnex">
+				<view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
+			</block>
+		</view>
+	</view>
+
+	<!-- 返回 -->
+	<!-- 商品信息 -->
+	<view class="box1" bindtap="doubleTap" bindtouchstart="touchStart" bindtouchend="touchEnd">
+		<!-- 限时购 -->
+		<view class="group-top limit-top clearfix" wx:if="{{data.products_info.promotion_endtime}}">
+			<view class="group-top-left fl">
+				<text class="new"><text>￥</text>{{data.products_info.promotion_price}}</text>
+				<del class="old">￥{{data.products_info.products_price}}</del>
+			</view>
+			<view class="group-top-right fr">
+				<text>距离结束还剩</text>
+				<text>{{limTime}}</text>
+			</view>
+		</view>
+		<!-- 拼团商品 -->
+		<view class="group-top clearfix" wx:if="{{data.isgroupbuy}}">
+			<view class="group-top-left fl">
+				<text class="new"><text>￥</text>{{data.groupbuy_commonInfo.groupbuy_price5}}</text>
+				<del class="old">￥{{data.products_info.products_price}}</del>
+			</view>
+			<view class="group-top-right fr">
+				<text>成功拼团</text>
+				<text>{{data.products_info.groupbuy_hug_info.sale_fic_count}}人</text>
+			</view>
+		</view>
+		<view class="listName clearfix">
+			<view class="money {{ Vertical ? '' : 'active'}}" wx:if="{{(data.isgroupbuy==false) && !data.products_info.promotion_endtime}}">
+			   <label style="font-size:30rpx">￥</label>{{priceName.products_price}}
+				 <view class="moneyNew" wx:if="{{newcust}}" style="display:none">
+				   <label>新人专属价￥</label>{{new_cust_price}}
+				 </view>
+				 <view class="moneyNew" style="font-size:24rpx" wx:if="{{Vertical}}">看直播领红包{{Vertical}}元</view>
+			</view>
+			<view class="commName">
+				<view>{{priceName.products_name}}</view>
+			</view>
+			<view class="listRess clearfix">
+				<view class="fl" style="width:33%">{{ressName.area_name}}</view>
+				<view class="fr" style="width:33%; text-align:right">关注：{{collect}}</view>
+				<view class="fl" style="width:33%; text-align:center">{{ressName.content}}</view>
+			</view>
+			<!-- <view class="live-text" wx:if="{{Vertical>1 && online}}">
+				<text>直播好货</text>
+				<text class="live-right">看直播立减{{Vertical}}元</text>
+			</view> -->
+			<view class="live-write" wx:if="{{Vertical}}" style="border-top: solid 15rpx #F7F7F7; padding-top:25rpx">
+			  <text>直播</text><label>看直播领红包{{Vertical}}元</label>
+			</view>
+			<view class="live-write" style="margin-bottom:20rpx;"  wx:if="{{data.products_info.products_promotion_type==0 && data.products_info.products_price>50}}">
+			  <text>返币</text><label>下单返{{filters.toFix(data.products_info.products_price*0.1)}}易瓷币</label>
+				<view class="clearfix"></view>
+				<text decode="{{true}}" style="margin-left:74rpx; font-size:22rpx">提现极速到账&ensp;&ensp;持币增值</text>
+			</view>
+			<view class="blank clearfix"></view>
+		</view>
+		<!-- 拼团列表开始 -->
+		<view class="group-list" wx:if="{{data.group_buy_list}}">
+			<view class="group-list-title"><text>{{data.groupbuy_commonInfo.activiter_count}}</text>人正在拼团，可直接参团</view>
+			<view class="clearfix group-list-in" wx:key="index" wx:for="{{group_list}}">
+				<view class="group-list-name">
+					<image src="{{item.cust_avatar}}"></image>
+					<text>{{item.cust_name}}</text>
+				</view>
+				<view class="group-list-ri fr">
+					<view class="group-list-ritext">
+						<text>{{item.group_type}}人团 还差{{item.surplus_number}}人成团</text>
+						<text>{{item.difftime}}</text>
+					</view>
+					<view class="group-list-ribtn" bindtap="groupJoin" data-groupbuy_hug="{{item.groupbuy_hug}}">去参团</view>
+				</view>
+			</view>
+		</view>
+		<view class="group-rule" wx:if="{{data.group_buy_list}}">
+			<view class="clearfix group-rule-text">
+				<view class="group-rule-title fl">拼团玩法</view>
+				<view class="group-rule-btn fr" bindtap="groupDia">活动规则></view>
+			</view>
+			<view class="group-text">
+				<text>1</text>开团/参团 ...
+				<text>2</text>分享好友/达到成团人数...
+				<text>3</text>成功发货/失败退款
+			</view>
+		</view>
+		<!-- 拼团列表结束 -->
+		<view class="details">
+			<view class="detaName">产品详情</view>
+			<view class="wxParse">
+				<template is="wxParse" data="{{wxParseData:article.nodes}}" />
+			</view>
+			<!-- <view class="imgList">
+            {{article}}
+        </view> -->
+		</view>
+	</view>
+	<!-- 底部 -->
+	<view class="detail-foot {{isIphoneX?'isIPX':''}}">
+		<view class="leftVice fl">
+			<view class="vice" bindtap="kefu">
+				<view class="iconImg kefu"></view>
+				客服
+			</view>
+			<view class='vice follow' bindtap="gocart">
+			  <view wx:if="{{caetNum > 0 && caetNum<=9 }}" class="cartNum2">{{caetNum}}</view>
+	    	<view wx:if="{{caetNum > 9}}" class="cartNum">{{caetNum}}</view>
+				<view class="iconImg gz"></view>购物车
+			</view>
+			<!-- <view class="nav-bl-cart" bindtap="gocart">
+				<view class="icon"></view>
+			</view> -->
+			<!-- <view class='vice follow {{is_follow ? "active":""}}' bindtap="follow">
+            <view class="iconImg gz"></view>
+            关注
+        </view> -->
+		</view>
+		<view class="addCuat">
+			<!-- <view class="join" data-type="join" bindtap='chooseSezi'>
+            加入购物车
+        </view> -->
+			<!-- <view class="join" data-type="join" wx:if="{{!data.isgroupbuy}}" bindtap="chooseSezi">加入购物车</view>
+			<view class="join" data-type="join" wx:if="{{data.isgroupbuy}}" bindtap="chooseSezi">单独购买</view> -->
+			<view class="join" wx:if="{{!data.isgroupbuy}}" data-type="join" bindtap="chooseSezi">加入购物车</view>
+			<view class="join" wx:if="{{data.isgroupbuy}}" data-type="join" bindtap="chooseSezi">单独购买</view>
+			<view class="chase" wx:if='{{data.isgroupbuy && data.groupbuy_commonInfo.isFree=="0"}}' bindtap='chooseGroup'>{{teamName}}</view>
+			<view class="chase" wx:if='{{data.isgroupbuy && data.groupbuy_commonInfo.isFree=="1"}}' bindtap='chooseSezi'>0元开团</view>
+			<!-- <view class="chase" data-type="buy" wx:if='{{!data.isgroupbuy}}' bindtap='chooseSezi'>立即购买</view>  -->
+
+			<view class="chase" bindtap="chooseSezi" data-type="buy" wx:if="{{!data.isgroupbuy}}">立即购买</view>
+		</view>
+	</view>
+	<view class='maskLayer' wx:if="{{chooseSize || chooseSizeGroup}}" bindtap='hideModal'></view>
+	<view class="choose gg {{isIphoneX?'isIPX':''}}" wx:if="{{chooseSize}}" animation='{{animationData}}'>
+		<view>
+			<view class="addTop">
+				<view class="product-text">
+					<image class="products-pic" src="{{imgUrls[0]}}"></image>
+					<view class="textR clearfix">
+						<view class="textX">
+							<text class="money" wx:if="{{data.products_info.promotion_type}}">￥{{data.products_info.promotion_price}}</text>
+							<view wx:if="{{groupbuy &&  join_cart==false}}">
+								<text style="font-size:30rpx; color:#999">{{choose_num}}人团</text>
+								<text class="money">￥{{choose_price}}</text>
+								<label style="text-decoration: line-through;font-size: 15px;color: #999; margin-left:15rpx">￥{{data.products_info.products_price}}</label>
+							</view>
+							<text class="money" wx:elif="{{!data.products_info.promotion_type}}">￥{{data.products_info.products_price}}</text>
+							<view class="moneyNew" wx:if="{{(data.products_info.products_promotion_type==0 || (data.products_info.products_promotion_type==10 && join_cart !=false)) && newcust}}" style="display:none">
+								<label>新人专属价￥</label>{{new_cust_price}}
+							</view>
+							<!-- <view class="moneyNew" wx:if="{{data.products_info.products_promotion_type==0 || (data.products_info.products_promotion_type==10 && join_cart !=false) || (!newcust && Vertical)}}">
+								  看直播领红包{{Vertical}}元
+							</view> -->
+							<label style="text-decoration: line-through;font-size: 15px;color: #999; margin-left:15rpx" wx:if="{{data.products_info.promotion_type}}">￥{{data.products_info.products_price}}</label>
+						</view>
+						<view class="choiCe">已选：
+							<text>{{chooseText}}</text>
+						</view>
+					</view>
+				</view>
+				<view class="selectsize_content">
+					<view wx:if="{{products_map_spec.length>0}}" wx:for="{{products_map_spec}}" wx:key="index" wx:for-index="fuindex">
+						<view class="selectsize-title">{{item.products_spec_name}}</view>
+						<view class="clearfix " style="margin-left:-25rpx;">
+							<view catchtap="selectGuige" class="selectsize-tab {{(items.isClick == 1) ? 'active' : ''}}" wx:for="{{item.products_spec_value}}" wx:key="index" wx:for-item="items" data-fuindex="{{fuindex}}" data-chindex="{{chindex}}" wx:for-index="chindex" data-specs_value_id="{{items.specs_value_id}}">{{items.specs_value_name}}
+							</view>
+						</view>
+					</view>
+
+					<!-- 默认 -->
+					<view wx:if="{{products_map_spec.length<=0}}" class="clearfix">
+						<view class="selectsize-title">规格分类</view>
+						<view class="selectsize-tab active" style="margin-left:0">默认</view>
+					</view>
+					<!-- 购买数量 -->
+					<view class="clearfix">
+						<view class="fl selectsize-title">数量</view>
+						<view class="num-cont clearfix fr">
+
+							<view class="reduce" bindtap='bindMinus'>-</view>
+							<input class="num" type="num" value="{{num}}" disabled='disabled'></input>
+							<view class="add {{minusStatus}}" bindtap='bindPlus'>+</view>
+						</view>
+					</view>
+
+				</view>
+				<view class="buy" bindtap="gobuy" style="position:static; margin-top:15rpx;">确定</view>
+				<!-- <view class="buy" bindtap="gobuy" wx:if="{{!data.isgroupbuy}}" style="position:static; margin-top:15rpx;">确定</view>
+				<view class="buy" bindtap="gobuy1" wx:if="{{data.isgroupbuy}}" style="position:static; margin-top:15rpx;">立即购买</view> -->
+			</view>
+		</view>
+		<!-- 拼团弹窗 -->
+	</view>
+	<!-- 选择人数 -->
+	<view class="choose team {{isIphoneX?'isIPX':''}}" wx:if="{{chooseSizeGroup}}" animation='{{animationDataGroup}}'>
+		<view class='team-list'>
+			<view class="team-list-title">请选择参团人数</view>
+			<view class='team-list-inner clearfix {{choose_num==5 ? "active":""}}' data-num="5" bindtap="chooseNum" data-price="{{data.groupbuy_commonInfo.groupbuy_price5}}">
+				<view class="icon"></view>
+				<view class="team-list-num">5人团</view>
+				<view class="team-list-price">￥{{data.groupbuy_commonInfo.groupbuy_price5}}</view>
+				<view class="team-list-save">已省{{filters.toFix(data.products_info.products_price - data.groupbuy_commonInfo.groupbuy_price5)}}</view>
+			</view>
+			<view class='team-list-inner clearfix {{choose_num==4 ? "active":""}}' data-num="4" bindtap="chooseNum" data-price="{{data.groupbuy_commonInfo.groupbuy_price4}}">
+				<view class="icon"></view>
+				<view class="team-list-num">4人团</view>
+				<view class="team-list-price">￥{{data.groupbuy_commonInfo.groupbuy_price4}}</view>
+				<view class="team-list-save">已省{{filters.toFix(data.products_info.products_price - data.groupbuy_commonInfo.groupbuy_price4)}}</view>
+			</view>
+			<view class='team-list-inner clearfix {{choose_num==3 ? "active":""}}' data-num="3" bindtap="chooseNum" data-price="{{data.groupbuy_commonInfo.groupbuy_price3}}">
+				<view class="icon"></view>
+				<view class="team-list-num">3人团</view>
+				<view class="team-list-price">￥{{data.groupbuy_commonInfo.groupbuy_price3}}</view>
+				<view class="team-list-save">已省{{filters.toFix(data.products_info.products_price - data.groupbuy_commonInfo.groupbuy_price3)}}</view>
+			</view>
+			<view class='team-list-inner clearfix {{choose_num==2 ? "active":""}}' data-num="2" bindtap="chooseNum" data-price="{{data.groupbuy_commonInfo.groupbuy_price2}}">
+				<view class="icon"></view>
+				<view class="team-list-num">2人团</view>
+				<view class="team-list-price">￥{{data.groupbuy_commonInfo.groupbuy_price2}}</view>
+				<view class="team-list-save">已省{{filters.toFix(data.products_info.products_price - data.groupbuy_commonInfo.groupbuy_price2)}}</view>
+			</view>
+			<view class="team-list-text">人数越多，优惠越大</view>
+			<view class="team-list-last buy" bindtap='chooseSezi'>下一步</view>
+		</view>
+	</view>
+
+	<!-- 团购弹窗 -->
+	<!-- <view class="group-dia" wx:if="{{group_dia}}" >
+      <view class="group-dia-cont">
+         <view class="group-dia-close" bindtap="groupDia"></view>
+         <view class="group-dia-title">拼团活动规则</view>
+         <view class="group-dia-in">
+           <view class="group-dia-h3">更新时间</view>
+           <view class="group-dia-p">不定期更新，限量放送，售完为止</view>
+         </view>
+         <view class="group-dia-in">
+           <view class="group-dia-h3">参团方式</view>
+           <view class="group-dia-p">1.在拼团上活动页面选择商品，点击开团/参团进入支付页面  </view>
+           <view class="group-dia-p">2.在半小时内完成支付，否则订单自动取消</view>
+           <view class="group-dia-p">3.开团成功后，可将拼团信息分享给好友，指定时间内邀请到成团人数的好友享拼团价，即为拼团成功；否则，系统自动退款</view>
+         </view>
+         <view class="group-dia-in">
+           <view class="group-dia-h3">活动说明</view>
+           <view class="group-dia-p">1.活动商品不与网站其他优惠福利同享</view>
+           <view class="group-dia-p">2.拼团商品不可使用代金券、礼品卡、易瓷币、兑换码支付</view>
+           <view class="group-dia-p">3.通过不正当手段参与拼团活动，爱之依有权撤销相关订单</view>
+         </view>
+      </view>
+    </view> -->
+	<view class="yici-rule-dia" wx:if="{{group_dia}}">
+		<view class="yici-rule">
+			<view class="yici-rule-close" bindtap="groupDia"></view>
+			<view class="yici-rule-title">拼团活动规则</view>
+			<view class="yici-rule-cont">
+				<view class="yici-rule-h3">更新时间</view>
+				<view class="yici-rule-p">不定期更新，限量放送，售完即止 </view>
+				<view class="yici-rule-h3">参团规则</view>
+				<view class="yici-rule-p">1. 买家通过自身身份分享邀请好友组团，成团后可享受买家商品的让利</view>
+				<view class="yici-rule-p">2. 开团：在拼团时间范围内，买家选择开团人数并支付，则开团成功</view>
+				<view class="yici-rule-p">3. 在拼团时间范围内，支付成功人数达到拼团指定人数要求，视为拼团成功(即“成团”)</view>
+				<view class="yici-rule-p">4. 在拼团时间截止时，支付成功人数未达到拼团指定人数要求，拼团自动结束，系统将自动原路返还退款给参与拼团的买家</view>
+				<view class="yici-rule-p">5. 拼团商品不支持任何优惠券，仅支持礼品卡、易瓷币抵现(如后续支持优惠形式增加，以系统提示的为准，不再另行通知)</view>
+			</view>
+			<view class="yici-rule-bottom"></view>
+		</view>
+	</view>
+	<!-- 拼团列表去参团按钮 -->
+	<view class="join-dia" wx:if="{{groupTime_dia}}">
+		<view class="join-diacont">
+			<view class="group-dia-close" bindtap="hidegroupTIme"></view>
+			<view class="join-diacont-title">参与“{{joingroup.groupbuy_detail.cust_name[0]}}”发起的拼团</view>
+			<view class="join-diacont-text">仅剩<text>{{joingroup.groupbuy_detail.surplus_number}}</text>个名额，{{groupTime}} 后即将结束</view>
+			<view class="join-dia-list">
+				<view class="join-dia-li" wx:for-index="i" wx:for="{{joingroup.groupbuy_detail.cust_avatar}}" wx:key="index">
+					<!-- <view wx:if="i<joingroup.products_commend_list.length"> -->
+					<image src="{{joingroup.groupbuy_detail.cust_avatar[i]}}"></image>
+					<view class="icon" wx:if="{{i==0}}"></view>
+					<view class="join-dia-li-name" wx:if="{{i==0}}">团长</view>
+					<!-- </view> -->
+				</view>
+				<view class="join-dia-li" wx:if="{{joingroup.groupbuy_detail.surplus_number>0}}">
+					<image src="https://bj.aizhiyi.com/wap/images/me_icon/z207.png"></image>
+				</view>
+				<view class="join-dia-li" wx:if="{{joingroup.groupbuy_detail.surplus_number>1}}">
+					<image src="https://bj.aizhiyi.com/wap/images/me_icon/z207.png"></image>
+				</view>
+				<view class="join-dia-li" wx:if="{{joingroup.groupbuy_detail.surplus_number>2}}">
+					<image src="https://bj.aizhiyi.com/wap/images/me_icon/z207.png"></image>
+				</view>
+				<view class="join-dia-li" wx:if="{{joingroup.groupbuy_detail.surplus_number>3}}">
+					<image src="https://bj.aizhiyi.com/wap/images/me_icon/z207.png"></image>
+				</view>
+			</view>
+			<view class="join-dia-btn" bindtap="gogroup">确定</view>
+		</view>
+	</view>
+</view>
+<!-- 右侧导航  wx:if="{{!data.isgroupbuy}}"-->
+<view class="right-nav {{!navShow ? ' active' : ''}} {{isIphoneX?'isIPX':''}}">
+	<view class="products-info" data-storeid="{{data.store_info.store_id}}">
+		<image style="border-radius:50%" bindtap='tostore' class='products-info-img {{online?"animat":""}}' src='{{data.store_info.store_avatar}}' data-storeid="{{data.store_info.store_id}}"></image>
+		<view class="circular-Small" wx:if="{{online}}" bindtap="goList" data-store_id="{{data.store_info.store_id}}">
+			<view class="circular-Small-text">直播</view>
+		</view>
+		<view class='products-info-icon' wx:if="{{store_is_favorate==false}}" bindtap='tofollowStore' data-store_id="{{data.store_info.store_id}}"></view>
+	</view>
+	<!-- <view class="activity" bindtap="goactivity">
+     <view class="activity-icon"></view>
+     <text>活动</text>
+   </view> -->
+	<view class="fabulous follow" bindtap="follow">
+		<image class='fabulous-img' src="{{is_follow ? 'https://bj.aizhiyi.com/wap/test/wap/xcxImg/52.png' : 'https://bj.aizhiyi.com/wap/test/wap/xcxImg/51.png'}}"></image>
+		<text>{{collect}}</text>
+	</view>
+	<!-- <view class="fabulous follow" bindtap="follow">
+     
+      <image class='fabulous-img'  src="{{is_follow ? 'https://bj.aizhiyi.com/wap/test/wap/xcxImg/52.png' : 'https://bj.aizhiyi.com/wap/test/wap/xcxImg/51.png'}}"></image>
+      <text>{{collect}}</text>
+   </view> -->
+	<view class="fabulous" bindtap="pinglun" data-id="{{data.products_commonid}}">
+		<image class='fabulous-img' src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/xiangqing_pinglun.png"></image>
+		<text>{{common_count}}</text>
+	</view>
+	<view class="share" open-type='share'>
+		<button open-type='share' data-id="{{videos[videoIndex].products_commonid}}" class='share-img'></button>
+		<text>分享</text>
+	</view>
+	<button class="go-simi " open-type="getUserInfo" bindtap="gosimlar" data-pcid="{{data.products_info.products_cids}}">
+		<view class="simiImg on">
+			<image class="Img one" src="{{imgUrls[0]}}"></image>
+			<view class="simiImgTwo"></view>
+		</view>
+	</button>
+</view>
+
+<!-- 评论弹出层 -->
+<view class='maskContent' bindtap="quxiao" hidden="{{isHide}}" catchtouchmove='true'></view>
+	<view class="comment-box {{isIphoneX?'isipXbottom':''}}" hidden="{{isHide}}" style="position:fixed">
+		<span class="title">共{{percentage.comments_count}}条评论</span>
+		<image class="quxiao" bindtap="quxiao" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/b_quxiao.png"></image>
+		<view class="box" >
+
+			<view class="plOne" wx:if="{{comment_false}}">
+				<view class="plName">
+					<view class="clearfix">
+						<view class="clearfix w60" bindlongpress="longPress" data-id="{{comment_text.comment_id}}" data-num="{{comment_text.cust_id}}" data-index="{{comment_text.comments_type}}" data-name="{{comment_text.comment_custname}}">
+							<image src="{{comment_text.comment_custimage}}"></image>
+							<text>{{comment_text.comment_custname}}</text>
+						</view>
+						<view class="fabulous-box fr" data-id="{{comment_text.comment_id}}" data-type="2" data-video="{{comment_text.products_commonid}}" data-curIndex="{{index}}" bindtap="daimaiClick" data-likes="{{comment_text.is_likes}}"  products_commonid="{{comment_text.products_commonid}}" >
+							<image class='fabuImg fr' src=' {{comment_text.is_likes == "0"?daimaisrc:heartsrc}}'></image>
+							<view class="fabuText fr">{{comment_text.like_num}}</view>
+						</view>
+					</view>
+					<view class="plContent">
+						{{comment_text.comment_content}}
+					</view>
+				</view>
+			</view>
+
+			<view class="plOne" wx:for="{{mentList}}" wx:for-index="index" wx:key="index">
+				<view class="plName">
+					<view class="clearfix">
+						<view class="clearfix w60" bindlongpress="longPress" data-id="{{item.comment_id}}" data-num="{{item.cust_id}}" data-index="{{item.comments_type}}" data-name="{{item.comment_custname}}">
+							<image src="{{item.comment_custimage}}"></image>
+							<text>{{item.comment_custname}}</text>
+						</view>
+						<view class="fabulous-box fr" data-id="{{item.comment_id}}" data-type="{{item.comments_type}}" data-video="{{item.products_commonid}}" data-curIndex="{{index}}" bindtap="daimaiClick" data-likes="{{item.is_likes}}" data-pointratio="{{videos[videoIndex].products_collect}}" products_commonid="{{item.products_commonid}}">
+							<image class='fabuImg fr' src=' {{item.is_likes == "0"?daimaisrc:heartsrc}}'></image>
+							<view class="fabuText fr">{{item.like_num}}</view>
+						</view>
+					</view>
+					<view class="plContent">
+						{{item.comment_content}}
+					</view>
+				</view>
+
+				<!-- 追评 -->
+				<view class="clearfix">
+					<view class="bars" bindtap="display" wx:if="{{!item.exhibi &&item.received_comment_count >0}}" data-id="{{item.comment_id}}">一展开{{item.received_comment_count}}条评论</view>
+					<view class="barsList" bindtap="review" wx:if="{{item.exhibi}}" wx:for="{{content}}" wx:key="index" wx:for-item="g" data-id="{{g.comment_id}}" data-num="{{g.cust_id}}" data-index="{{g.comments_type}}" data-numId="{{g.parent_respond_commentid}}" data-name="{{g.comment_custname}}">
+						<view class="clearfix">
+							<image src="{{g.comment_custimage}}"></image>
+							<view class="name">{{g.comment_custname}}</view>
+						</view>
+						<view class="text">
+							回复
+							<text>{{g.cust_name}}：</text> {{g.comment_content}}
+						</view>
+					</view>
+					<view class="bars" wx:if="{{item.exhibi}}" data-id="{{item.comment_id}}" bindtap="addReview">{{addReviewText}}</view>
+				</view>
+			</view>
+			<view class="bars" wx:if="{{mentList.length >= 8}}" bindtap="moreList">更多评论</view>
+			<view class="blankboxImg" wx:if="{{!comment_false && mentList.length <=0}}">
+				<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/mediumnoconnection@2x.png"></image>
+				<view class="blankboxText">留下个记号吧</view>
+			</view>
+		</view>
+		<!-- 评论没数据时 -->
+		<!-- <view class="box" wx:if="{{mentList.length <=0}}">
+			<view class="empty">
+				<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/no-connection@2x.png"></image>
+			</view>
+		</view> -->
+		<view class="text">
+			<span class="icon">
+				<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/b_bianji@2x.png"></image>
+			</span>
+			<input cursor-spacing="0" adjust-position="false" wx:if="{{!newName}}" class="input" type="text" value="{{commentText}}" bindconfirm="commentConfirm" bindinput="setCommentText" confirm-type="done" placeholder="喜欢就说点什么吧"></input>
+			<input cursor-spacing="0" adjust-position="false" wx:if="{{newName}}" class="input" type="text" value="{{commentText}}" bindconfirm="commentConfirm" bindinput="setCommentText" confirm-type="done" placeholder="回复：{{newName}}"></input>
+			<button class="release" bindtap="commentConfirm" style="position:relative; z-index:10">
+				发布
+			</button>
+		</view>
+	</view>
+
+	<!-- 弹窗下载app -->
+	<view class="loadApp" bindtap="goLoad" wx:if="{{newcust}}">
+	   <view class="loadApp-text">
+		    <view class="h3">160元</view>
+				<view class="h4">新人专属礼包</view>
+		 </view>
+		 <view class="loadApp-circle">
+		   <view class="loadApp-circle-text">立即领取</view>
+		 </view>
+	</view>
+	<view class="loadApp2" bindtap="goLoad" wx:if="{{newcust}}"></view>
+	<view class="code-cont" wx:if="{{loadTc}}">
+		<view class="code-bj" bindtap="closeLoad"></view>
+		<view class="code-close" bindtap="closeLoad"></view>
+		<view class="code-img"></view>
+	</view>
+	

@@ -1,0 +1,45 @@
+<!-- <view class="gongzhong">
+	<image mode="widthFix" class="image"  src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/bg....png"></image>
+	<image src="{{avatar}}" class="nameImg"></image>
+	<image class="buttom-btn"  src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/qz_a123nniu.png"></image>
+	<view class="cust_nickname">
+		{{cust_nickname}}
+	</view>
+</view> -->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view class="gongzhong">
+	<image src="{{data.custAvatar}}" class="nameImg"></image>
+	<!-- <view class="cust_nickname">
+		{{data.nickName}}
+	</view> -->
+	<view class="text" wx:if="{{data.agent}}">中国文化代言人</view>
+	<view class="name">
+	  <view class="icon"></view>
+		<view class="icon"></view>
+		<view class="icon"></view>
+		<view class="name-text">{{data.nickName}}</view>
+	</view>
+	<view class="circle-name">
+	  <view>我在“爱之依”创建了“{{data.momentsName}}”。 </view>
+		<view>扫描下方二维码，加入我的圈子！</view>
+  </view>
+	<view class="circle-all">—— 一起发现中国好物！</view>
+	<image style="width:750rpx; height:5rpx; margin:70rpx 0" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/zc42.png"></image>
+	<view class="equity">
+		<view class="equity-title">代言人权益：</view>
+		<view class="equity-text">·160元新人大礼包</view>
+		<view class="equity-text">·推广代言人赚返现，提现极速到账</view>
+		<view class="equity-text">·购物返易瓷币，购物可抵现</view>
+		<view class="equity-text">·线下购物，打折优惠</view>
+		<view class="code-cont">
+		   <view class="code-cont-bg">
+			    <canvas class="code" canvas-id="myQrcode" />
+			 </view>
+			 <view class="logo-icon"></view>
+			 <view class="code-text">扫码加入圈子</view>
+	  </view>
+	</view>
+	<view class="share-btn">截屏并分享</view>
+</view>
+
+	

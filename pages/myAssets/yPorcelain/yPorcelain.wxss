@@ -1,0 +1,431 @@
+/* pages/myAssets/yPorcelain/yPorcelain.wxss */
+/* 头部卡片 */
+.card-top {
+  width: 702rpx;
+  height: 403rpx;
+  background: url('https://bj.aizhiyi.com/wap/test/wap/xcxImg/yci_bg01.png') no-repeat;
+  background-size: 100% 100%;
+  border-radius: 26rpx;
+  margin: 0 auto;
+  margin-top: 39rpx;
+  position: relative;
+  margin-bottom: 60rpx;
+}
+
+.card-text {
+  width: 50%;
+  height: 40rpx;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.8);
+  padding-top: 44rpx;
+}
+
+.card-text image {
+  width: 32rpx;
+  height: 24rpx;
+  margin-left: 10rpx;
+}
+
+.warning {
+  position: absolute;
+  top: 35rpx;
+  right: 45rpx;
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.amountNum {
+  font-size: 28rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+  width: 400rpx;
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 12rpx;
+}
+
+.amountNum text {
+  font-size: 50rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  margin-right: 10rpx;
+}
+
+.unlocked {
+
+  margin: 0 auto;
+  text-align: center;
+  height: 52rpx;
+  line-height: 52rpx;
+  margin-top: 20rpx;
+}
+
+.unlocked text {
+  font-size: 28rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+  padding: 6rpx 26rpx;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 26px;
+
+}
+
+.currency {
+  width: 100%;
+  margin: 0 auto;
+  color: #fff;
+  margin-top: 33rpx;
+}
+
+.flex-row {
+  width: 50%;
+  justify-content: space-between;
+  float: left;
+  text-align: center;
+  position: relative;
+}
+
+.flex-row image {
+  position: absolute;
+  right: 60rpx;
+  top: 40rpx;
+  width: 20rpx;
+  height: 30rpx;
+}
+
+.dotted {
+  border-left: 3rpx dashed #CECDCD;
+  width: 3rpx;
+  height: 92rpx;
+  position: absolute;
+  left: 50%;
+}
+
+.currency-class {
+  font-size: 24rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.balance {
+  font-size: 36rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 auto;
+  margin-top: 24rpx;
+}
+
+/* tab切换 */
+.tab {
+  width: 96%;
+  height: 600rpx;
+}
+
+.tabTop .btns {
+  display: flex;
+  font-size: 32rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.tabTop .btns view {
+  flex: 1;
+  text-align: center;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+
+.tabTop .btns .cur {
+  border-bottom: 2rpx solid rgba(255, 255, 255, 0.9);
+  border-radius: 2rpx;
+  color: #fff;
+}
+.small_navFix {
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20000;
+}
+.tabTop{
+  background-color: #161824;
+  height: 100rpx;
+  width:100%;
+}
+/* 明细 */
+.record-img {
+  width: 50rpx;
+  height: 50rpx;
+  margin-top: 59rpx;
+  margin-left: 29rpx;
+}
+
+.record-img image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.record-text {
+  width: 580rpx;
+  margin-top: 55rpx;
+  margin-right: 30rpx;
+
+}
+
+.record-type {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  float: left;
+}
+
+.record-number {
+  font-size: 30rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(155, 155, 155, 1);
+  float: right;
+}
+
+.fz24 {
+  font-size: 24rpx;
+}
+
+.succBg {
+  color: #16AA2A;
+}
+
+.time {
+  margin-top: 0;
+  padding-bottom: 30rpx;
+  border-bottom: 2rpx solid rgba(255, 255, 255, 0.05);
+}
+
+/* 底部 */
+.dibuTab {
+  position: fixed;
+  bottom: 0;
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium;
+  font-weight: 500;
+  width: 100%;
+  background: #161824;
+  height: 90rpx;
+  line-height: 90rpx;
+  box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.2);
+  display: flex;
+  left: 0;
+}
+
+.dibuTab view {
+  /* width: 450%; */
+  /* float: left; */
+  text-align: center;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  flex: 1;
+  text-align: center;
+
+}
+
+.transfer {
+  height: 115rpx;
+  background: rgba(3, 3, 5, 1);
+  box-shadow: 0rpx 1rpx 6rpx 0rpx rgba(0, 0, 0, 0.2);
+}
+
+.change {
+  height: 115rpx;
+  background: rgba(202, 73, 58, 1);
+  box-shadow: 0rpx 1rpx 6rpx 0rpx rgba(0, 0, 0, 0.2);
+}
+
+/* 易瓷币规则 */
+.yici-bj {
+  background: rgba(0, 0, 0, 1);
+  opacity: 0.6;
+  width: 100vw;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 88;
+}
+
+.yici-rule {
+  position: fixed;
+  top: 10%;
+  width: 600rpx;
+  height: 815rpx;
+  border-radius: 16rpx 16rpx 16rpx 16rpx;
+  background: #fff;
+  z-index: 99;
+}
+
+.yici-top {
+  width: 600rpx;
+  height: 107rpx;
+  background: linear-gradient(180deg, rgba(247, 89, 72, 1) 0%, rgba(211, 61, 60, 1) 100%);
+  border-radius: 16rpx 16rpx 0 0;
+  line-height: 107rpx;
+  text-align: center;
+  margin-bottom: 38rpx;
+  font-size: 30rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+}
+
+.content-rule {
+  width: 540rpx;
+  margin: 0 auto;
+  text-align: left;
+  font-size: 24rpx;
+  color: rgba(62, 53, 53, 1);
+height: 624rpx;
+}
+
+.content-rule view {
+  margin-bottom: 10rpx;
+}
+
+.rule-One {
+  font-weight: 500;
+  color: rgba(202, 73, 58, 1);
+  margin-bottom: 16rpx;
+}
+
+.guanbi image {
+  width: 50rpx;
+  height: 50rpx;
+  margin-left: 45%;
+  margin-top: 75rpx;
+}
+
+/* 动态 */
+.dynamic {
+  width: 694rpx;
+  height: 210rpx;
+  margin: 0 auto;
+  border-bottom: 1rpx solid rgba(255, 255, 255, 0.05);
+}
+
+.dynamic .Copywriting {
+  width: 390rpx;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 41rpx;
+}
+
+.dynamic .Copywriting .text {
+  height: 80rpx;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.dynamic .Copywriting .text1 {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(153, 153, 153, 1);
+  margin-top: 20rpx;
+  margin-bottom: 39rpx;
+}
+
+.bennerImg {
+  width: 260rpx;
+  height: 158rpx;
+  margin-top: 41rpx;
+}
+
+.bennerImg image {
+  width: 260rpx;
+  height: 158rpx;
+}
+
+/* 任务 */
+
+.task-img {
+  width: 50rpx;
+  height: 50rpx;
+  margin-top: 59rpx;
+  margin-left: 29rpx;
+}
+
+.task-img image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.task-text {
+  width: 600rpx;
+  height: 155rpx;
+  border-bottom: 1rpx solid rgba(255, 255, 255, 0.05);
+  position: relative;
+}
+
+.task-type {
+  font-size: 28rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 41rpx;
+  margin-bottom: 9rpx;
+  width: 400rpx;
+  float: left;
+}
+
+.task-rule {
+  font-size: 24rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  width: 400rpx;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.success {
+  width: 133rpx;
+  height: 58rpx;
+  background: rgba(202, 73, 58, 1);
+  border-radius: 34rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 58rpx;
+  position: absolute;
+  top: 60rpx;
+  right: 20rpx;
+}
+.successBg{
+border:2rpx solid rgba(255,255,255,0.6);
+color:rgba(255,255,255,0.6);
+background: none;
+}
+
+
+/* 空白 */
+.blankPage{
+font-size:34rpx;
+color:rgba(255,255,255,0.9);
+text-align: center;
+margin-top: 20%;
+}
+.code-cont{ position: fixed; width: 100%; height: 100%; left: 0; top: 0; z-index: 10000;}
+.code-bj{background:rgba(0,0,0,0.65); position: absolute; width: 100%; height: 100%; left: 0; top: 0;}
+.code-img{width:430rpx;height:405rpx; margin: 300rpx auto 0;background:url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/erweima.png") no-repeat center center; background-size: cover; z-index: 10001; position: relative;}
+.code-text{font-size:26rpx; text-align: center; color: #fff; margin-top: 50rpx; position: relative;}
+.code-close{ position: fixed; top: 250rpx; left: 608rpx; width: 44rpx; height: 44rpx;background:url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/135.png") no-repeat center center; background-size: cover;}

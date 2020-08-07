@@ -1,0 +1,67 @@
+<!--pages/products_class/products_class.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view class="Search_input_top_box">
+    <view class="Search_ico_box">
+        <icon class="Search_ico weui-icon-search_in-box" type="search" size="14"></icon>
+    </view>
+    <view class="Search_Input" bindtap="focus">请输入搜索内容</view>
+    <!-- <input class="Search_Input" readonly="readonly"  placeholder='请输入搜索内容'></input> -->
+    <view class="news fr" bindtap='tonews'>
+       <view class="cartNum2" wx:if="{{news> 0 && news<=9}}">{{news}}</view> 
+       <view wx:if="{{news > 9}}" class="cartNum">{{news}}</view> 
+     </view>
+</view>
+<view class='class-cont'>
+  <view class='class-nav' style="height:{{height}}px;">
+    <view class="class-nav-lsit">
+      <view class="{{default ? 'active' : ''}}" bindtap="queryData">热门店铺</view>
+    </view>
+    
+    <view class="class-nav-lsit" wx:for="{{products_class.class_list}}" wx:key="index">
+      <view class="{{id == item.pc_id ? 'active' : ''}}" data-index="{{item.pc_id}}" bindtap="listClick">{{item.pc_name}}</view>
+    </view>
+  </view>
+  <scroll-view class='class-list' style="height:{{height}}px;" scroll-y="true">
+     <view wx:if="{{type=='1'}}">
+        <view class='class-list-title' wx:if="{{hot_list}}">直播店铺</view>
+        <view class="hot-list clearfix" wx:if="{{hot_list}}">
+            <view class='hot-list-inner' data-store_id="{{item.store_id}}" bindtap="gostore" wx:for="{{hot_list}}" wx:key="index">
+              <image src='{{item.store_avatar}}'></image>
+              <text>{{item.store_name}}</text>
+            </view> 
+        </view>
+        <view class='class-list-title all-title' wx:if="{{all_list}}">热门店铺</view>
+        <view class="hot-list" wx:if="{{all_list}}"  >            
+              <view class='hot-list-inner' data-store_id="{{item.store_id}}" bindtap="gostore"  wx:for="{{all_list}}" wx:key="index">
+                <image src='{{item.store_avatar}}'></image>
+                <text>{{item.store_name}}</text>
+              </view>  
+        </view>
+     </view>
+     <view wx:if="{{type=='2'}}">
+        <view class='class-list-title' wx:if="{{hot_list}}">热门分类</view>
+        <view class="hot-list clearfix" wx:if="{{hot_list}}">
+            <view class='hot-list-inner' bindtap="go" data-keyword="{{item.pc_name}}" data-link="{{item.pc_id}}" wx:for="{{hot_list}}" wx:key="index">
+              <image src='{{item.wap_productsclass_image_info.wap_advs1.image_path}}'></image>
+              <text>{{item.pc_name}}</text>
+            </view> 
+        </view>
+        <view class='class-list-title all-title' wx:if="{{all_list}}">全部分类</view>
+        <view class="hot-list" wx:if="{{all_list}}"  data-link="{{item.pc_id}}">
+              <view class='hot-list-inner' bindtap="go" data-keyword="{{item.pc_name}}"   wx:for="{{all_list}}" wx:key="index" data-link="{{item.pc_id}}" bindtap="go">
+                <image src='{{item.wap_productsclass_image_info.wap_advs1.image_path}}'></image>
+                <text>{{item.pc_name}}</text>
+              </view>  
+        </view>
+     </view>
+     
+  </scroll-view>
+</view>
+<!-- 尾部导航 -->
+<!-- <view class="footer-nav {{isIphoneX?'isIPX':''}}">
+    <view class='footer-nav-tab' bindtap='toindex'>首页</view>
+    <view class='footer-nav-tab active' bindtap="goproduct_class">分类</view>
+    <view class='footer-nav-tab'><view class="zq-icon"></view></view>
+    <view class='footer-nav-tab' bindtap="gocart">购物车</view>
+    <view class='footer-nav-tab' bindtap="tomy">我的</view>
+</view> -->

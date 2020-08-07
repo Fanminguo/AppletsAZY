@@ -1,0 +1,53 @@
+<!--pages/myAssets/transferYici/transferYici.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view>
+	<view class="box-wallet">
+		<view class="box-text clearfix">
+			<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/yici@2x.png"></image>
+			<view>转出到钱包</view>
+		</view>
+		<view class="box-address">{{yici_charge_address}}</view>
+		<view class="box-most">最大提现{{account_available_num}}个</view>
+	</view>
+	<view class="amount clearfix">
+		<view wx:for="{{numberList}}" wx:key="index" bindtap="selectCli" data-num="{{item.num}}" class="amount-frame {{item.select?'select':''}} {{index == 1?'middle':''}}{{index == 4?'middle':''}}{{index == 7?'middle':''}}" data-index="{{item.index}}">
+			<view class="amount-number {{item.select?'select1':''}}">{{item.num}}</view>
+			<view class="amount-text {{item.select?'select1':''}}">易瓷币</view>
+		</view>
+	</view>
+	<view class="btn-nextStep" bindtap="subdata">
+		下一步
+	</view>
+	<view class="box-tips">
+		<view class="tips">温馨提示：</view>
+		<view>1.仅可转出可用余额；</view>
+		<view>2.转出需收取{{yici_service_charge}}%的手续费；</view>
+		<view>3.预计1-2个工作日到达账户，以实际到账时间为准；</view>
+	</view>
+	<view class="turn-bj" wx:if="{{eject}}" bindtap="exhibition"></view>
+	<view class="true-box" wx:if="{{eject}}">
+		<view class="top-confirm">
+			<image  bindtap="exhibition" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/117.png"></image>
+			<view>确认转出</view>
+		</view>
+		<view class="money">
+			{{amount}} <text>个</text>
+		</view>
+		<view class="detailed">实到账{{amount}}个易瓷币，手续费{{yici_service_charge}}%</view>
+		<view class="middle-list clearfix">
+			<view class="text">转出数量</view>
+			<view class="text-type">{{amount}}个</view>
+		</view>
+		<view class="middle-list clearfix">
+			<view class="text">手续费</view>
+			<view class="text-type">{{brokerage}}个</view>
+		</view>
+		<view class="middle-list clearfix">
+			<view class="text">订单信息</view>
+			<view class="text-type">易瓷币转账</view>
+		</view>
+		<view bindtap="transferOutTwo" class="btn-bottom">
+			确定
+		</view>
+	</view>
+</view>

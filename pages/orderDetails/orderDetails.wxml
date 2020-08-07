@@ -1,0 +1,167 @@
+<!--pages/orderDetails/orderDetails.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view class="list_top_box">
+    <view class="boxName">
+        <view class="information clearfix">
+            <text class="receiving">收货人:</text>
+            <text class="name">{{newData.reciver_name}}</text>
+            <text class="number">{{newData.reciver_phone}}</text>
+        </view>
+        <view class="address">
+            {{newData.reciver_addr}}
+        </view>
+        <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/11111111111111111111111.png"></image>
+    </view>
+</view>
+<view class='total'>
+    <view>
+        <view class='cont_count'>
+            <view>
+                <view class='seria'>
+                    <label class='seriac_name' bindtap="goShopHome" data-id="{{newData.store_id}}">
+                        <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/3c7a18dabfe7a07b7479a23e2766f7a.png"></image>
+                        <text>{{newData.store_name}}</text>
+                    </label>
+                    <label class='seriac_start' wx:if="{{ newData.if_evaluation}}">待评论</label>
+                    <label class='seriac_start' wx:if="{{ newData.if_refunded}}">已退款</label>
+                    <label class='seriac_start' wx:if="{{ newData.if_returned}}">已退货</label>
+                    <label class='seriac_start' wx:if="{{ !newData.if_returned && !newData.if_evaluation && !newData.if_refunded}}">{{newData.state_desc}}</label>
+                </view>
+                <!-- 列表 -->
+                <view wx:for="{{listData}}" wx:key="index">
+                    <view class="order">
+                        订单编号：{{item.order_sn}}
+                    </view>
+                    <view class="list" bindtap="jumpDeta" data-id="{{item.products_id}}">
+                        <image class='list_img' src="{{item.image_url}}"></image>
+                        <label class='list_name'>{{item.products_name}}</label>
+                        <label class='goodsNum'>x{{item.products_num}}</label>
+                        <label class="list_ions" wx:if="{{item.products_spec != null}}">{{item.products_spec}}</label>
+                        <label class='list_money'>￥{{item.products_price}}</label>
+                    </view>
+                    <view class='coent_list' wx:if="{{newData.if_evaluation && newData.is_groupbuy != 1}}">
+                        <view>
+                            <!-- <label class='coent_del coent_two' bindtap="goComment" data-index="{{newData.order_id}}" data-num="{{newData.pay_sn}}" data-id="{{item.rec_id}}">去评论</label> -->
+                        </view>
+                    </view>
+                </view>
+
+                <!-- 提现发货 -->
+                <!-- <view class='coent_list' wx:if="{{newData.order_state == 20 && !newData.if_delivery_remind && !newData.if_lock}}">
+                    <view>
+                        <label wx:if="{{!if_lock}}" class='coent_del coent_two' data-id="{{newData.order_id}}">提醒发货</label>
+                    </view>
+                </view> -->
+                <!-- 已提醒 -->
+                <!-- <view class='coent_list' wx:if="{{newData.order_state == 20 && newData.if_delivery_remind}}">
+                    <view>
+                        <label wx:if="{{!if_lock}}" class='coent_del coent_two' data-id="{{newData.order_id}}">已提醒</label>
+                    </view>
+                </view> -->
+
+            </view>
+        </view>
+    </view>
+</view>
+<view class="priceInform">
+    <view class="price clearfix price1">
+        <text class="name">商品总价</text>
+        <text class="money">￥{{newData.products_amount}}</text>
+    </view>
+    <view class="price clearfix">
+        <text class="name">运费</text>
+        <text class="money">+￥{{newData.shipping_fee}}</text>
+    </view>
+    <view class="price clearfix" wx:if="{{newData.agent_amount > 0.00}}">
+        <text class="name">代言费</text>
+        <text class="money">-￥{{newData.agent_amount}}</text>
+    </view>
+    <view class="price clearfix" wx:if="{{newData.rcb_amount > 0.00}}">
+        <text class="name">代金券</text>
+        <text class="money">-￥{{newData.rcb_amount}}</text>
+    </view>
+    <view class="price clearfix" >
+        <text class="fff75 ">订单总价</text>
+        <text class="fr fff75">￥{{newData.order_amount}}</text>
+    </view>
+    <view class="h20" style="margin-bottom:5rpx">
+        <image mode="aspectFill" src="https://bj.aizhiyi.com/wap/images/me_icon/666.png"></image>
+    </view>
+    <view class="price clearfix" wx:if="{{newData.recharge_amount > 0.00}}">
+        <text class="name">礼品卡</text>
+        <text class="money">-￥{{newData.recharge_amount}}</text>
+    </view>
+    <view class="price clearfix" wx:if="{{newData.yici_num > 0.00}}">
+        <text class="name">易瓷币</text>
+        <text class="money">-￥{{newData.yici_num}}</text>
+    </view>
+    <view class="price clearfix">
+        <text class="realName">实付款 <text class="realName" wx:if="{{newData.payment_name !=''}}"> ({{newData.payment_name}})</text> </text>
+        <text class="realMoney">￥{{newData.real_pay_amount}}</text>
+    </view>
+</view>
+<view class="yiciClass" wx:if="{{newData.yici_send_num >0}}">
+    <view class="clearfix">
+        <image class="logoYici fl" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/yici.png"></image>
+        <view class="textNum fl">
+            返易瓷币 <text>{{yici_send_num}}</text> 个
+        </view>
+        <!-- <image class="jiantou fr" src="https://bj.aizhiyi.com/wap/images/me_icon/name.png"></image> -->
+    </view>
+</view>
+<view class="orderInform">
+    <!-- <view class="topInform">
+        <text>|</text> 订单信息
+    </view> -->
+    <view class="itemOrder">创建时间：
+        <text>{{newData.add_time}}</text>
+    </view>
+    <view class="itemOrder" wx:if="{{newData.payment_time !=''}}">付款时间：
+        <text>{{newData.payment_time}}</text>
+    </view>
+    <view class="itemOrder" wx:if="{{newData.shipping_time !=''}}">发货时间：
+        <text>{{newData.shipping_time}}</text>
+    </view>
+    <view class="itemOrder" wx:if="{{newData.finnshed_time !=''}}">成交时间：
+        <text>{{newData.finnshed_time}}</text>
+    </view>
+</view>
+<view style="height:150rpx"></view>
+<!-- <view class="likeList clearfix">
+    <view class="topHerder">猜你喜欢</view>
+    <view class="orderList" wx:for="{{guessList}}" wx:key="index">
+        <view bindtap="jumpDeta" data-id="{{item.products_id}}">
+            <image src="{{item.products_image}}"></image>
+            <view class="orderName">{{item.products_name}}</view>
+            <view class="orderDrief">{{item.products_jingle}}</view>
+        </view>
+        <view class="btnOrder">
+            <view class="btnMoney">￥{{item.products_promotion_price}}</view>
+            <view class="btnCust" bindtap="addCart" data-id="{{item.products_id}}">
+                <image src="https://bj.aizhiyi.com/wap/images/me_icon/34.png"></image>
+            </view>
+        </view>
+    </view>
+</view> -->
+<view class='btn_list'>
+    <!-- <label class='coent_del color' wx:if="{{newData.order_state != '20' && newData.order_state != '30' && newData.order_state !='10'}}" data-num="{{newData.refund_id}}" data-id="{{newData.order_id}}">再次购买</label> -->
+    <label class="coent_del color" wx:if="{{newData.if_receive}}" bindtap="confirMation" data-pay_sn="{{newData.pay_sn}}" data-store_id="{{newData.store_id}}" data-id="{{newData.order_id}}">确认收货</label>
+    <view wx:if="{{(newData.real_pay_amount!= 0.00 || newData.recharge_amount >0 ||newData.yici_num >0) && newData.group_status !=1 && newData.group_status !=3}}">
+        <label bindtap="allRefund" class="coentText coent_del" wx:if="{{newData.if_refund_cancel && !newData.if_refunded}}" data-id="{{newData.order_id}}">申请退款</label>
+        <label bindtap="allRefund" class="coentText coent_del" wx:if="{{newData.if_receive && !newData.if_refunded && newData.order_state == 20}}" data-id="{{newData.order_id}}">申请退款</label>
+        <label bindtap="allRefund" class="coentText coent_del" wx:if="{{newData.if_had_received && !newData.if_refunded && newData.order_state == 20}}" data-id="{{newData.order_id}}">申请退款</label>
+        <label bindtap="allReturn" data-id="{{newData.order_id}}" data-num="" class="coentText coent_del" wx:if="{{newData.order_state > 20 && !newData.if_lock && newData.in_return_period && !newData.if_returned && !newData.if_refunded}}">申请退货</label>
+    </view>
+
+    <label class='coent_del' wx:if="{{newData.order_state == 20 && !newData.if_delivery_remind && !newData.if_lock}}" data-id="{{newData.order_id}}" bindtap="deliver">提醒发货</label>
+    <label class='coent_del remind' wx:if="{{newData.order_state == 20 && newData.if_delivery_remind && !newData.if_lock}}">已提醒</label>
+
+    <label class='coent_del' bindtap="goLogistics" wx:if="{{newData.if_deliver && !newData.if_lock}}" data-id="{{newData.order_id}}">查看物流</label>
+
+    <label class='coent_del' wx:if="{{newData.if_evaluation_again && newData.is_groupbuy !=1}}" bindtap="goCommentTow" data-index="{{newData.order_id}}" data-num="{{newData.pay_sn}}">追加评论</label>
+    <label class='coent_del' wx:if="{{newData.is_cancel_refund== '1'}}" bindtap="cancelRefundOne" data-num="{{newData.refund_id}}" data-id="{{newData.order_id}}">取消退款</label>
+    <label class='coent_del' bindtap="cancelRefundTwo" wx:if="{{newData.if_new_return_cancel && newData.order_state == '40'}}" data-num="{{newData.refund_id}}" data-id="{{newData.order_id}}">取消退货</label>
+    <label class='coent_del' wx:if="{{newData.if_new_refund_cancel && newData.order_state == '40'}}" bindtap="cancelRefundTwo" data-num="{{newData.refund_id}}" data-id="{{newData.order_id}}">取消退款</label>
+    <label class='coent_del' wx:if="" bindtap="cancellation" data-num="{{newData.refund_id}}" data-id="{{newData.order_id}}">取消退款</label>
+
+</view>

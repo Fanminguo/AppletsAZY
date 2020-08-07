@@ -1,0 +1,32 @@
+<!--pages/limit/limit.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view class="banenr"><image src="{{banner_image.banner_image}}"></image></view>
+<view class="cont" style="overflow:hidden;white-space:nowrap;">
+   <!-- <view class="date-list clearfix">
+      <view class="date-list-info {{id == item.date ? 'active' : ''}}" bindtap="tab" wx:for="{{list.products_list.about_to_begin}}" wx:for-index="i" data-index="{{i}}" data-id="{{item.date}}" data-type="about_to_begin">
+        <text class="date">{{item.date}}</text>
+        <text>即将开始</text>
+      </view>
+      <view class="date-list-info {{id == item.date ? 'active' : ''}}" bindtap="tab"  wx:for="{{list.products_list.beginning}}" wx:for-index="i" data-index="{{i}}" data-type="beginning" data-id="{{item.date}}">
+        <text class="date">{{item.date}}</text>
+        <text>进行中</text>
+      </view>
+   </view> -->
+   <view class="products-list">
+      <view class="products-info" wx:for="{{products_lsit}}" wx:for-index="i" wx:key="index">
+        <image src="{{item.image_url_240}}" data-index="{{i}}" data-productid="{{item.products_id}}" data-products_commonid="{{item.products_commonid}}" bindtap="todetail" ></image>
+        <view class="products-name">{{item.products_name}}</view>
+        <view class="products-icon">
+          <!-- <text>新品</text>
+          <text>包邮</text> -->
+        </view>
+        <view class="products-price">￥{{item.xianshi_price}}</view>
+        <view class="products-ri">
+          <text>{{item.products_fic_salenum}}人已抢</text>
+          <view class="products-btn" bindtap="todetail" data-index="{{i}}" data-products_commonid="{{item.products_commonid}}" data-productid="{{item.products_id}}" bindtap="todetail">立即抢购</view>
+          <!-- <view class="products-btn" bindtap="todetail" data-productid="{{item.products_id}}" wx:if="{{item.products_storage == 0}}" style="background:#ccc">告罄 {{item.products_storage}}</view> -->
+          <!-- <view class="products-btn" bindtap="todetail"  data-productid="{{item.products_id}}" wx:if="{{type != 'beginning' && item.products_storage !=0}}">即将开抢</view> -->
+        </view>
+      </view>
+   </view>
+</view>

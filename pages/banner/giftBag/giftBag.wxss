@@ -1,0 +1,27 @@
+/* pages/banner/giftBag/giftBag.wxss */
+page{
+	background-color: #86cea0;
+}
+.gongzhong {
+  /* position: absolute; */
+  height: 100%;
+}
+
+.gongzhong image {
+  width: 100vw;
+  display: block;
+}
+
+.bjPosi {
+  position:  relative;
+
+}
+
+.bjBtn {
+	width: 600rpx;
+	height: 100rpx;
+	position: absolute;
+	top: 124rpx;
+	left: 102rpx;
+	
+}

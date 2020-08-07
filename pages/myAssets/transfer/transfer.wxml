@@ -1,0 +1,22 @@
+<!--pages/myAssets/transfer/transfer.wxml-->
+<view>
+	<view class="box">
+		<view class="box-title">扫描下方二维码或者钱包地址</view>
+		<view class="box-code">
+			<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/shoukuandizhi_erweima1233.png"></image>
+			<!-- <canvas class="canvas-code" canvas-id="myQrcode" /> -->
+		</view>
+		<view class="box-address">{{yici_address}}
+			<!-- <image bindtap='copyText' data-text="{{yici_address}}" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/fuzhi_icon@2x.png"></image> -->
+		</view>
+		<view class="box-btn" bindtap='copyText' data-text="{{yici_address}}">
+			复制钱包地址
+		</view>
+		<!-- <view class="box-tips">
+			<view class="tips">温馨提示：</view>
+			<view>1.仅可转出可用余额；</view>
+			<view>2.转出需收取3%的手续费；</view>
+			<view>3.预计1-2个工作日到达账户，以实际到账时间为准；</view>
+		</view> -->
+	</view>
+</view>

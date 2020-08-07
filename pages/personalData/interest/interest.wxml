@@ -1,0 +1,20 @@
+<!--pages/personalData/interest/interest.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view>
+	<view class="text">选择兴趣可获得更准确的内容推荐</view>
+	<view class="boxView">
+		<view class="singleView" wx:for="{{pc_label}}" wx:key="index" data-index="{{index}}">
+			<view class="topText">{{item.pc_label_name}}</view>
+			<view class="list clearfix">
+				<view bindtap="selection" data-index="{{item.index}}" data-select="{{twoItem.isSelect}}" wx:for="{{item.pc_label_2}}" wx:for-item="twoItem" wx:key="key" data-id="{{twoItem.pc_label_id}}" class=" {{!twoItem.isSelect?'second':'second active'}}">{{twoItem.pc_label_name}}</view>
+			</view>
+		</view>
+	</view>
+</view>
+
+<!-- 底部保存 -->
+<view class="button clearfix">
+	<view class="bottom1 fl" bindtap="cancel">跳过</view>
+	<view class="bottom fl" bindtap="okFome">完成</view>
+
+</view>

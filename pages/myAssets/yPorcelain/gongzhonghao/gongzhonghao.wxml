@@ -1,0 +1,4 @@
+<!--pages/myAssets/yPorcelain/gongzhonghao/gongzhonghao.wxml-->
+<view class="gongzhong">
+<image mode="widthFix" show-menu-by-longpress  src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/0-2..png"></image>
+</view>

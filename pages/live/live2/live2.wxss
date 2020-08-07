@@ -1,0 +1,221 @@
+/* pages/live/live/live.wxss */
+page{ background: url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/134.png") #161824 no-repeat center; width: 100%; height: 100%; background-size: cover; overflow:hidden}
+.head-store{height:73rpx;background:rgba(55,53,53,0.35);border-radius:37rpx;border:1rpx solid rgba(196,194,194,0.3);position: absolute; left: 36rpx; top: 153rpx; padding-left: 78rpx;}
+.head-store image{ position: absolute;width:64rpx;height:64rpx;border:1rpx solid rgba(151,151,151,1); left: 4rpx; top: 4rpx; border-radius: 50%;}
+.head-store-text{color:rgba(255,255,255,0.9); font-size: 24rpx; line-height: 33rpx; float: left; margin-top: 6rpx; margin-right: 30rpx;}
+.head-store-follow{width:103rpx;height:57rpx;background:rgba(202,73,58,1);border-radius:29rpx; float: right;color:rgba(255,255,255,1);
+line-height: 57rpx; text-align: center; float:right; margin:10rpx 8rpx 0 0}
+.chat{ position: absolute; left: 127rpx; bottom: 33rpx;}
+.chat input{width:300rpx;height:54rpx;background:rgba(55,53,53,0.35);border-radius:27rpx;border:1px solid rgba(83,84,84,0.1); padding-left: 20rpx; color: #fff;}
+.phcolor{color:rgba(255,255,255,0.6);}
+.share {width: 75rpx;height: 63rpx;background:url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/50.png") no-repeat center center;
+  background-size: cover;margin-bottom: 5rpx; position: absolute;right:130rpx; bottom: 26rpx;}
+.flowers{ width: 66rpx; height: 66rpx;background:url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/120.png") no-repeat center center; background-size: cover; position:absolute; bottom: 33rpx; right: 31rpx;}
+.exit{ width: 50rpx; height: 50rpx;background:url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/121.png") no-repeat center center; position: absolute; right: 25rpx; top: 165rpx; background-size: cover; z-index: 110;}
+.flowers-num{height:38rpx;background:rgba(202,73,58,1);border-radius:19rpx; position: absolute; left: -6rpx; top: -35rpx; color: #ffffff;
+line-height: 38rpx; text-align: center; width:80rpx;font-size: 24rpx;}
+.report{width: 80rpx; height: 80rpx; position: absolute; right: 201rpx; top:110rpx; top: -72rpx; background: #222222; border-radius: 50%;
+font-size: 24rpx;color:rgba(255,255,255,0.9); text-align: center; line-height: 80rpx; z-index: 200;}
+.chat-cont{ height: 450rpx; width: 500rpx; position: fixed; left: 25rpx; bottom: 130rpx; overflow: scroll;}
+.chat-cont-text{background:rgba(55,53,53,0.35);border-radius:8rpx; font-size: 26rpx;padding: 10rpx; margin: 10rpx; margin-bottom: 10rpx;display: inline-block;}
+.chat-cont-text .name{color:#A8E6FF}
+.chat-cont-text .name.zhu{ color: #F9BF70;}
+.chat-cont-text text{ color:#ffffff; margin-right: 10rpx;word-break: break-all;}
+.chattype{position: absolute; left:33rpx; bottom:600rpx;}
+.buy-icon{ width: 40rpx; height: 40rpx;background:url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/124.png") no-repeat center center; background-size: cover; display: inline-block; position: relative; top: 5rpx; margin-right: 5rpx;}
+.buyText text{ position: relative; top: -5rpx;}
+.buyText{width:auto;height:50rpx;background:rgba(202,73,58,0.8);border-radius:8rpx;font-size:26rpx; color: #fff; text-align: center; line-height: 50rpx; padding: 0 20rpx;}
+.comeText{ background:rgba(155,225,254,0.8); color: #fff; border-radius: 8rpx; padding: 0 20rpx; font-size: 26rpx; height: 50rpx; line-height: 50rpx;}
+.list-dialog{position: fixed;z-index: 999;top: 0;left: 0;right: 0;display: block;}
+.live-list{ background:#161824; height: 915rpx; position: absolute; left: 0; bottom: 0; width: 710rpx; left: 20rpx; padding-bottom:4rpx; border-radius: 26rpx 26rpx 0 0;}
+.buy-icon2{width: 40rpx; height: 40rpx;background:url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/123.png") no-repeat center center; background-size: cover; display: inline-block; position: relative; top: 5rpx; margin-right: 5rpx;}
+.followStore-dialog{ width: 290rpx; height: 76rpx;background:url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/125.png") no-repeat center center; background-size: cover; position: absolute; right: -175rpx; top: 53rpx;-webkit-animation: bounce-up 1.4s linear infinite;
+    animation: bounce-up 3s linear infinite; }
+.storeTc{position: fixed;z-index: 999;top: 0;left: 0;right: 0;display: block}
+.toreTc-bj {position: absolute;left: 0;top: 0;width: 100%;height: 100%;background-color: rgba(0,0,0,0.2);}
+.storeTc-cont{ width: 100%; height: 480rpx;background:rgba(22,24,36,1); position: absolute; left: 0; bottom: 0;border-radius:26rpx 26rpx 0px 0px;color:rgba(255,255,255,0.9);}
+.storeTc-cont-img image{ width: 153rpx; height: 153rpx; border-radius: 50%; margin: 0 auto; display: block; margin-top:-80rpx}
+.storeTc-cont-name{ font-size: 32rpx; text-align: center; margin: 34rpx 0 24rpx 0;}
+.storeTc-cont-des{ font-size: 24rpx; text-align: center; height: 70rpx; margin: 0 20rpx 20rpx;text-overflow: ellipsis;display: -webkit-box;
+    -webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden; }
+.storeTc-info-in{ width: 33.3%; float: left; text-align: center;}
+.storeTc-info-in text{ font-size: 36rpx; margin-bottom: 27rpx; display: block;}
+.storeTc-info-in view{ font-size: 24rpx;}
+.storeTc-bottom{ position: absolute; left: 0; bottom: 0; height: 78rpx; width: 100%; line-height: 78rpx;}
+.storeTc-bottom view{ width: 50%; text-align: center; float: left; font-size: 32rpx;}
+.storeTc-bottom-index{background:rgba(3,3,5,1);box-shadow:0px 1px 6px 0px rgba(0,0,0,0.2); color: #ffffff;}
+.storeTc-bottom-follow{background:rgba(202,73,58,1);box-shadow:0px 1px 6px 0px rgba(0,0,0,0.2); color: #ffffff;}
+.storeTc.up {display: block;bottom: 0;animation: optionBlockUp 0.5s ease-in-out;-webkit-animation: optionBlockUp 0.5s ease-in-out;}
+.storeTc.down {animation: optionBlockDown 0.5s ease-in-out;-webkit-animation: optionBlockDown 0.5s ease-in-out;}
+.liveEnd{background:rgba(0,0,0,0.7); position: fixed; width: 100%; height: 100%; z-index: 1000; left: 0; top: 0; color:rgba(255,255,255,0.9);}
+.liveEnd-img{width:180rpx;height:180rpx;border:1rpx solid rgba(202,73,58,1); display: block; margin:280rpx auto 0; border-radius: 50%;}
+.liveEnd-name{font-size:36rpx; text-align: center; margin-top: 30rpx; margin-bottom: 100rpx;}
+.liveEnd-text{color:rgba(255,255,255,0.8); font-size: 48rpx; text-align: center;}
+.liveEnd-line{width:336rpx; background: #B3B2B2;height:2rpx; margin:38rpx auto}
+.liveEnd-cont{ width: 336rpx; margin:0 auto; position: relative; margin-bottom: 100rpx;}
+.liveEnd-cont-info{ width: 50%;text-align: center; float: left;}
+.liveEnd-cont-info text{ display: block;color:rgba(255,255,255,0.9);}
+.liveEnd-cont-info text.one{ font-size: 42rpx; margin: 30rpx;}
+.liveEnd-cont-info text.two{ font-size: 28rpx;}
+.liveEnd-cont-line{width:2rpx; background: #B3B2B2; height:106rpx; position: absolute; left: 50%; top:50rpx}
+.back{width:342rpx;height:68rpx;background:#737373e6;border-radius:18rpx;border:1rpx solid rgba(227,225,225,0.6); text-align: center; line-height: 68rpx; font-size: 30rpx; margin: 0 auto 20rpx;}
+.back.foll{background:rgba(202,73,58,1);}
+.chat-goods{ width: 252rpx; height: 164rpx; background: #ffffff; position: relative; border-radius: 8rpx; overflow: hidden; padding-left: 180rpx; margin-left: 12rpx; margin-bottom:10rpx}
+.chat-goods image{ width: 164rpx; height: 164rpx; left: 0; top: 0; position: absolute;}
+.chat-goods-name{color: #3E3535; font-size: 26rpx; width: 200rpx;text-align: left;text-overflow: ellipsis;display: -webkit-box;
+    -webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden; height: 73rpx; margin: 18rpx 0 10rpx 0;}
+.chat-goods-money{color: #CA493A}
+.chat-goods-money text{ font-size: 24rpx; font-size: 28rpx;}
+.bottom-report{ width: 66rpx; height: 66rpx; position: absolute;background:url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/127.png") no-repeat center center; background-size: cover; right: 213rpx; top: 20rpx;}
+.bottom-report.active{background:url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/121.png") no-repeat center center; background-size: 80%;}
+.chat-goods-close{ position: absolute; right: 0;top: 0;width: 40rpx;height: 40rpx;text-align: center;line-height: 40rpx;font-size: 18rpx;}
+.shoplist-num{position: absolute;width:33rpx;height:33rpx; right: 0; bottom: 8rpx;font-size:18rpx; line-height: 33rpx; color: #fff;}
+.report-bj{background:rgba(0,0,0,0.4); position: fixed; width: 100%; height: 100%; z-index: 50; left: 0; top: 0;}
+.inCont{background:#000; width: 100%; height: 98rpx; position: fixed; left: 0; bottom: 0; z-index: 2000; line-height: 98rpx; color: #fff;}
+.inCont-send{ width: 88rpx; height: 88rpx; background:url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/130.png") no-repeat 0 0;
+background-size: cover; float: right; background-size: 44rpx 44rpx;}
+.inCont-input{ height: 98rpx; width: 500rpx; margin-left: 80rpx;}
+.inCont-send{ position: absolute; right: 0; top: 0; top: 50%; margin-top: -22rpx; right: 32rpx;}
+.chat-jia{width:300rpx;height:54rpx;background:rgba(55,53,53,0.35);border-radius:27rpx;border:1rpx solid rgba(83,84,84,0.1);color:rgba(255,255,255,0.6); padding-left: 30rpx; line-height: 54rpx; font-size: 28rpx;}
+.inCont .icon{ width: 38rpx; height: 38rpx;background:url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/b_bianji@2x.png") no-repeat center center;
+    background-size: cover; position: absolute; left: 21rpx; top: 31rpx;}
+.null-goods{ text-align: center;}
+.null-goods .one{font-size:34rpx;color:rgba(255,255,255,0.9); padding: 200rpx 0 50rpx 0;}
+.null-goods .two{font-size:28rpx;color:rgba(255,255,255,0.6);}
+.storeTc-bottom-follow.active{background: rgba(57, 59, 68, 1);}
+.load_app{ width: 163rpx; height: 82rpx;background:url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/132.png") no-repeat center center;
+    background-size: cover; position: absolute; right: 24rpx; top:400rpx;}
+
+/* 代金券 */
+.live-voucher-icon{background:url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/140.png") no-repeat center center; background-size: cover; width: 47rpx; height: 47rpx; margin:32rpx 24rpx 0 15rpx}
+.live-voucher{color:rgba(255,255,255,0.8);font-size:28rpx;}
+.live-voucher-btn{height:48rpx;background:rgba(202,73,58,1);border-radius:8rpx; line-height: 48rpx; padding: 0 10rpx; margin:32rpx 0 0 0}
+.live-list-top .active{ position: absolute; top: -100rpx; width: 98%;}
+
+
+
+
+
+
+
+
+
+
+.list-dialog-bj{position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.2);}
+.live-list-top{ height: 110rpx;font-size: 28rpx; padding: 0 24rpx;border:1px solid rgba(255,255,255,0.05);color:rgba(255,255,255,0.8); line-height: 110rpx;border-radius:26rpx 26rpx 0px 0px; }
+.live-list-cont{ height: 805rpx; overflow-y: scroll;}
+.close-list{ width: 44rpx; height: 44rpx; background: url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/117.png") no-repeat center; background-size: cover; position: absolute; right: 24rpx; top: 40rpx;}
+.live-list-img{ width: 150rpx; height: 150rpx; position: absolute; left: 24rpx; top: 28rpx; border-radius: 8rpx; overflow: hidden;}
+.live-list-img image{width: 150rpx; height: 150rpx;}
+.live-list-in{ position: relative; padding:28rpx 21rpx 0 196rpx; height: 208rpx;}
+.live-list-title{ color: #ffffff; line-height: 40rpx;text-align: left;text-overflow: ellipsis; height: 80rpx; font-size: 28rpx;
+  display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical; overflow: hidden;}
+.live-list-money{ color: #D33D34; font-size: 28rpx; margin-top: 30rpx;}
+/* .choose{ width: 50rpx; height: 50rpx; background: url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/116.png?465") no-repeat center; background-size: cover; position: absolute; right: 30rpx; top: 135rpx;} */
+.choose{width:120rpx;height:48rpx;background:rgba(202,73,58,1);border-radius:8rpx; text-align: center; line-height: 48rpx; font-size: 24rpx;
+    color: #ffffff; position: absolute; right: 30rpx; top: 135rpx;}
+.hot-goods{background: url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/118.png?465") no-repeat center; background-size: cover; position: absolute; width: 39rpx; height: 39rpx; left: 34rpx; top: 45rpx; z-index: 20;}
+.goods-num{width:51rpx;height:32rpx;background:rgba(202,73,58,1);border-radius:8rpx 0px 8rpx 0px; position: absolute; left:24rpx; top: 28rpx; z-index: 20; text-align: center; color: #fff; line-height: 32rpx; font-size: 26rpx;}
+.live-bottom{ position: fixed; left: 0; bottom: 0; z-index: 2; width: 100%;height: 114rpx;}
+.shop-list{ width: 90rpx; height: 90rpx; background: url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/119.png") no-repeat center; background-size: cover; position: absolute; left:24rpx; bottom:24rpx; }
+.list-dialog.up {display: block;bottom: 0;animation: optionBlockUp 0.5s ease-in-out;-webkit-animation: optionBlockUp 0.5s ease-in-out;}
+.list-dialog.down {animation: optionBlockDown 0.5s ease-in-out;-webkit-animation: optionBlockDown 0.5s ease-in-out;}
+/* 选规格 */
+.choosclass {position: fixed;z-index: 22;bottom:-916rpx;left: 0;right: 0;background: #161824;height: 916rpx; z-index: 20000; border-radius: 26rpx 26rpx 0 0;}
+.choosclass.up{display: block;bottom: 0;animation: optionBlockUp 0.5s ease-in-out;-webkit-animation: optionBlockUp 0.5s ease-in-out;}
+.choosclass.down{animation: optionBlockDown 0.5s ease-in-out;-webkit-animation: optionBlockDown 0.5s ease-in-out;}
+.addTop {margin: 30rpx 30rpx 60rpx 30rpx;}
+.imgLeft {width: 160rpx;height: 160rpx;margin-right: 40rpx;}
+.imgLeft image {width: 160rpx;height: 160rpx;}
+.textR .textX {color: rgba(195, 45, 44, 1); margin-top: 30rpx;}
+.textR .money {height: 73rpx;font-size: 52rpx;line-height: 73rpx;margin: 19rpx 0 26rpx 0;}
+.addTop .choiCe {margin-top: 15rpx;font-size: 30rpx;color: #a39a9a;}
+.addTop .cateHer {padding: 15rpx 0 15rpx 0;font-size: 40rpx;color: #000;margin-top: 40rpx;}
+.addTop .category view {background: rgba(56, 56, 56, 0.133);padding: 15rpx 35rpx 15rpx 35rpx;float: left;
+    border-radius: 10rpx;margin-left: 10rpx;font-size: 32rpx;}
+.addTop .category .current {border: 1px solid #d33d3c;color: #d33d3c;background:#f0f0f0 !important;}
+.buy.clcikClass{ background: #000}
+.detail-foot.isIPX{ padding-bottom: 30rpx;}
+.product-text{ padding-left:230rpx; margin-bottom: 50rpx; height: 205rpx;}
+.selectsize_content{ height: 475rpx; overflow-y: scroll; -webkit-overflow-scrolling: touch}
+.products-pic{ width: 200rpx; height: 200rpx; position: absolute; left: 30rpx; top: 33rpx; border:solid 3rpx #fff; border-radius: 20rpx;}
+.selectsize-title{ color:rgba(255,255,255,0.9); font-size: 28rpx; font-weight: bold; margin-bottom: 30rpx;}
+.selectsize-tab{ padding: 0 30rpx;border-radius:34rpx;font-size:26rpx; font-weight: 400; float:left; text-align: center; line-height: 68rpx; margin: 0 0 25rpx 25rpx;border:1px solid rgba(71,70,70,1);color:rgba(255,255,255,0.9);box-shadow:0px 0px 1px 0px rgba(0,0,0,0.08);}
+.buy{ position: absolute;width:702rpx; line-height: 80rpx; text-align: center; color: #fff;font-size:32rpx; bottom: 15rpx;
+height:80rpx; left: 25rpx;background:rgba(202,73,58,1);border-radius:40rpx; width: 50%;border-radius: 26rpx 0 0 26rpx; }
+.buy.fr{ background-color: #F07E45;  border-radius: 0 26rpx 26rpx 0;}
+.selectsize-tab.active{background:rgba(202,73,58,1); color: #fff;background:rgba(255,255,255,0.8);color:rgba(62,53,53,1);}
+.num-cont{border: solid 1rpx #979797;width:251rpx;height:54rpx;border-radius:27rpx; line-height: 54rpx;color:rgba(255,255,255,0.9)}
+.num-cont .add,.num-cont .reduce,.num-cont .num{ display: inline-block;float:left}
+.num-cont .num{ width: 107rpx; height: 50rpx; border-left: solid 1rpx #979797;border-right: solid 1rpx #979797; text-align: center}
+.num-cont .add{ width: 70rpx; text-align: center}
+.num-cont .reduce{ width: 70rpx; text-align: center}
+@keyframes optionBlockUp
+{
+    from { display: none; bottom:-100%;}
+    to { display: block; bottom:0;}
+}
+@-webkit-keyframes optionBlockUp
+{
+    from { display: none; bottom:-100%;}
+    to { display: block; bottom:0;}
+}
+@keyframes optionBlockDown
+{
+    from { display: block; bottom:0;}
+    to { display: none; bottom:-100%;}
+}
+@-webkit-keyframes optionBlockDown
+{
+    from { display: block; bottom:0; opacity: 1;}
+    to { display: none; bottom:-100%; opacity: 0;}
+}
+@-webkit-keyframes bounce-up {
+    25% {
+      -webkit-transform: translateY(5px);
+    }
+    50%, 100% {
+        -webkit-transform: translateY(0);
+    }
+    75% {
+        -webkit-transform: translateY(-5px);
+    }
+}
+
+button{ position: relative; color: #FFF; border: #ff0333 1px; line-height: 40px;margin-left: 15px}
+textarea  {white-space:pre-wrap;height: 100%; width: 86% ;font-size: 12px; border: 1px solid #0ad125;  background-color: #211; color: #00ff00;padding: 3px;margin: 15px;margin-top: 20px;word-break: break-all;}
+
+.codeBox{
+    width: 350rpx;
+    height: 350rpx;
+    margin: 0 auto;
+    position: absolute;
+    top: 30%;
+    left: 25%;
+}
+.codeBox .code{
+    width: 100%;
+    height: 100%;
+}
+.codeX{ width: 50rpx;
+     height: 50rpx;
+     background:url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/121.png") no-repeat center center; 
+     position: absolute;
+      right: -47rpx; 
+      top: -49rpx; 
+      background-size: cover;
+    }
+.code-cont{ position: fixed; width: 100%; height: 100%; left: 0; top: 0; z-index: 10000;}
+.code-bj{background:rgba(0,0,0,0.65); position: absolute; width: 100%; height: 100%; left: 0; top: 0;}
+.code-img{width:430rpx;height:405rpx; margin: 300rpx auto 0;background:url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/erweima.png") no-repeat center center; background-size: cover; z-index: 10001; position: relative;}
+.code-text{font-size:26rpx; text-align: center; color: #fff; margin-top: 50rpx; position: relative;}
+.code-close{ position: fixed; top: 250rpx; left: 608rpx; width: 44rpx; height: 44rpx;background:url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/135.png") no-repeat center center; background-size: cover;}
+.back2{ width: 58rpx; height: 58rpx;background: url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/53.png") no-repeat center center; background-size: cover; position: fixed; left: 33rpx; z-index: 900; top: 83rpx;}
+.web-view{ position: fixed; left: 0; top: 0;}
+.gocart{ width: 50rpx; height: 50rpx; background-color: #fff; top: 165rpx; right: 100rpx; position: absolute;background: url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/zc7.png") no-repeat center center; background-size: cover; }
+.live-error{ width: 100%; height: 100%; position: fixed; left:0; top:0; z-index: 500;background: rgba(0,0,0,0.9);}
+.live-error-contTitle{font-size:28rpx; color: #fff; text-align: center;}
+.live-error-cont{ padding-top: 500rpx; text-align: center; margin-bottom: 50rpx;}
+.live-error-btn{ display: inline-block; width:152rpx;height:62rpx;border-radius:31rpx;border:2rpx solid rgba(151,151,151,1);
+font-size: 26rpx; line-height: 62rpx; margin:50rpx 20rpx; color: #ffffff;}
+live-player.active{z-index: 100;}

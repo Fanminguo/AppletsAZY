@@ -1,0 +1,233 @@
+<!--pages/live/live/live.wxml-->
+<!-- 商品栏 -->
+<!-- <button bindtap="contBtn" style="position:absoulte; top:300rpx">创建连接</button> -->
+<!-- <button bindtap="sendNews" style="position:absoulte; top:320rpx">发送内容</button> -->
+<!-- <button bindtap="byeBtn">关闭连接</button> -->
+<wxs module="filters" src="../../../utils/filters.wxs"></wxs>
+ <!-- wx:if="{{isSHow && isOnline}}"  -->
+<live-player wx:if="{{isSHow && isOnline}}" data-time="{{lastTapTime}}" catchtap="doubleClick" autoplay src="{{liveSrc}}" autopush  class="{{double?'active' : ''}}" object-fit="fillCrop" mode="live" autoplay bindstatechange="statechange" binderror="error" style="width:100%;height:100%; padding:0; margin:0" />
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<!-- <view class="back2" wx:if="{{!is_share}}"  bindtap="byeReturn"></view> -->
+<view class="head-store" style="top:{{topHeight}}px">
+  <image bindtap="storeInfo" src="{{storeInfo.store_avatar}}"></image>
+  <view class="head-store-text" bindtap="storeInfo">
+    <view>{{storeInfo.store_name}}</view>
+    <view>{{Audience}} 观看 | {{notice_address}}</view>
+  </view>
+  <view class="head-store-follow" bindtap="followStore" wx:if="{{!is_followStore}}">关注</view>
+  <view class="followStore-dialog" bindtap="followStore" wx:if="{{!is_followStore && is_followDialog}}"></view>
+</view>
+<view class="exit" style="top:{{topHeight+48}}px" bindtap="byeReturn"></view>
+<view class="gocart"style="top:{{topHeight+48}}px" bindtap="gocart"></view>
+<view class="load_app" bindtap="loadApp"></view>
+<view class="list-dialog {{an}}">
+   <view class="list-dialog-bj" catchtap="closebj"></view>
+   <view class="live-list">
+    <view class="live-list-top">
+      <view class="{{list_voucher ? 'active' : ''}}">全部商品：{{goodsList.products_basket_count}}<view class="close-list" bindtap="closebj"></view></view>
+      <view class="live-voucher" wx:if="{{list_voucher}}">
+         <view class="live-voucher-icon fl"></view>
+         <label>代金券满{{voucher_t_limit}}减{{voucher_t_price}}元</label>
+         <view class="live-voucher-btn fr" bindtap="getVoucher" wx:if="{{list_voucher.is_voucher !=1}}">{{voucherText}}</view>
+         <view class="live-voucher-btn fr" wx:if="{{list_voucher.is_voucher ==1}}">已抢完</view>
+      </view>
+    </view>
+    <view class="live-list-cont">
+       <view wx:if="{{goodsList.products_basket_list.length > 0}}">
+          <view class="live-list-in" wx:for="{{goodsList.products_basket_list}}" wx:key="index">
+            <view class="hot-goods" wx:if="{{index==0}}"></view>
+            <view class="goods-num" wx:if="{{index !=0}}">{{index}}</view>
+            <view class="live-list-img" bindtap="govideo" data-products_id="{{item.products_id}}" data-products_commonid="{{item.products_commonid}}"><image src="{{item.products_image}}"></image></view>
+            <view class="live-list-title" bindtap="govideo" data-products_id="{{item.products_id}}" data-products_commonid="{{item.products_commonid}}">{{item.products_name}}</view>
+            <view class="live-list-money"><text>￥</text>{{item.products_price}}</view>
+            <view class="choose" bindtap="getgoods" data-products_id="{{item.products_id}}">立即购买</view>
+         </view>
+       </view>
+         <view wx:if="{{goodsList.products_basket_list.length <= 0}}" class="null-goods">
+             <view class="one">暂无数据</view>
+             <view class="two">这个主播很懒，没有添加商品</view>
+         </view>
+        <view style="height:50rpx"></view>
+    </view>
+  </view>
+</view>
+<!-- 选规格 -->
+<view class="choosclass {{an1}}">
+    <view>
+      <view class="addTop">
+          <view class="product-text">
+            <image class="products-pic" src="{{imgUrls[0]}}"></image>
+            <view class="textR clearfix">
+                <view class="textX">
+                    <text class="money">{{goods_price}}</text>
+                </view>
+                <view class="choiCe">已选：
+                    <text>{{chooseText}}</text>
+                </view>
+            </view>
+          </view>
+          <view class="selectsize_content">
+            <view  wx:if="{{products_map_spec.length>0}}" wx:for="{{products_map_spec}}" wx:key="index" wx:for-index="fuindex">
+                <view class="selectsize-title">{{item.products_spec_name}}</view>
+                <view class="clearfix " style="margin-left:-25rpx;">
+                    <view catchtap="selectGuige" class="selectsize-tab {{(items.isClick == 1) ? 'active' : ''}}" wx:for="{{item.products_spec_value}}" wx:key="index" wx:for-item="items" data-fuindex="{{fuindex}}" data-chindex="{{chindex}}" wx:for-index="chindex" data-specs_value_id="{{items.specs_value_id}}">{{items.specs_value_name}}
+                    </view>
+                </view>   
+            </view>
+            <!-- 默认 -->
+            <view wx:if="{{products_map_spec.length<=0}}" class="clearfix">
+              <view class="selectsize-title">规格分类</view>
+              <view class="selectsize-tab active" style="margin-left:0">默认</view>
+            </view>
+            <!-- 购买数量 -->
+            <view  class="clearfix">
+                <view class="fl selectsize-title">数量</view>
+                <view class="num-cont clearfix fr">
+                    <view class="reduce" bindtap='bindMinus'>-</view>
+                    <input class="num" disabled='disabled' type="num" value="{{num}}"></input>
+                    <view class="add {{minusStatus}}"bindtap='bindPlus'>+</view>
+                </view>
+            </view>
+          </view>
+          <view class="buy fr" bindtap="gobuy" style="position:static; margin-top:15rpx;">立即购买</view>
+          <view class="buy fl" bindtap="joincart" style="position:static; margin-top:15rpx;">加入购物车</view>
+      </view>
+    </view>
+</view>
+<view class="live-bottom" wx:if="{{!is_hideBottom}}">
+   <view class="shop-list" bindtap="shoplist"><view class="shoplist-num">{{goodsList.products_basket_count}}</view></view>
+   <view class="chat">
+      <!-- <input bindconfirm="sendNews" value="{{chatText}}" placeholder-class="phcolor" bindinput="chatText" class="input" name="userName" placeholder="跟主播聊点什么?" /> -->
+      <view class="chat-jia" bindtap="showInput">{{inputText}}</view>
+   </view>
+   <view class="bottom-report {{is_showReport ? 'active' : ''}}" bindtap="showReport" ></view>
+   <view class="report-bj" bindtap="showReport" wx:if="{{is_showReport}}"></view>
+   <view class="report" bindtap="goreport" wx:if="{{is_showReport}}">举报</view>
+   <button open-type='share' data-id="" class='share'></button>
+   <view class="flowers-cont">
+     <view class="flowers"  wx:if="{{flowerNum<10000}}" bindtap="sendFlowers"><view class="flowers-num {{floSend}}">{{flowerNum}}</view></view>
+     <view class="flowers" wx:if="{{flowerNum>=10000}}" bindtap="sendFlowers"><view class="flowers-num {{floSend}}">{{filters.toFixOne(flowerNum/10000)}}w</view></view>
+   </view>
+</view>
+<!-- 聊天室 -->
+<!--  wx:if="{{!hideCode && isOnline}}"  -->
+
+<view class="chattype">
+   <!-- 正在购买 -->
+   <view class="buyText" wx:if="{{buyList.messageType=='RCChatroomUserBuy'}}" ><view class="buy-icon"></view><text>{{buyList.content.nickname}} {{buyList.content.msg}}</text></view>
+   <!-- 欢迎进去 -->
+   <view class="comeText" wx:if="{{buyList.messageType=='RCChatroomWelcome'}}" ><view class="welcome-icon"></view><text>欢迎 {{buyList.content.nickname}} 进入直播间</text></view>
+   <!-- 关注主播 -->
+   <view class="buyText" wx:if="{{buyList.messageType=='RCChatroomFollow'}}"><view class="buy-icon2"></view><text>{{buyList.content.nickname}} {{buyList.content.msg}}</text></view>
+</view>
+<scroll-view class="chat-cont" scroll-y="true" scroll-top='{{scrolltop}}'  scroll-into-view="bottom" >
+   <view wx:for="{{newList}}" wx:key="index">
+     <view class="chat-cont-text clearfix" wx:if="{{item.messageType =='RCChatroomAnchorMessage' || item.messageType =='RCChatroomUserMessage'}}">
+       <text class="name" wx:if="{{item.messageType =='RCChatroomUserMessage'}}">{{item.content.nickname}}:</text>
+       <text class="name zhu" wx:if="{{item.messageType =='RCChatroomAnchorMessage'}}">{{item.content.nickname}} :</text>
+       <text class="text">{{item.content.msg}}</text>
+     </view>
+     <view class="chat-goods" wx:if="{{item.msgtype=='777777'}}">
+      <image src="{{item.msg.products_image}}" bindtap="goGoods" data-products_id="{{item.msg.products_id}}"></image>
+      <view class="chat-goods-text" bindtap="goGoods" data-products_id="{{item.msg.products_id}}">
+        <view class="chat-goods-name">{{item.msg.products_name}}"</view>
+        <view class="chat-goods-money"><text>￥</text>{{item.msg.products_price}}</view>
+      </view>
+      <view class="chat-goods-close" bindtap="delGoods" data-index="{{index}}">X</view>
+    </view>
+   </view>
+   
+</scroll-view>
+<!-- 店铺弹窗 -->
+<view class="storeTc {{an2}}">
+   <view class="toreTc-bj" bindtap="closeStoreTc"></view>
+   <view class="storeTc-cont">
+      <view class="storeTc-cont-img"><image src="{{storeInfo.store_avatar}}"></image></view>
+      <view class="storeTc-cont-name">{{storeInfo.store_name}}</view>
+      <view class="storeTc-cont-des">{{storeInfo.store_brief_intro}}</view>
+      <view class="storeTc-info clearfix">
+          <view class="storeTc-info-in"><text>{{storeInfo.store_collect}}</text><view>粉丝</view></view>
+          <view class="storeTc-info-in"><text>{{storeInfo.store_like}}</text><view>商品关注</view></view>
+          <view class="storeTc-info-in" wx:if="{{storeInfo.total_flower<10000}}"><text>{{storeInfo.total_flower}}</text><view>鲜花</view></view>
+          <view class="storeTc-info-in" wx:if="{{storeInfo.total_flower>=10000}}"><text>{{filters.toFixOne(storeInfo.total_flower/10000)}}w</text><view>鲜花</view></view>
+      </view>
+   </view>
+   <view class="storeTc-bottom">
+     <view class="storeTc-bottom-index" bindtap="gostore">店铺首页</view>
+     <view class="storeTc-bottom-follow" bindtap="followStore" wx:if="{{!is_followStore}}">关注</view>
+     <view class="storeTc-bottom-follow active" bindtap="followStore" wx:if="{{is_followStore}}">取消关注</view>
+   </view>
+</view>
+<!-- 直播结束弹窗-->
+<view class="liveEnd" wx:if="{{is_showEnd}}" style="display:none">
+    <image class="liveEnd-img" src="{{storeInfo.store_avatar}}"></image>
+    <view class="liveEnd-name">{{storeInfo.store_name}}</view>
+    <view class="liveEnd-text">直播已结束</view>
+    <view class="liveEnd-line"></view>
+    <view class="liveEnd-cont clearfix">
+       <view class="liveEnd-cont-line"></view>
+       <view class="liveEnd-cont-info">
+          <text class="one">{{Audience}}</text>
+          <text class="two">观看人数</text>
+       </view>
+       <view wx:if="{{flowerNum<10000}}" class="liveEnd-cont-info">
+           <text class="one">{{flowerNum}}</text>
+           <text class="two">鲜花</text>
+       </view>
+       <view wx:if="{{flowerNum>=10000}}" class="liveEnd-cont-info">
+           <text class="one">{{filters.toFixOne(flowerNum/10000)}}w</text>
+           <text class="two">鲜花</text>
+       </view>
+    </view>
+    <view class="back foll" bindtap="followStore" wx:if="{{!is_followStore}}">关注</view>
+    <view class="back" bindtap="byeReturn">返回</view>
+    
+</view>
+<view class="inCont" wx:if="{{is_hideBottom}}">  
+    <!-- <input class="inCont-input" focus="{{true}}" bindblur="bindblur" placeholder="喜欢就说点什么吧"></input>  -->
+   <view class="icon"></view> 
+   <input class="inCont-input" bindconfirm="sendNews" value="{{chatText}}"   bindblur="bindblur" focus="{{true}}" bindinput="chatText" name="userName" placeholder="跟主播聊点什么?" />
+   <view class="inCont-send" bindtap="sendNews"></view>
+</view>
+<!-- 二维码弹出框 -->
+<!-- <view wx:if="{{hideCode}}">
+  <view class="list-dialog-bj">
+      <view class="codeBox">  
+      <image class="code" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/loadCode.png"></image>3
+      <view class="codeX" bindtap="guanbi"></view>
+    </view> 
+  </view>
+</view> -->
+<view class="code-cont" wx:if="{{hideCode}}">
+   <view class="code-bj" bindtap="guanbi"></view>
+   <view class="code-close" bindtap="guanbi"></view>
+   <view class="code-img"></view>
+   <view class="code-text">截屏微信扫码下载APP</view>
+</view>
+<view class="voucher-cont2" wx:if="{{showVoucher}}">
+   <view class="voucher-bj"></view>
+   <view class="voucher-info">
+      <view class="voucher-close" bindtap="closeVoucher"></view>
+      <view class="voucher-title">恭喜您，看直播领好礼</view>
+      <view class="voucher-inner">
+          <view class="voucher-inner-top clearfix">
+              <view class="voucher-inner-price fl">
+                 <label class="one">￥</label><label class="two">{{voucher_t_price}}</label>
+              </view>
+              <view class="voucher-inner-text fr">
+                <view class="voucher-inner-text-title">直播间支付立减券</view>
+                <view class="voucher-inner-text-price">满{{voucher_t_limit}}元可用</view>
+              </view>
+          </view>
+          <view class="voucher-btn2" bindtap="getVoucher">{{voucherText}}</view>
+      </view>
+   </view>
+</view>
+<view class="live-error" wx:if="{{!is_showEnd && isError}}"> 
+   <view class="live-error-cont" >
+     <view class="live-error-contTitle">网络中断，请重新进入直播间</view>
+     <!-- <view class="live-error-btn" bindtap="retry">重试</view> -->
+     <view class="live-error-btn" bindtap="byeReturn">返回</view>
+   </view>
+    
+</view>

@@ -1,0 +1,161 @@
+/* pages/endorsement/endorsement.wxss */
+@import "../myAssets/yPorcelain/yPorcelain.wxss";
+
+.card-top {
+  background: url('https://bj.aizhiyi.com/wap/test/wap/xcxImg/lipinka@2x.png') no-repeat;
+  background-size: 100% 100%;
+  
+}
+
+.carry-bj {
+  width: 750rpx;
+  height: 491rpx;
+  background: rgba(22, 24, 36, 1);
+  border-radius: 12rpx 12rpx 0 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+}
+
+.carry-title {
+  text-align: center;
+  font-size: 34rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 auto;
+  line-height: 140rpx;
+  height: 140rpx;
+}
+
+.carry-wx {
+  height: 120rpx;
+  position: relative;
+  border-bottom: 1rpx solid rgba(255, 255, 255, 0.05);
+}
+
+.wx-img {
+  width: 62rpx;
+  height: 62rpx;
+  position: absolute;
+  top: 25rpx;
+  left: 41rpx;
+
+}
+
+.wx-text {
+  font-size: 32rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  position: absolute;
+  top: 41rpx;
+  left: 142rpx;
+}
+
+.wx-right {
+  position: absolute;
+  top: 41rpx;
+  right: 24rpx;
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.carry-btn {
+  width: 750rpx;
+  height: 100rpx;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 30rpx;
+  color: rgba(235, 237, 246, 1);
+  line-height: 100rpx;
+}
+
+/* 粉丝 */
+.friendsList {
+  height: 153rpx;
+  width: 750rpx;
+  position: relative;
+  border-bottom: 1rpx solid rgba(255, 255, 255, 0.05);
+}
+
+.friendsList image {
+  width: 78rpx;
+  height: 78rpx;
+  border-radius: 50%;
+  position: absolute;
+  top: 45rpx;
+  left: 27rpx;
+}
+
+.friendsList .type {
+  width: 50rpx;
+  height: 25rpx;
+  position: absolute;
+  top: 100rpx;
+  left: 59rpx;
+  border-radius: 0;
+}
+
+.list-text {
+  width: 300rpx;
+  position: absolute;
+  left: 139rpx;
+  top: 45rpx;
+}
+
+.list-text .nameText {
+  width: 300rpx;
+  font-size: 28rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 10rpx;
+}
+
+.timeText {
+  width: 300rpx;
+  font-size: 24rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.followPeople {
+  width: 133rpx;
+  height: 58rpx;
+  border-radius: 34rpx;
+  border: 2rpx solid rgba(255, 255, 255, 0.6);
+  text-align: center;
+  line-height: 58rpx;
+  font-size: 30rpx;
+  color: rgba(255, 255, 255, 0.6);
+  position: absolute;
+  top: 53rpx;
+  right: 30rpx;
+}
+
+.followAdmin {
+  background: rgba(202, 73, 58, 1);
+  color: #fff;
+  border: none;
+}
+
+.contribution {
+  position: absolute;
+  top: 53rpx;
+  right: 30rpx;
+  font-size: 30rpx;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.numberText {
+  font-size: 20rpx;
+  color: rgba(85, 22, 0, 1);
+  position: absolute;
+  top: 100rpx;
+  left: 68rpx;
+}
+.mr43{margin-right: 43rpx;}
+

@@ -1,0 +1,31 @@
+/* pages/myAssets/introduction/blockchain/blockchain.wxss */
+.imgBox{
+	width: 100%;
+	position: relative;
+}
+.imgBox image{
+	overflow: hidden;
+	width: 100vw;
+	display: block;
+}
+.bottom{
+	position: absolute;
+	bottom: 90rpx;
+	left: 17rpx;
+	width: 700rpx;
+	height: 120rpx;
+}
+.offbottom{
+	position: absolute;
+	bottom: 21.7%;
+	left: 100rpx;
+	width: 200rpx;
+	height: 60rpx;
+}
+.carrybottom{
+	position: absolute;
+	bottom: 23.5%;
+	left:100rpx;
+	width: 200rpx;
+	height: 60rpx;
+}

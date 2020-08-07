@@ -1,0 +1,92 @@
+<!--pages/classification/classification.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<!-- 头部 -->
+<view class="clearfix">
+	<view class="toplist">
+		<view data-num='' bindtap="goFriend">关注</view>
+		<view bindtap="goHome">推荐</view>
+		<view class="{{num ==1?'active':''}}" bindtap="listTop" data-num='1'>文创</view>
+		<view class="{{num ==2?'active':''}}" bindtap="listTop" data-num='2'>传承</view>
+		<view class="{{num ==3?'active':''}}" bindtap="listTop" data-num='3'>特产</view>
+	</view>
+	<view class="animation-button" bindtap="translate">
+		<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/9.png"></image>
+	</view>
+</view>
+<view class="clearfix">
+
+	<view class="small_nav {{tabFixed?'small_navFix':''}}" id="tab-con">
+		<scroll-view scroll-x="true" scroll-left="{{scrollLeft}}">
+			<view class="small_nav_scroll">
+				<view class="{{id == item.pl_id?'cur':' '}}" bindtap="quanbu">全部</view>
+				<view class="{{id == item.pl_id?'cur':' '}}" wx:for="{{smallList}}" wx:key="index" data-id="{{item.pl_id}}" data-index="{{index}}" bindtap="switchNav">{{item.pl_name}}</view>
+			</view>
+		</scroll-view>
+	</view>
+</view>
+<!-- banner -->
+<view class="bannerView" wx:if="{{bannerImg.banner_image!= ''}}">
+	<image src="{{bannerImg.banner_image}}"></image>
+</view>
+<view class="commList">
+	<view class="commSingle fl">
+		<view wx:for="{{listData}}" wx:key="index">
+			<view class="listBox" bindtap="gocommod" data-key="{{index}}" data-index="{{item.products_id}}" id="{{item.products_commonid}}" wx:if="{{index%2==0 }}">
+				<view class="relative">
+				<view class="list-box" wx:if="{{item.online}}">
+						<view class="listZhibo">直播中</view>
+					</view>
+					<image mode="widthFix" class="{{item.image_type == 3?'loevImg' :'loevImg1'}}" src="{{item.image}}"></image>
+					<view class="likeLove">
+						<view class="fl loveLeft">
+							<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/51.png"></image>
+							<text wx:if="{{item.products_collect < 10000}}">{{item.products_collect}}</text>
+							<text wx:if="{{item.products_collect>10000}}">{{filters.toFixOne(item.products_collect/10000)}}w</text>
+						</view>
+						<view class="fr moneyRight">
+							<text>￥{{item.products_price}}</text>
+						</view>
+					</view>
+				</view>
+				<view class="introDuce">
+					{{item.products_name}}
+				</view>
+			</view>
+			
+		</view>
+	</view>
+	<view class="commSingle fl">
+		<view wx:for="{{listData}}" wx:key="index">
+			<view class="listBox" bindtap="gocommod"  data-key="{{index}}" data-index="{{item.products_id}}" id="{{item.products_commonid}}" wx:if="{{index%2==1}}">
+				<view class="relative">
+				<view class="list-box" wx:if="{{item.online}}">
+						<view class="listZhibo">直播中</view>
+					</view>
+					<image mode="widthFix" class="{{item.image_type == 3?'loevImg' :'loevImg1'}}" src="{{item.image}}"></image>
+					<view class="likeLove">
+						<view class="fl loveLeft">
+							<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/51.png"></image>
+							<text wx:if="{{item.products_collect < 10000}}">{{item.products_collect}}</text>
+							<text wx:if="{{item.products_collect>10000}}">{{filters.toFixOne(item.products_collect/10000)}}w</text>
+						</view>
+						<view class="fr moneyRight">
+							<text>￥{{item.products_price}}</text>
+						</view>
+					</view>
+				</view>
+				<view class="introDuce">
+					{{item.products_name}}
+				</view>
+			</view>
+		
+		</view>
+	</view>
+
+</view>
+<view wx:if="{{state==0 && listData.length !=0}}">
+	<view class="cont_bottom">没有更多了</view>
+</view>
+<view class="nothing" wx:if="{{state==0 && listData.length == 0}}">
+	<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/19cbaabc27fcc03e982d0b99ae6e063.png"></image>
+	<view>没有更多产品</view>
+</view>

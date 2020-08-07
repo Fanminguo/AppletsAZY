@@ -1,0 +1,69 @@
+<!--pages/success/success.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view class="topInform">
+    <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/dingdanchenggong@2x.png"></image>
+    <view class="successText">兑换成功</view>
+    <view class="stateText">客服正在为您安排发货</view>
+    <view class="orderThing">
+        <view class="left" bindtap="seeList">返回首页</view>
+        <view bindtap="goodThings">订单详情</view>
+    </view>
+</view>
+<view class="banner" bindtap="seeList">
+	<image src="https://bj.aizhiyi.com/wap/images/images/duihuanma_banner@3x@2x.png"></image>
+</view>
+<!-- 猜你喜欢 -->
+<view class="recommend"></view>
+<view class="commList clearfix" id="tab-con">
+    <view class="commSingle">
+        <view class="listBox fl"data-video_name="{{item.video_name}}"  data-products_id="{{item.products_id}}" data-products_commonid="{{item.products_commonid}}" wx:for="{{listData}}" wx:key="index" wx:if="{{listData.length >0 && index%2!=0}}" bindtap="goData">
+            <view class="relative">
+                <image mode="widthFix"  class="loevImg" src="{{item.image}}"></image>
+                <view class="likeLove">
+                    <view class="fl loveLeft">
+                        <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/4.png"></image>
+                        <text>{{item.products_collect}}</text>
+                    </view>
+                    <view class="fr moneyRight">
+                        <text>￥{{item.products_price}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="introDuce">
+                {{item.products_name}}
+            </view>
+        </view>
+    </view>
+    <view class="commSingle">
+        <view class="listBox fl" data-video_name="{{item.video_name}}"  data-products_id="{{item.products_id}}" data-products_commonid="{{item.products_commonid}}" wx:for="{{listData}}" wx:key="index" wx:if="{{listData.length >0 && index%2==0}}" bindtap="goData">
+            <view class="relative">
+                <image mode="widthFix" class="loevImg1" src="{{item.image}}"></image>
+                <view class="likeLove">
+                    <view class="fl loveLeft">
+                        <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/4.png"></image>
+                        <text>{{item.products_collect}}</text>
+                    </view>
+                    <view class="fr moneyRight">
+                        <text>￥{{item.products_price}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="introDuce">
+                {{item.products_name}}
+            </view>
+        </view>
+    </view>
+</view>
+<!-- <view class="s-dialog-mask" wx:if="{{show}}">
+    <view class="top">
+        <view class="topTitle">恭喜获得易瓷币</view>
+        <image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/yicibi@2x.png"></image>
+        <view class="number">
+            <text>{{yici_amount}}</text>个</view>
+        <view class="copywriting">已保存到易瓷币余额</view>
+        <view class="btnKnow" bindtap="gotIt">
+            我知道了
+        </view>
+    </view>
+
+</view> -->

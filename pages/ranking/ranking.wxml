@@ -1,0 +1,86 @@
+<wxs module="filters" src="../../utils/filters.wxs"></wxs>
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view wx:if='{{type=="1"}}'>
+   <view class="rank-banner">
+      <image mode="widthFix" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/22.png"></image>
+      <view class="rank-data clearfix">
+          <text class="fl">更新于:{{date}}</text>
+      </view>
+      </view>
+   <view class="rank-cont">
+     <view class="rank-info" bindtap="govideo" data-products_commonid="{{item.products_commonid}}"  data-products_id="{{item.products_id}}" wx:for="{{list.popular_products_list}}" wx:key="index" data-id="{{item.products_commonid}}" data-index="{{index}}">
+       <view class="icon1"  wx:if="{{index==0}}"></view>
+       <view class="icon2"  wx:if="{{index==1}}"></view>
+       <view class="icon3"  wx:if="{{index==2}}"></view>
+       <view class="iconnum"  wx:if="{{index>2}}">{{index+1}}.<view class="san"></view></view>
+       <image class="rank-info-img" src="{{item.image}}"></image>
+       <view class="rank-info-text">
+         <view class="rank-info-name">{{item.products_name}}</view>
+         <view class="rank-info-hot"><view class="hot"></view>
+           <block wx:if="{{item.products_collect<10000}}">
+               {{item.products_collect}} 
+            </block>
+            <block wx:if="{{item.products_collect>10000}}">
+              {{filters.toFixOne(item.products_collect/10000)}}w
+            </block>
+         </view>
+       </view>
+     </view>
+   </view>
+</view>
+<view wx:if='{{type=="2"}}'>
+   <view class="rank-banner">
+      <image mode="widthFix" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/21.png"></image>
+      <view class="rank-data clearfix">
+          <text class="fl">更新于:{{date}}</text>
+      </view>
+      </view>
+   <view class="rank-cont">
+     <view bindtap="gostore"  class="rank-info store" wx:for="{{list.PopularityStoreList}}" wx:key="index" wx:for-index="i" data-id="{{item.store_id}}">
+       <view class="icon1"  wx:if="{{i==0}}"></view>
+       <view class="icon2"  wx:if="{{i==1}}"></view>
+       <view class="icon3"  wx:if="{{i==2}}"></view>
+       <view class="iconnum"  wx:if="{{i>2}}">{{i+1}}.<view class="san"></view></view>
+       <image class="rank-info-img" src="{{item.store_avatar}}"></image>
+       <view class="rank-info-text">
+         <view class="rank-info-name">{{item.store_name}}</view>
+         <view class="rank-store-text">粉丝<text>
+            <block wx:if="{{item.store_collect<10000}}">
+               {{item.store_collect}} 
+            </block>
+            <block wx:if="{{item.store_collect>10000}}">
+              {{filters.toFixOne(item.store_collect/10000)}}w
+            </block>
+            </text>
+            </view>
+       </view>
+     </view>
+   </view>
+</view>
+<view wx:if='{{type=="3"}}'>
+   <view class="rank-banner">
+      <image mode="widthFix" src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/23.png"></image>
+      <view class="rank-data clearfix">
+          <text class="fl">更新于:{{date}}</text>
+      </view>
+      </view>
+   <view class="rank-cont clerfix" style="padding-left:23rpx;">
+      <view class="rank-recom"  bindtap="govideo" data-products_commonid="{{item.products_commonid}}" data-products_id="{{item.products_id}}" wx:for="{{list.recommended_video_list}}" wx:key="index" data-index="{{index}}">
+         <view class="rank-recom-img">
+            <image src="{{item.image}}"></image>
+            <view class="zan"><view class="zan-icon"></view>
+            <block wx:if="{{item.products_collect<10000}}">
+               {{item.products_collect}} 
+            </block>
+            <block wx:if="{{item.products_collect>10000}}">
+              {{filters.toFixOne(item.products_collect/10000)}}w
+            </block>
+            <!-- {{is_follow ? "active":""}} -->
+            <!-- {{item.products_collect}} -->
+            </view>
+         </view>
+         <view class="rank-recom-name">{{item.products_name}}</view>
+      </view>
+   </view>
+</view>
+

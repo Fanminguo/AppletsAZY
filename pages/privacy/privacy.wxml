@@ -1,0 +1,8 @@
+<!--pages/privacy/privacy.wxml-->
+<!--pages/document/document.wxml-->
+<view>
+    <view class="load_wrap" wx:if="{{!hide}}"></view>
+    <import src="../../wxParse/wxParse.wxml" />
+    <template is="wxParse" data="{{wxParseData:text.nodes}}" />
+
+</view>

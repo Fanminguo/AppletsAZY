@@ -1,0 +1,53 @@
+<!--pages/myAssets/detailed/detailed.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view>
+	<!-- yici_receive_type 易瓷币操作类型 0-任务 1-易瓷币增 2-易瓷币减 3-新增店铺 4-新增代理 5-邀请好友 6-购物成功返现 7-购物抵现 8-转出 9-转入 -->
+	<view class="box-top">
+		<view class="amount" wx:if="{{yici_receive_type == 1 ||yici_receive_type == 0 || yici_receive_type==6}}"> +{{should_send_num}}</view>
+		<view class="amount" wx:else> {{should_send_num}}</view>
+		<view class="box-type"> {{admin_verify_state}}</view>
+	</view>
+	<view class="box-middle">
+		<view class="middle-list clearfix">
+			<view class="text">订单类型</view>
+			<view class="text-type" wx:if="{{yici_receive_type == 8}}">易瓷币转出</view>
+			<view class="text-type" wx:else>{{yici_receive_name}}</view>
+		</view>
+		<view class="middle-list clearfix" wx:if="{{yici_receive_type == 8 || yici_receive_type ==1 || yici_receive_type==2 || yici_receive_type == 0 || yici_receive_type == 9}}">
+			<view class="text">收款账户</view>
+			<view class="text-type">{{account}}</view>
+		</view>
+		<view class="middle-list clearfix" wx:if="{{yici_receive_type == 7|| yici_receive_type == 6}}">
+			<view class="text">商品名称</view>
+			<view class="text-type">{{products_name}}</view>
+		</view>
+		<view class="middle-list clearfix" style="padding-bottom:17rpx" wx:if="{{yici_receive_type == 8 || yici_receive_type == 1 || yici_receive_type==2 || yici_receive_type == 0 ||yici_receive_type == 9}}">
+			<view class="text">到账时间</view>
+			<view class="text-type">{{operator_time}}</view>
+		</view>
+		<view class="middle-list clearfix" wx:if="{{yici_receive_type == 7 || yici_receive_type == 6}}">
+			<view class="text">创建时间</view>
+			<view class="text-type">{{operator_time}}</view>
+		</view>
+
+	</view>
+	<view class="box-middle mt20" style="border-bottom:none">
+		<view class="middle-list clearfix" wx:if="{{yici_receive_type == 7 || yici_receive_type == 6}}">
+			<view class="text">订单编号</view>
+			<view class="text-type">{{order_sn}}</view>
+		</view>
+		<view class="middle-list clearfix" wx:if="{{yici_receive_type ==9}}">
+			<view class="text">以太坊地址</view>
+			<view class="text-type">{{remark}}</view>
+		</view>
+		<!-- <view class="middle-list clearfix" style="margin-bottom:40rpx">
+			<view class="text">提现编号</view>
+			<view class="text-type">1234568979875</view>
+		</view> -->
+	</view>
+	<view class="objection" bindtap="goKefu">
+		<text wx:if="{{order_id!='undefined'}}">订单详情</text>
+		<text wx:else>对此单有疑问</text>
+		<image src="https://bj.aizhiyi.com/wap/images/me_icon/name.png"></image>
+	</view>
+</view>

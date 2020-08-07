@@ -1,0 +1,125 @@
+/* pages/refundAll/refundAll.wxss */
+
+page {
+    background:rgba(22,24,36,1);
+}
+
+/* 顶部提示 */
+
+.introduce {
+    display: block;
+   background:rgba(255,255,255,0.05);
+}
+
+.introduce text {
+    font-size: 24rpx;
+    line-height: 70rpx;
+    color: #d33d3c;
+    text-indent: 30rpx;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+}
+
+/* 类型 */
+
+.wrapInp {
+    width: 750rpx;
+    height: 100rpx;
+    background: rgba(255,255,255,0.05);
+    /* margin-top: 30rpx; */
+    border-bottom: 1rpx #31333F solid;
+}
+
+.wrapInp .inpType {
+    display: inline-block;
+    font-size: 28rpx;
+   color:rgba(255,255,255,0.9);
+    text-align: left;
+    line-height: 100rpx;
+    margin-left: 30rpx;
+    float: left;
+}
+
+.wrapInp .inpType text {
+    color: #d33d3c;
+}
+
+.picker {
+    width: 70%;
+    float: right;
+    height: 100rpx;
+    line-height: 100rpx;
+	color: rgba(255,255,255,0.9)
+}
+
+.textInp {
+    color: #bbb;
+	background:rgba(255,255,255,0.05);
+}
+
+/* 退款原因 text */
+
+.reasonText {
+    width: 750rpx;
+    background:rgba(255,255,255,0.05);
+    height: 200rpx;
+}
+
+.reasonText textarea {
+    width: 700rpx;
+    font-size: 28rpx;
+    margin: 0 auto;
+    height: 180rpx;
+    color: #fff;
+    padding-top: 20rpx;
+}
+
+/* 上传图片 */
+
+.imgList {
+    width: 750rpx;
+    background:rgba(255,255,255,0.05);
+    height: 250rpx;
+    margin-top: 25rpx;
+    line-height: 250rpx;
+}
+.portrait{
+	padding-top: 50rpx;
+	padding-left: 25rpx;
+	width: 160rpx;
+	float: left
+}
+.portraitImg {
+    width: 144rpx;
+    height: 144rpx;
+    margin-right: 20rxp;
+    background: url(https://bj.aizhiyi.com/wap/test/wap/xcxImg/11111101.png) no-repeat;
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+}
+
+.portraitImg image {
+    width: 144rpx;
+    height: 144rpx;
+
+}
+/* 申请退款 */
+.btn{
+	
+	width: 700rpx;
+	color: #fff;
+	background: #d33d3c;
+	height: 80rpx;
+	line-height: 80rpx;
+	text-align: center;
+	margin: 0 auto;
+	border-radius: 12rpx;
+    margin-top: 20rpx;
+    margin-bottom: 30rpx;
+}
+.goods-list{ margin-top: 10rpx;width: 750rpx;height: 180rpx; background:rgba(29,31,43,1);margin-bottom: 10rpx;}
+.goods-list-info{ width: 128rpx; height: 128rpx; border-radius:8rpx; position: relative; float: left; margin-left: 17rpx;}
+.goods-list-info image{width: 128rpx; height: 128rpx; border-radius:8rpx; margin-top: 20rpx;}
+.goods-list-info-price{ font-size: 26rpx; color:rgba(255,255,255,0.9);position: absolute; left:140rpx; top: 0; width: 557rpx; margin-top: 20rpx;}
+.goods-list-info-guige{position: absolute; left:140rpx; top: 50rpx;width: 557rpx; margin-top: 20rpx;color:rgba(255,255,255,0.6);font-size: 26rpx;}

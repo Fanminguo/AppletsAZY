@@ -1,0 +1,9 @@
+<!--pages/myAssets/introduction/blockchain/blockchain.wxml-->
+<view>
+	<view class="imgBox">
+		<image wx:for="{{listImg}}" mode="widthFix" src="{{item.img}}"></image>
+		<view class="bottom" bindtap="goIndex"></view>
+		<view class="offbottom"  bindtap="goCarry"></view>
+		<view class="carrybottom" bindtap="goCircle"></view>
+	</view>
+</view>	

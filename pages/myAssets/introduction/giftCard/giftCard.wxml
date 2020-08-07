@@ -1,0 +1,6 @@
+<!--pages/myAssets/introduction/giftCard/giftCard.wxml-->
+<view>
+	<view class="imgBox">
+	<image wx:for="{{listImg}}" src="{{item.img}}" mode="widthFix" ></image>
+	</view>
+</view>

@@ -1,0 +1,13 @@
+<!--pages/myAssets/introduction/introduction.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view>
+	<view class="dynamic clearfix" wx:for="{{list}}" wx:key="index" bindtap="goLanding" data-article_id="{{item.article_id}}">
+		<view class="fl Copywriting">
+			<view class="text">{{item.article_title}}</view>
+			<view class="text1">易瓷币 {{item.read_amount}}人阅读</view>
+		</view>
+		<view class="fr bennerImg">
+			<image src="{{item.article_image}}"></image>
+		</view>
+	</view>
+</view>

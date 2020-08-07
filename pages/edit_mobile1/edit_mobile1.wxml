@@ -1,0 +1,16 @@
+<!--pages/edit_mobile1/edit_mobile1.wxml-->
+<view class="edit-cont">
+   <view class="edit-inner text">
+     <view>请输入<text>{{mobile}}</text>收到的短信验证码</view>
+   </view>
+   <view class="edit-inner">
+     <input placeholder-class="phcolor" type="text" bindinput="tu_code" class="input-yzm input" placeholder="请输入四位验证码"></input>
+     <image class="code" src="{{codeSrc}}" alt="点击更新验证码" bindtap="getsrc"> </image>
+   </view>
+   <view class="edit-inner" style="border-bottom:0">
+     <input placeholder-class="phcolor" type="number"  bindinput="tel_code" class="input" placeholder="请输入短信验证码"></input>
+     <button class="get-btn" disabled='{{disabled}}' bindtap="goGetCode">{{code}}</button>
+   </view>
+</view>
+<view class="edit-btn" bindtap="tomobile2">下一步</view>
+<view class="edit-no" bindtap="tomobilebind">原手机号无法接受验证码	></view>

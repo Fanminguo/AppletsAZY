@@ -1,0 +1,30 @@
+<!--pages/myNews/Interaction/Interaction.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view wx:if="{{action.length <=0}}">
+	<view class="empty">
+		<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/xiaoxi_icon.png"></image>
+		<view class="view">暂无消息</view>
+        <view class="text">您还没有任何消息哦</view>
+	</view>
+</view>
+<view class="newBox" wx:if="{{action.length >0}}" wx:for="{{action}}" wx:key="index">
+    <view class="boxText clearfix">
+        <view class="clearfix">
+            <view class="portrait">
+                <image src="{{item.comment_custimage}}"></image>
+            </view>
+            <view class="state">{{item.comment_custname}}</view>
+			<view class="replyYou">回复了你的评论</view>
+        </view>
+        <view bindtap="goVideoPing" class="boxName" data-products_commonid="{{item.products_commonid}}" data-products_id="{{item.products_id}}" data-comment_content="{{item.comment_content}}" data-comment_custimage="{{item.comment_custimage}}" data-comment_custname="{{item.comment_custname}}">
+            <view class="name">{{item.comment_content}}</view>
+        </view>
+        <view bindtap="goVideoPing" class="boxImg" data-products_commonid="{{item.products_commonid}}" data-products_id="{{item.products_id}}" data-comment_content="{{item.comment_content}}" data-comment_custimage="{{item.comment_custimage}}" data-comment_custname="{{item.comment_custname}}">
+            <image src="{{item.products_image}}"></image>
+        </view>
+
+    </view>
+</view>
+ <view class='remind' wx:if="{{state==0 && action.length > 0}}">
+        <view>没有更多了</view>
+</view>

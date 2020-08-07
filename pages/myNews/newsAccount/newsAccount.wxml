@@ -1,0 +1,53 @@
+<!--pages/myNews/newsAccount/newsAccount.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view wx:if="{{account.length <=0}}">
+	<view class="empty">
+		<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/xiaoxi_icon.png"></image>
+		<view class="view">暂无消息</view>
+		<view class="text">您还没有任何消息哦</view>
+	</view>
+</view>
+<view class="newBox" wx:if="{{account.length >0}}" wx:for="{{account}}" wx:key="index">
+<view  wx:if="{{item.message_classify==1}}" bindtap="goEndorsement">        	<!-- 代言费-->
+		<view class="tiem">{{item.message_time}}</view>
+		<view class="boxText clearfix">
+			<view class="state">{{item.title}}</view>
+			<view class="boxImg">
+				<image  src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/z_3@2x.png"></image>
+			</view>
+			<view class="boxName">
+				<view class="name">{{item.message_body}}</view>
+				<view class="btn" data-id="{{item.message_id}}" bindtap="goAccount">点击查看详情></view>
+			</view>
+		</view>
+	</view>
+    <view  wx:if="{{item.message_classify==2}}" bindtap="goCardCoupon">       	<!-- 礼品卡-->
+		<view class="tiem">{{item.message_time}}</view>
+		<view class="boxText clearfix">
+			<view class="state">{{item.title}}</view>
+			<view class="boxImg">
+				<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/z_1@2x.png"></image>
+			</view>
+			<view class="boxName">
+				<view class="name">{{item.message_body}}</view>
+				<view class="btn" data-id="{{item.message_id}}" bindtap="goAccount">点击查看详情></view>
+			</view>
+		</view>
+	</view>
+    <view wx:if="{{item.message_classify==3}}" bindtap="goPorcelain">       	<!-- 易瓷币-->
+		<view class="tiem">{{item.message_time}}</view>
+		<view class="boxText clearfix">
+			<view class="state">{{item.title}}</view>
+			<view class="boxImg">
+				<image src="https://bj.aizhiyi.com/wap/test/wap/xcxImg/z_2@2x.png"></image>
+			</view>
+			<view class="boxName">
+				<view class="name">{{item.message_body}}</view>
+				<view class="btn" data-id="{{item.message_id}}" bindtap="goAccount">点击查看详情></view>
+			</view>
+		</view>
+	</view>
+</view>
+<view class='remind' wx:if="{{state==0 && account.length >0}}">
+	<view>没有更多了</view>
+</view>

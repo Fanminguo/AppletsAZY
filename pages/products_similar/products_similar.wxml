@@ -1,0 +1,85 @@
+<wxs module="filters" src="../../utils/filters.wxs"></wxs>
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view class="products-info">
+	<view class="products-info-img">
+		<image src="{{products_detail.image}}"></image>
+		<view class="products-inner-price">
+			<view class="fl">
+				<view class="zan"></view>
+				<block wx:if="{{products_detail.products_collect<10000}}">
+					{{products_detail.products_collect}}
+				</block>
+				<block wx:if="{{products_detail.products_collect>10000}}">
+					{{filters.toFixOne(products_detail.products_collect/10000)}}w
+				</block>
+
+			</view>
+		</view>
+	</view>
+	<view class="products-info-text">
+		<text class="products-info-name">{{products_detail.products_name}}</text>
+		<view wx:if="{{products_detail.products_info.products_promotion_type > 0}}">
+			<view class="products-info-icon">活动商品</view>
+			<view class="products-info-price">
+				￥<text class="new">{{products_detail.products_promotion_price}}</text><text style="text-decoration:line-through" class="old">￥{{products_detail.products_price}}</text>
+			</view>
+		</view>
+		<view wx:if="{{products_detail.products_promotion_type == 0}}">
+			<view class="products-info-price" style="margin-top:80rpx;">
+				￥<text class="new">{{products_detail.products_price}}</text>
+			</view>
+		</view>
+
+	</view>
+</view>
+<view class="similar-title"></view>
+<view class="products-list clearfix">
+	<view class="commSingle">
+		<view class="products-inner" bindtap="govideo" data-products_video="{{item.video_name}}" data-products_commonid="{{item.products_commonid}}" data-products_id="{{item.products_id}}" wx:for="{{products_list}}" wx:key="index" wx:if="{{products_list.length >0 && index%2==0}}" data-index="{{index}}">
+			<view class="products-inner-img">
+				<image src="{{item.image}}" mode="widthFix"></image>
+				<view class="products-inner-price">
+					<view class="fl">
+						<view class="zan"></view>
+						<block wx:if="{{item.products_collect<10000}}">
+							{{item.products_collect}}
+						</block>
+						<block wx:if="{{item.products_collect>10000}}">
+							{{filters.toFixOne(item.products_collect/10000)}}w
+						</block>
+					</view>
+					<view class="fr">￥{{item.products_price}}</view>
+				</view>
+
+				<view class="list-box" wx:if="{{item.online}}">
+					<view class="listZhibo">直播中</view>
+				</view>
+			</view>
+			<text class="products-inner-name">{{item.products_name}}</text>
+		</view>
+	</view>
+	<view class="commSingle">
+		<view class="products-inner" bindtap="govideo" data-products_video="{{item.video_name}}" data-products_commonid="{{item.products_commonid}}" data-products_id="{{item.products_id}}" wx:for="{{products_list}}" wx:key="index" wx:if="{{products_list.length >0 && index%2!=0}}" data-index="{{index}}">
+			<view class="products-inner-img">
+				<image src="{{item.image}}" mode="widthFix"></image>
+				<view class="products-inner-price">
+					<view class="fl">
+						<view class="zan"></view>
+						<block wx:if="{{item.products_collect<10000}}">
+							{{item.products_collect}}
+						</block>
+						<block wx:if="{{item.products_collect>10000}}">
+							{{filters.toFixOne(item.products_collect/10000)}}w
+						</block>
+					</view>
+					<view class="fr">￥{{item.products_price}}</view>
+				</view>
+			<view class="list-box" wx:if="{{item.online}}">
+					<view class="listZhibo">直播中</view>
+				</view>
+			</view>
+			<text class="products-inner-name">{{item.products_name}}</text>
+		</view>
+	</view>
+</view>
+<view class="list-bottom" wx:if="{{!hasmore}}">到达底部喽~</view>

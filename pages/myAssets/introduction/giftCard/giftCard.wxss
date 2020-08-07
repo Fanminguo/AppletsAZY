@@ -1,0 +1,8 @@
+/* pages/myAssets/introduction/giftCard/giftCard.wxss */
+.imgBox{
+	width: 100%;
+}
+.imgBox image{
+	width: 100%;
+	display: block;
+}

@@ -1,0 +1,264 @@
+/* pages/success/success.wxss */
+
+page {
+    background: rgba(22, 24, 36, 1);
+}
+
+.commList .commSingle .listBox .loevImg {
+    height: 330rpx;
+}
+
+.commList .commSingle .listBox .loevImg1 {
+    height: 587rpx;
+}
+
+.commList .commSingle .listBox>image {
+    width: 346rpx;
+}
+
+.commList .commSingle .listBox>image {
+    width: 346rpx;
+    max-height: 614rpx;
+    min-height: 346rpx;
+    border-radius: 8rpx 8rpx 0 0;
+}
+
+.commList .commSingle .listBox .likeLove {
+    width: 346rpx;
+    height: 68rpx;
+    font-size: 28rpx;
+    color: rgba(255, 255, 255, 1);
+    line-height: 68rpx;
+    position: absolute;
+    bottom: 7rpx;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 100%);
+	
+}
+
+.commList {
+    padding-top: 20rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.commSingle {
+    width: 346rpx;
+    box-sizing: border-box;
+}
+
+.listBox {
+	background: rgba(255, 255, 255, 0.05);
+    border-radius: 8rpx;
+    overflow: hidden;
+    margin-bottom: 30rpx;
+}
+
+.loveLeft {
+    margin-left: 20rpx;
+}
+
+.loveLeft>image {
+    width: 42rpx;
+    height: 38rpx;
+    position: absolute;
+    top: 19rpx;
+    
+}
+.loveLeft >text {
+  margin-left: 45rpx;
+    }
+    
+.moneyRight {
+    margin-right: 40rpx;
+    font-size: 32rpx;
+}
+
+.introDuce {
+    width: 317rpx;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    margin: 0 auto;
+    font-size: 28rpx;
+    color: rgba(255, 255, 255, 0.9);
+    padding: 22rpx 14rpx 30rpx 15rpx;
+}
+
+.s-dialog-mask {
+    background: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled='true', startColorstr='#BF000000', endColorstr='#BF000000');
+}
+.commList .commSingle .listBox .relative .loevImg {
+    height: 330rpx;
+}
+
+.commList .commSingle .listBox .relative .loevImg1 {
+    height: 587rpx;
+}
+
+.commList .commSingle .listBox .relative>image {
+    width: 346rpx;
+}
+.relative {
+    position: relative;
+}
+
+
+/* .s-dialog-mask image {
+    position: relative;
+    top: 230rpx;
+    left: 9%;
+} */
+
+.s-dialog-mask .top {
+    position: relative;
+    top: 230rpx;
+    left: 9%;
+}
+
+.s-dialog-mask .top .topTitle {
+    font-size: 30rpx;
+    font-family: PingFangSC;
+    font-weight: 500;
+    color: rgba(237, 164, 48, 1);
+    position: absolute;
+    top: 28rpx;
+    left: 210rpx;
+}
+
+.s-dialog-mask .top .number {
+    font-size: 30rpx;
+    font-family: PingFangSC;
+    font-weight: 500;
+    color: rgba(202, 73, 58, 1);
+    position: absolute;
+    top: 115rpx;
+    text-align: center;
+    width: 618rpx;
+
+}
+
+.s-dialog-mask .top .number text {
+    font-size: 61rpx;
+    font-weight: 500;
+    text-shadow: 0px 3rpx 0rpx rgba(252, 194, 48, 0.6);
+}
+
+.s-dialog-mask .top .copywriting {
+    font-size: 28rpx;
+    font-family: PingFangSC;
+    font-weight: 500;
+    color: rgba(202, 73, 58, 1);
+    position: absolute;
+    top: 235rpx;
+    left: 188rpx;
+}
+
+.s-dialog-mask .top .btnKnow {
+    width: 407rpx;
+    height: 80rpx;
+    background: linear-gradient(180deg, rgba(253, 242, 136, 1) 0%, rgba(253, 204, 69, 1) 58%, rgba(253, 201, 62, 1) 79%, rgba(254, 214, 101, 1) 100%);
+    border-radius: 56rpx;
+    border: 1rpx solid rgba(255, 240, 127, 0.57);
+    font-size: 36rpx;
+    font-family: PingFangSC;
+    font-weight: 500;
+    color: rgba(202, 73, 58, 1);
+    text-align: center;
+    line-height: 80rpx;
+    position: absolute;
+    left: 100rpx;
+    bottom: 130rpx;
+}
+
+/*  顶部信息*/
+
+.topInform {
+    width: 750rpx;
+}
+
+.topInform image {
+    width: 89rpx;
+    height: 105rpx;
+    margin-top: 90rpx;
+    margin-left: 189rpx;
+}
+
+.topInform .successText {
+    font-size: 40rpx;
+    font-family: Helvetica;
+    color: rgba(255, 255, 255, 1);
+    text-align: left;
+    margin-bottom: 20rpx;
+    margin-top: 90rpx;
+    margin-left: 33rpx;
+    width: 300rpx;
+}
+
+.topInform .numbeiText {
+    font-size: 36rpx;
+    font-family: PingFangSC;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 1);
+    text-align: center;
+    margin-bottom: 20rpx;
+}
+
+.topInform .numbeiText text {
+    font-size: 50rpx;
+    font-family: PingFangSC;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
+}
+
+.topInform .stateText {
+    font-size: 28rpx;
+    font-family: PingFangSC;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 1);
+    text-align: center;
+    margin-left: 32rpx;
+    margin-bottom: 108rpx;
+}
+.orderThing {
+    margin-bottom: 90rpx;
+}
+.orderThing view {
+	display: inline-block;
+    width: 240rpx;
+    height: 78rpx;
+    border-radius: 8rpx;
+    border: 2rpx solid rgba(255, 255, 255, 0.6);
+    font-size: 30rpx;
+    font-family: PingFangSC;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+	text-align: center;
+	line-height: 78rpx;
+	margin-top: 61rpx;
+}
+.orderThing .left{
+	margin-left: 100rpx;
+	margin-right: 78rpx;
+}
+.recommend{
+	width: 750rpx;
+	height: 40rpx;
+	font-size: 30rpx;
+	text-align: center;
+	color: #fff;
+	background: url(https://bj.aizhiyi.com/wap/test/wap/xcxImg/zhuangshi@2x.png) no-repeat center 100%;
+	background-size: 100%;
+}
+.guanbi image {
+    width: 50rpx;
+    height: 50rpx;
+    margin-left: 36%;
+    margin-top: 22rpx;
+  }

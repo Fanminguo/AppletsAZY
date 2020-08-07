@@ -1,0 +1,2 @@
+/* pages/set/setAccount/modifyWallet/modifyWallet.wxss */
+@import '../wallet/wallet.wxss'

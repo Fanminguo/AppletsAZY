@@ -1,0 +1,261 @@
+/* pages/personalData/personalData.wxss */
+
+/*头像 */
+
+page {
+    background: #161824;
+}
+
+.bjColor {
+    background: rgba(29, 31, 40, 1);
+    width: 750rpx;
+}
+
+.portrait {
+    width: 730rpx;
+    height: 100rpx;
+    border-bottom: 1rpx solid rgba(255, 255, 255, 0.4);
+    margin-left: 20rpx;
+}
+
+.portrait .portraitText {
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 100rpx;
+    float: left;
+    margin-left: 30rpx;
+}
+
+.portrait .portraitImg image {
+    width: 68rpx;
+    height: 68rpx;
+    border-radius: 50%;
+    float: right;
+    margin-right: 70rpx;
+    margin-top: 20rpx;
+}
+
+.portrait .portraitImg text {
+    width: 250rpx;
+    float: right;
+    margin-right: 70rpx;
+    line-height: 100rpx;
+    font-size: 28rpx;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: right;
+    display: block;
+}
+
+.portrait .portraitImg input {
+    width: 250rpx;
+    float: right;
+    margin-right: 70rpx;
+    margin-top: 15rpx;
+    height: 70rpx;
+    font-size: 28rpx;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: right;
+}
+
+.portrait .portraitImg  .code {
+    width: 37rpx;
+    height: 39rpx;
+    float: right;
+    border-radius: 0;
+}
+
+.picker-box {
+    float: right;
+    margin-right: 70rpx;
+    margin-top: 30rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    font-size: 28rpx;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: right;
+    display: block;
+}
+
+/* 家乡 */
+
+.consignee {
+    line-height: 100rpx;
+	margin-left: 20rpx;
+	border-bottom: 1rpx solid rgba(255, 255, 255, 0.4)
+}
+
+.consignee .consigneeName {
+    margin-left: 30rpx;
+    width: 150rpx;
+    font-size: 28rpx;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    float: left;
+}
+
+.consignee .address {
+    height: 100rpx;
+    font-size: 28rpx;
+    font-weight: 400;
+    color: rgba(206, 205, 205, 1);
+    line-height: 100rpx;
+    margin-right: 70rpx;
+    text-align: right;
+}
+
+.consignee .peopleName {
+    width: 380rpx;
+    height: 80rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    color: #d9d6d6;
+    line-height: 80rpx;
+    padding-top: 4rpx;
+    padding-left: 40rpx;
+}
+
+.animation-element-wrapper {
+    z-index: 999;
+}
+
+.animation-element-wrapper {
+    display: flex;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.animation-element {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    height: 470rpx;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.animation-button {
+    margin-top: 20rpx;
+    top: 20rpx;
+    width: 400rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    align-items: center;
+}
+
+.text {
+    color: #999;
+    display: inline-flex;
+    position: fixed;
+    margin-top: 20rpx;
+    height: 50rpx;
+    text-align: center;
+    line-height: 50rpx;
+    font-size: 34rpx;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.left-bt {
+    left: 30rpx;
+}
+
+.right-bt {
+    right: 30rpx;
+}
+
+.line {
+    display: block;
+    position: fixed;
+    height: 1rpx;
+    width: 100%;
+    margin-top: 89rpx;
+    background-color: #eee;
+}
+
+picker-view-column view {
+    font-size: 28rpx;
+    line-height: 28rpx;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+picker-view {
+    padding: 0;
+    width: 100%;
+    height: 380rpx;
+    bottom: 0;
+    position: fixed;
+}
+
+picker-view-column {
+    stylesheet-webkit-flex: 1;
+    flex: 1;
+    position: relative;
+    z-index: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.picker {
+    width: 300rpx;
+    overflow: hidden; /*超出部分隐藏*/
+    white-space: nowrap; /*不换行*/
+    text-overflow: ellipsis; /*超出部分文字以...显示*/
+	line-height: 42rpx;
+
+}
+
+.arrowImg {
+    width: 14rpx;
+    height: 25rpx;
+    background: url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/c1f5e70e358c9ccfede2e52463845d0.png") no-repeat;
+    background-size: 100% 100%;
+    float: right;
+    margin-right: 25rpx;
+    margin-top: 39rpx;
+}
+
+/* .codeImg {
+    margin-right: -67rpx;
+    margin-top: 40rpx;
+}
+
+.nameGender {
+    margin-right: -285rpx;
+    margin-top: 55rpx;
+}
+
+.marRig {
+    margin-right: -272rpx;
+}
+
+
+.ress {
+    margin-right: 30rpx;
+    margin-top: -51rpx;
+} */
+
+.mt30 {
+    margin-top: 30rpx;
+}
+.mt-59{
+	margin-top: -59rpx;
+}
+.mt-64{
+	margin-top: -64rpx;
+}
+.mt-50{
+	margin-top: -50rpx;
+}

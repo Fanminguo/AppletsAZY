@@ -1,0 +1,197 @@
+<!--pages/buy/buy.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<view class="order-cont" wx:if="{{data !=''}}" >
+  <view class="buy-top"></view>
+  <view class="buy-address">
+     <view class="has-address" wx:if="{{data.address_info.true_name}}" bindtap="toaddress">
+       <view class="icon-add"></view>
+       <view class="icon-ri"></view>
+       <view class="buy-address-member clearfix"> 
+         <text>收货人：</text>
+         <text class="true_name">{{data.address_info.true_name}}</text>
+         <text class="mob_phone fr">{{data.address_info.mob_phone}}</text>
+       </view>
+       <view class="buy-address-cont">
+         <text>收货地址：</text>
+         <text>{{data.address_info.area_info}}{{data.address_info.address}}</text>
+       </view>
+     </view>
+     <view class="default-address" wx:if="{{!data.address_info.true_name}}"  bindtap="address">
+        <view class="default-address-icon"></view>
+        <view class="default-address-text">新建收货地址</view>
+     </view>
+  </view>
+  <view class="order-list" wx:for="{{store_cart_list}}" wx:key="index" wx:for-index='key'>
+    <view class="order-top clearfix">
+      <view class="store-name fl"><view class="icon"></view>{{item.store_name}}</view>
+    </view>
+    <view class="order-goods" data-id="{{products.products_id}}" bindtap="goGoods"  wx:for="{{item.products_list}}" wx:key="imdex"  wx:for-item="products">
+       <image class="products-img" src="{{products.products_image_url}}"></image>
+       <view class="products-name"><view class="group_icon" wx:if="{{products.products_promotion_type==10}}">团购</view>
+          <view class="group_icon" wx:if="{{products.products_promotion_type==2}}">限时购</view>{{products.products_name}}</view>
+       <view class="products-js">
+          <!-- <view class="group_icon" wx:if="{{products.groupbuy_hug_info}}">团购</view>
+          <view class="group_icon" wx:if="{{products.xianshi_info && products.xianshi_info !=''}}">抢购</view> -->
+          
+      </view>
+       <view class="products-price" wx:if="{{products.groupbuy_hug_info.products_price}}">￥{{products.groupbuy_hug_info.products_price?products.groupbuy_hug_info.products_price:products.groupbuy_hug_info.products_price2}}<label class="thmoney">￥{{products.products_price}}</label></view>
+      
+       <view class="products-price" wx:elif="{{products.xianshi_info && products.xianshi_info !=''}}">￥{{products.xianshi_info.xianshi_price}}<label class="thmoney">￥{{products.products_yprice}}</label></view>
+       <view wx:else class="products-price">￥{{products.products_price}}</view>
+       <view class="products-num">x{{products.products_num}}</view>
+    </view>
+    <view class="products-express clearfix">
+      <text class="fl">运费</text>
+      <text class="fr" wx:if="{{data.address_api.content[key] == 0}}">包邮</text>
+      <text class="fr" wx:if="{{data.address_api.content[key] != 0}}">￥{{data.address_api.content[key]}}</text>
+    </view>
+    <view class="products-express remarks clearfix">
+       <text class="fl">买家留言:</text>
+       <input type="text" bindinput="updateValue" data-name='{{item.store_id}}' class="fl" placeholder="选填:对本次交易的细节说明"></input>
+    </view>
+    <view class="store-totle clearfix">
+      <view class="fr ">
+        共<text>{{item.storeproductsCount}}</text>件商品 小计<text class="price">￥{{item.storePrice}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="buy-info">
+     <view class="buy-info-dia" wx:if="{{data.voucher_info}}">
+        <view class='dia-icon {{isChooseVoucher ? "active":""}}' bindtap="chooseVoucher"></view>
+        <text class="name">代金券</text>
+        <text class="fr">省{{data.voucher_info.voucher_price}}元（满{{data.voucher_info.voucher_limit}}元减{{data.voucher_info.voucher_price}}元代金券)</text>
+     </view>
+     <view class="buy-info-dia" style="diaplay:none">
+        <view bindtap="chooseGift" data-index="1" class='dia-icon {{isChooseGift ? "active":""}}'></view>
+        <view style="padding:0" bindtap="setAnim3">
+          <text class="name">礼品卡</text>
+          <text class="fr">￥{{new_account ? new_account:data.account_amounts}}</text>
+        </view> 
+     </view>
+     <view class="buy-info-dia">
+        <view bindtap="chooseYici2" class='dia-icon {{isChooseYici ? "active":""}}'></view>
+        <view bindtap="setAnim" style="padding:0">
+          <text class="name">易瓷币</text>
+          <text class="fr" wx:if="{{!isYi}}">￥{{yiciPrice}}</text>
+          <text class="fr" wx:if="{{isYi}}">￥{{data.yici_amounts}}</text>
+        </view>
+     </view>
+  </view>
+  <view class="buy-info">
+     <view class="clearfix">商品金额<text class="fr">￥{{allPrice}}</text></view>
+     <view class="clearfix">运费<text class="fr">￥{{infofoFreight_totals}}</text></view>
+     <view class="clearfix" wx:if="{{voucherPrice!=0}}">代金券立减<text class="fr">-￥{{voucherPrice}}</text></view>
+     <view class="clearfix" wx:if="{{yiciPrice!=0}}">易瓷币<text class="fr">-￥{{yiciPrice}}</text></view>
+     <view class="clearfix" wx:if="{{giftPrice!=0}}">礼品卡<text class="fr">-￥{{giftPrice}}</text></view>
+  </view>
+</view>
+<!-- <view class="address-tap">{{data.address_info.area_info}}{{data.address_info.address}}</view> -->
+<view class="buy-bottom" wx:if="{{data !=''}}">
+  <!-- <view bindtap="getY" class="getY">获取买家留言</view> -->
+  <text class="all-text">共{{productsBum}}件</text>
+  <text class="price">总计￥{{totalPrice}}</text>
+  <view class="pay-btn" bindtap="pay">{{payName}}</view>
+</view>
+<!-- 易瓷币弹窗开始 -->
+<view class="buy-dialog {{an}}">
+   <view class="buy-dialog-mask" bindtap="setAnim"></view>
+      <view class="yici-cont">
+         <view class="yici-cont-info">
+           <view class="yici-cont-top">
+             <view class="buy-close" bindtap="setAnim"></view>易瓷币抵现金额<view class="yici-more" bindtap="yicimore"></view>
+           </view>
+           <view class="yici-cont-center">
+             <view class="yici-center-num">易瓷币余额：<text>{{data.yici_num}}</text>个</view>
+             <view class="coin-num">本次交易最高可用<text>{{totalPrice}}</text>个易瓷币</view>
+             <input class="coin-input" bindinput="yici_num" type="num"  placeholder="请输入要抵现的金额"></input>
+           </view>
+           <!-- <view class="coin-info-rule">
+             <view class="rule-title">使用规则：</view>
+             <view class="rule-text">1.首次使用抵现，易瓷币余额数量大于50个；</view>
+             <view class="rule-text">2.使用易瓷币抵现，小数点后最多输入2位；</view>
+             <view class="rule-text">3.1个易瓷币可抵现金1元。</view>
+           </view> -->
+         </view>
+         <view class="yici-btn" bindtap="yiciCheck">立即抵现</view>
+      </view>
+</view>
+<!-- 易瓷币弹窗结束 -->
+<!-- 添加礼品卡弹窗开始 -->
+<view class="buy-dialog {{an2}}">
+   <view class="buy-dialog-mask" bindtap="setAnim2Close"></view>
+   <view class="gift-add">
+     <view class="gift-add-cont">
+       <view class="yici-cont-top"><view class="buy-close" bindtap="setAnim2Close"></view>添加礼品卡<view class="yici-more" bindtap="yicimore"></view></view>
+       <input type="num" class="gift-add-input" bindinput="gift_num" placeholder="请输入礼品卡12位号码"></input>
+       <view class="yici-cont-text">可在“我的-礼品卡”中查看明细</view>
+       <view class="yici-cont-error">{{gift_error}}</view>
+     </view>
+     <view class="yici-btn" bindtap="gift_add">绑定并使用</view>
+   </view>
+</view>
+<!-- 添加礼品卡弹窗结束 -->
+<!-- 输入礼品卡金额弹窗开始 -->
+<view class="buy-dialog {{an3}}">
+   <view class="buy-dialog-mask" bindtap="setAnim3"></view>
+   <view class="gift-dia">
+       <view class="gift-dia-cont">
+           <view class="yici-cont-top"><view class="buy-close" bindtap="setAnim3"></view>添加礼品卡<view class="yici-more" bindtap="giftmore"></view></view>
+           <view class="gift-cont-info">
+              <view class="gift-dia-infopr">
+                <text>余额￥</text><text>{{data.account_amounts}}</text>
+              </view>
+              <view class="jump-card" bindtap="setAnim2">点击添加礼品卡</view>
+              <!-- <view class="gift-dia-infotext">
+                <view class="title">温馨提示:</view>
+                <view class="p">1、使用礼品卡支付时可以参与爱之依平台的优惠活动</view>
+                <view class="p">2、礼品卡余额不足以支付订单金额时，可以通过其他支付方式补足差额</view>
+              </view> -->
+           </view>
+       </view>
+       <view class="yici-btn" bindtap="chooseGift">确定</view>
+   </view>
+</view>
+<!-- 输入礼品卡金额弹窗结束 -->
+
+<!-- 礼品规则 -->
+<view class="yici-rule-dia" wx:if="{{gift_show}}">
+   <view class="yici-rule">
+      <view class="yici-rule-close" bindtap="giftClose"></view>
+      <view class="yici-rule-title">礼品卡使用规则</view>
+      <view class="yici-rule-cont">
+        <view class="yici-rule-h3">一、礼品卡绑定</view>
+        <view class="yici-rule-p">1. 只能绑定未超出使用时间内的礼品卡  </view>
+        <view class="yici-rule-p">2. 礼品卡绑定成功后，长期有效</view>
+        <view class="yici-rule-p">3. 已绑定过的礼品卡卡密，不能重复绑定 </view>
+        <view class="yici-rule-p">4. 卡密输入错误5次后，24小时内将不能再次绑定礼卡，或联系客服</view>
+        <view class="yici-rule-p">5. 同一个账号，礼品卡可累计绑定</view>
+        <view class="yici-rule-h3">二、礼品卡抵现</view>
+        <view class="yici-rule-p">1. 礼品卡可用于抵现爱之依内所有商品(包含活动商品及运费)</view>
+        <view class="yici-rule-p">2. 礼品卡可与代金券或其它抵现一起使用</view>
+        <view class="yici-rule-p">3. 订单支付时，礼品卡可用余额不足以支付订单中的商品或服务的金额时，可以通过其它支付方式补足差额</view>
+        <view class="yici-rule-p">4. 使用礼品卡抵现购买爱之依商城内的商品订单，不开具发票</view>
+        <view class="yici-rule-p">5. 使用礼品卡抵现的订单，或使用礼品卡和现金、其他抵现一起支付的订单，退款时优先退回礼品卡的金额，其他的抵现和付款金额将沿原路返回到支付账户中</view>
+      </view>
+      <view class="yici-rule-bottom"></view>
+    </view>
+</view>
+<view class="yici-rule-dia" wx:if="{{yici_show}}">
+   <view class="yici-rule">
+      <view class="yici-rule-close" bindtap="yiciClose"></view>
+      <view class="yici-rule-title">易瓷币规则</view>
+      <view class="yici-rule-cont">
+        <view class="yici-rule-h3">一、获取规则</view>
+        <view class="yici-rule-p">1. 完成易瓷币奖励任务后，领取奖励</view>
+        <view class="yici-rule-p">2. 订单实付款大于50元(包含)，根据实付款的金额奖励一定的易瓷币</view>
+        <view class="yici-rule-p">3. 代金券、礼品卡等抵现金额不计算在实付款内 </view>
+        <view class="yici-rule-h3">二、使用规则</view>
+        <view class="yici-rule-p">1.礼品卡可用于抵现爱之依内所有商品(包含活动商品及运费)</view>
+        <view class="yici-rule-p">1.1个易瓷币可抵现1元  </view>
+        <view class="yici-rule-p">2.首次使用易瓷币订单抵现，易瓷币账户中可用余额需累计到50个以上(包含)，才可使用抵现，非首次订单抵现，则不限制 </view>
+        <view class="yici-rule-p">3.首次转出易瓷币，易瓷币账户中可用余额需累计到50个以上(包含)，才可转出，非首次转出易瓷币，则不限制 </view>
+        <view class="yici-rule-p">4.易瓷币转出手续费以具体页面显示为准</view>
+        <view class="yici-rule-p">5.请认真核对钱包地址，若因钱包地址输入错误，造成的损失由个人负责</view>
+      </view>
+      <view class="yici-rule-bottom"></view>
+    </view>
+</view>

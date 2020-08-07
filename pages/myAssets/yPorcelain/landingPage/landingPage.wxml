@@ -1,0 +1,9 @@
+<!--pages/myAssets/yPorcelain/landingPage/landingPage.wxml-->
+<view class="load_wrap" wx:if="{{!hide}}"></view>
+<!-- <view>
+{{article_content}}
+</view> -->
+<view style="background:{{bjFalse==1?'#1b1d27':'#fff'}}">
+	<import src="../../../../wxParse/wxParse.wxml" />
+	<template is="wxParse" data="{{wxParseData:article.nodes}}" />
+</view>
