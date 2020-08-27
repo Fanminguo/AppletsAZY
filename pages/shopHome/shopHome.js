@@ -806,7 +806,7 @@ Page({
     goNotice: function (e) {
         var store_id = e.currentTarget.dataset.store_id
         var notice_id = e.currentTarget.dataset.notice_id
-        navigateTo('./videoNotice/videoNotice?store_id=' + store_id + '&notice_id=' + notice_id + "&home=" + 1)
+        navigateTo('./videoNotice/videoNotice?store_id=' + store_id + '&notice_id=' + notice_id + "&home=" + 1 +'&agent_code='+wx.getStorageSync('agent_code') )
     },
 
     // 收起关闭

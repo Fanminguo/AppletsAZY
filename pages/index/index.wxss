@@ -29,8 +29,7 @@ page {height: 100vh;width: 100vw;position: fixed; background: #000}
     text-overflow:ellipsis;white-space:nowrap; font-size: 28rpx; position: relative }
 .products-bottom-jian text{white-space: nowrap; font-size:28rpx}
   .products-bottom-jian-img{background: url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/tj_maidian.png") no-repeat center center; background-size: 48rpx 48rpx; width: 48rpx; height: 48rpx; position: absolute; left: -5rpx; top: 150rpx; z-index: 500}
-  .products-bottom-jian-img1{background: url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/tj_guanggao@2x.png") no-repeat center center;background-size: 37rpx 37rpx;
-  top:145rpx}
+  .products-bottom-jian-img1{background: url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/tj_guanggao@2x.png") no-repeat center center;background-size: 37rpx 37rpx; top: auto;}
 .nav-list-tab.one{ position: relative; z-index: 20}
 .nav-list-tab.two{ position: relative; z-index: 20}
 
@@ -173,7 +172,7 @@ opacity:0.8;
 .adv-info-icon{ display: inline-block;width:62rpx;height:26rpx;background:rgba(200,198,198,0.9); font-size: 18rpx; text-align: center;
 line-height: 26rpx; margin-left: 15rpx; border-radius: 0 8rpx 8rpx 0; color: #333;}
 .adv-name{ margin-bottom: 20rpx;}
-.adv-info{ line-height: 40rpx; margin-bottom: 11rpx; height: 80rpx;}
+.adv-info{ line-height: 40rpx; margin-bottom: 11rpx;}
 .adv-btn{width:424rpx;height:68rpx;border-radius:6rpx; font-size: 30rpx; text-align: center; line-height: 68rpx;background:rgba(202,73,58,1);}
 .adv-btn1{width:424rpx;height:68rpx;border-radius:6rpx; font-size: 30rpx; text-align: center; line-height: 68rpx;background:rgba(202,73,58,1);}
 .adv-cont{width:498rpx;height:255rpx;background:rgba(255,255,255,1);border-radius:8rpx; position: absolute; left: -600rpx; bottom:152rpx;

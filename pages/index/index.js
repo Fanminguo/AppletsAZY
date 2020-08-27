@@ -538,7 +538,7 @@ Page({
 					that.setData({
 						videos: res.data.datas,
 						qualified: res.data.free_groupbuy_qualified,
-						is_show2: res.data.is_show2,
+						is_show7: res.data.is_show7,
 					})
 					// that.getBehavior()
 
@@ -582,7 +582,7 @@ Page({
 								fiveVOucher: true,
 								voucherTime: that.data.qualified.five_end_time,
 							})
-						}wx.re
+						}
 						if ((is_group_cust == "2" || cknew == "1") && (cktime > timestamp)) { //新人代金券
 							if(app.globalData.isYes==true){
 								getApp().globalData.isYes=false 
@@ -1269,6 +1269,7 @@ Page({
 		this.setData({
 			topHeight: wx.getMenuButtonBoundingClientRect().top,
 		})
+		custIndex(wx.getStorageSync('key'),this)
 		var mythis = this
 		// if (wx.getStorageSync('key')) {
 		// 	mythis.setData({
@@ -2158,3 +2159,16 @@ function addReview(comment_id, key, page, rows, mythis) {
 
 }
 
+
+// 个人资料
+function custIndex(key, mythis) {
+	let prams = {
+	  key: wx.getStorageSync('key')
+	}
+	http.postRequest(app.globalData.apiUrl + '/cli/CustIndex/index', prams,
+	  function (res) {
+		wx.setStorageSync('cust_id', res.datas.cust_info.cust_id);
+	  },
+	)
+  }
+  

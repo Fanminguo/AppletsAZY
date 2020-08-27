@@ -1,9 +1,11 @@
 <view class="load_wrap" wx:if="{{!hide}}"></view>
+<canvas-item wx:if="{{hideCanvas}}" id="canvas-demo"></canvas-item>
+<canvas class="myQrcode" canvas-id="myQrcode"></canvas>
 <view>
 
 	<!-- 店铺信息 -->
 	<view class="head-store" style="top:{{topHeight}}px">
-		<image src="{{store_info.store_avatar}}"></image>
+		<image src="{{store_info.store_avatar}}" bindtap="goHome"></image>
 		<view class="head-store-text" bindtap="goLive">
 			<view>{{store_info.store_name}}</view>
 			<view>{{store_info.store_collect}}粉丝 | {{anchornotice_info.notice_address!=''?anchornotice_info.notice_address:'火星'}}</view>
@@ -17,7 +19,7 @@
 		<!-- <view  class="fl {{!follow? 'follow':'follow active'}}" wx:elif="{{status == 2}}" bindtap="gostatus2" >看直播</view> -->
 		<view  class="fl {{!follow? 'follow':'follow active'}}" wx:elif="{{status==0 || status==2}}" bindtap="menuClick" data-store_id="{{store_info.store_id}}" data-num="1">{{SearchText}}</view>
 	</view>
-	<view class="exit" style="top:{{topHeight+48}}px" bindtap="byeReturn"></view>
+	<view class="exit" style="top:{{topHeight+10}}px" bindtap="byeReturn"></view>
 	<!-- 视频 -->
 	<view style="position: relative;height:100%" wx:if="{{anchornotice_info.notice_video}}">
 		<video id="videoplayer" bindtap="doubleClick" bindended="bindended2" bindplay='bindplay' bindwaiting="bindwaiting" custom-cache="{{false}}"   enable-progress-gesture="false" loop="{{loop}}" controls="{{controls}}" style="height: 100vh;width: 100vw;position: absolute;top: 0;left: 0;" objectFit="cover" src="{{anchornotice_info.notice_video}}" autoplay="true" bindtimeupdate="videoUpdate"></video>
@@ -30,7 +32,7 @@
 	</view>
 	<view style="position: relative;height:100vw;width: 100vw;" class="back-img" wx:else>
 		<!-- <image mode="aspectFit" style="width:100%;height:100%" src="{{anchornotice_info.notice_image}}"></image> -->
-		<image src="{{anchornotice_info.notice_image}}" mode="aspectFill" style="height: 100vh;width: 100vw;display: block;"></image>
+		<image src="{{anchornotice_info.notice_image}}" mode="aspectFill" style="height: 100vh;width: 100%;display: block;"></image>
 	</view>
 	<!-- 底部弹出框 -->
 	<!-- <view class="products-bottom-name-chakan" data-store_id="{{store_id}}" data-notice_id="{{notice_id}}" bindtap="shoplist">
@@ -42,7 +44,17 @@
 		<view wx:if="{{caetNum > 9}}" class="cartNum">{{caetNum}}</view>
 	</view> -->
 
-	<button open-type='share' data-id="" class='share'></button>
+	<!-- <button open-type='share' data-id="" class='share'></button> -->
+	<!-- 分享 -->
+	<view class='share' bindtap="shareShow"></view>
+	<!-- 海报 -->
+	<view class="shareExit" wx:if="{{shareHide}}" bindtap="shareturn"></view>
+	<view class="shareHaibao" wx:if="{{shareHide}}">
+		<!-- <view class="shareExit"  bindtap="shareturn"></view> -->
+		<view class="haiText">分享至</view>
+		<button open-type='share' data-id="" class="haibaoBtn">分享好友</button>
+		<view class="baocun" bindtap="saveimg">保存海报</view>
+	</view>
 	<!-- 商品弹出框-->
 	<view class="list-dialog {{an}}">
 		<view class="list-dialog-bj" bindtap="closebj"></view>

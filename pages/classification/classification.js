@@ -70,7 +70,13 @@ Page({
         })
         topList(mythis.data.num, mythis.data.page, mythis.data.rows, mythis)
     },
-
+    goBanner:function(){
+        if(this.data.bannerImg.banner_title == "代言人"){
+            navigateTo("/pages/myAssets/introduction/spokesman/spokesman")
+        }else if(this.data.bannerImg.banner_title == "区块链+电商"){
+            navigateTo("/pages/myAssets/introduction/blockchain/blockchain")
+        }
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

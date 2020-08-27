@@ -140,7 +140,7 @@ Page({
 function successOrder(key, pay_sn, mythis) {
     let parms = {
         key: wx.getStorageSync('key'),
-        pay_sn: '200649361127416977'
+        pay_sn: pay_sn
     }
     http.postRequest(app.globalData.apiUrl + '/cli/Index/shouldYici', parms,
         (res) => {

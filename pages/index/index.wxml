@@ -111,7 +111,15 @@
 		<view class="adv-info-icon">广告</view>
 	</view>
 	<view class="products-bottom-jian-img {{videos[videoIndex].ad_id?'products-bottom-jian-img1':''}}"></view>
-	<view class="products-bottom-jian" catchtap="" bindtap="ad_xiangqing" data-url='{{videos[videoIndex].jump_url}}'>{{videos[videoIndex].ad_titledescription}}</view>
+	<view class="products-bottom-jian" catchtap="" bindtap="ad_xiangqing" data-url='{{videos[videoIndex].jump_url}}'>
+		<view class="example">
+			<view class="marquee_box">
+				<view class="marquee_text" style="{{orientation}}:{{marqueeDistance2}}px;font-size: {{size}}px;">
+            {{videos[videoIndex].ad_titledescription}}{{videos[videoIndex].ad_titledescription}}{{videos[videoIndex].ad_titledescription}}{{videos[videoIndex].ad_titledescription}}{{videos[videoIndex].ad_titledescription}}{{videos[videoIndex].ad_titledescription}}{{videos[videoIndex].ad_titledescription}}{{videos[videoIndex].ad_titledescription}}{{videos[videoIndex].ad_titledescription}}{{videos[videoIndex].ad_titledescription}}{{videos[videoIndex].ad_titledescription}}{{videos[videoIndex].ad_titledescription}}{{videos[videoIndex].ad_titledescription}}{{videos[videoIndex].ad_titledescription}}{{videos[videoIndex].ad_titledescription}}{{videos[videoIndex].ad_titledescription}}{{videos[videoIndex].ad_titledescription}}{{videos[videoIndex].ad_titledescription}}{{videos[videoIndex].ad_titledescription}} 
+				</view>
+			</view>  
+		</view>	
+	</view>
 	<view class="adv-btn" bindtap="ad_xiangqing" data-url='{{videos[videoIndex].jump_url}}'>查看详情</view>
 	<view class="adv-btn1" wx:if="{{closeData}}" bindtap="ad_xiangqing" data-url='{{videos[videoIndex].jump_url}}'>查看详情</view>
 </view>
@@ -170,10 +178,10 @@
 		</block>
 	</view>
 	<view class="video_dialog" catchtouchmove="aaa"></view>
-	<block wx:if="{{is_show2}}">
+	<block wx:if="{{is_show7}}">
 		<image class="showImg" src="{{videos[videoIndex].video_thum}}"></image>
 	</block>
-	<block wx:if="{{!is_show2}}">{{!videos[videoIndex].ad_id?'false':'true'}}
+	<block wx:if="{{!is_show7}}">{{!videos[videoIndex].ad_id?'false':'true'}}
 
 		<video poster="{{videos[videoIndex].video_thum}}" class="vvideo" bindtimeupdate="bindtimeupdate" bindwaiting="bindwaiting" id="kdvideo" binderror="binderror" autoplay="{{autoplay}}" hidden="{{animationShow}}" objectFit="cover" src="{{!videos[videoIndex].ad_id?videos[videoIndex].video_name:videos[videoIndex].ad_video}}" bindplay="bindplay" controls="{{controls}}" bindended="bindended2" loop="{{videos[videoIndex].ad_id?false:true}}"></video>
 
@@ -332,7 +340,7 @@
 </view>
 <view class="collection" wx:if="{{show_coll}}" style="top:{{topHeight+45}}px">添加小程序 购物不迷路<view class="coll-icon" bindtap="hideColl"></view></view>
 
-<view class="code-cont" wx:if="{{loadApp}}">
+<view class="code-cont" wx:if="{{loadApp}}" style="display:none">
    <view class="code-bj" bindtap="guanbiLoad"></view>
    <view class="code-close" bindtap="guanbiLoad"></view>
    <view class="code-img"></view>

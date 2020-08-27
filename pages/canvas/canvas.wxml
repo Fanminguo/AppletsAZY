@@ -1,0 +1,5 @@
+<canvas class="myQrcode" canvas-id="myQrcode"></canvas>
+
+	<view class="box" style="top:{{topHeight}}px">
+		<canvas  class='demo' style="width:100%;height:100%;" canvas-id='canvas-demo' ></canvas>
+	</view>

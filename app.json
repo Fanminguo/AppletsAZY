@@ -1,6 +1,11 @@
 {
 	"pages": [
+
 		"pages/index/index",
+		"pages/demo/demo",
+
+		"pages/canvas/canvas",
+
 
 		"pages/myAssets/introduction/spokesman/spokesman",
 
@@ -41,7 +46,6 @@
 		"pages/getUserInfo/getUserInfo",
 		"pages/refundRefund/refundOrder/refundOrder",
 		"pages/evaluationTow/evaluationTow",
-		"pages/demo/demo",
 		"pages/groupOrder/groupList/groupList",
 		"pages/limit/limit",
 		"pages/logistics/logistics",

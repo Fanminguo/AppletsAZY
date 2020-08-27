@@ -25,9 +25,9 @@
 <view class="bottom-report {{is_showReport}}" style="top:{{topHeight+48}}px" bindtap="showReport" style="display:none" ></view>
 <view class="report-bj" bindtap="showReport" wx:if="{{is_showReport}}"></view>
 <view class="report" bindtap="goreport" style="top:{{topHeight+86}}px" wx:if="{{is_showReport}}">举报</view>
-<!-- <view class="load_app" bindtap="loadApp"></view> send-message-path="https://bj.aizhiyi.com/wap/images/me_icon/name62.png"  send-message-img="https://bj.aizhiyi.com/wap/images/me_icon/name62.png" show-message-card="true" send-message-title="爱之依"   open-type='contact' plain -->
- <button class="load_app" bindtap="loadApp" wx:if="{{goodsAn!='active' && closeApp}}"></button>
- <view class="closeApp" bindtap="closeApp" wx:if="{{goodsAn!='active' && closeApp}}"></view>
+<button style="display:none" class="load_app"send-message-path="https://bj.aizhiyi.com/wap/test/wap/xcxImg/1-3.jpg"  send-message-img="https://bj.aizhiyi.com/wap/test/wap/xcxImg/1-3.jpg" show-message-card="true" send-message-title="下载【爱之依app】"   open-type='contact' plain> </button>
+ <!-- <button class="load_app" bindtap="loadApp" wx:if="{{goodsAn!='active' && closeApp}}"></button>
+ <view class="closeApp" bindtap="closeApp" wx:if="{{goodsAn!='active' && closeApp}}"></view> -->
 <view class="list-dialog {{an}}">
    <view class="list-dialog-bj" catchtap="closebj"></view>
    <view class="live-list">
@@ -121,19 +121,19 @@
 </view>
 <view class="live-bottom" wx:if="{{!is_hideBottom}}">
    <view class="newsNum" wx:if="{{newsNum}}" bindtap="gobottom">{{newsNum}}条新消息</view>
-   <view class="shop-list" bindtap="shoplist"><view class="shoplist-num">{{goodsList.products_basket_count}}</view></view>
+   <view class="shop-list" bindtap="shoplist"><view class="shoplist-num" wx:if="{{goodsList.products_basket_count>0}}">{{goodsList.products_basket_count}}</view></view>
    <view class="chat">
       <view class="chat-jia" bindtap="showInput">{{inputText}}</view>
    </view>
    <!-- <view class="bottom-report {{is_showReport ? 'active' : ''}}" bindtap="showReport" ></view>
    <view class="report-bj" bindtap="showReport" wx:if="{{is_showReport}}"></view>
-   <view class="report" bindtap="goreport" wx:if="{{is_showReport}}">举报</view> -->
-   <view class="kefuCode" wx:if="{{kefuUrl}}" bindtap="kefuCode"></view>
+   <view class="report" bindtap="goreport" wx:if="{{is_showReport}}">举报</view> wx:if="{{kefuUrl}}" -->
+   <view class="kefuCode" wx:if="{{kefuUrl}}"  bindtap="kefuCode"></view>
    <view class="gocart" bindtap="gocart">
     <view wx:if="{{caetNum > 0 && caetNum<=9 }}" class="cartNum2">{{caetNum}}</view>
 		<view wx:if="{{caetNum > 9}}" class="cartNum">{{caetNum}}</view>
    </view>
-   <button open-type='share' data-id="" class='share'></button>
+   <button bindtap="shareShow" class='share'></button>
    <view class="flowers-cont">
     <view class="listImg">
         <block wx:for="{{list}}" wx:key="index">
@@ -159,6 +159,20 @@
     <view class="chat-goods-close" bindtap="delGoods" data-index="{{index}}"></view>
 </view>
 <!-- 弹出商品结束 -->
+<!-- 弹出代金券 -->
+<view class="chat-voucher {{goodsAn}}" wx:if="{{ischatVoucher}}">
+   <view class="voucher-inner-top clearfix">
+      <view class="voucher-inner-price fl">
+          <label class="one">￥</label><label class="two">{{voucher_t_price}}</label>
+      </view>
+      <view class="voucher-inner-text fl">
+        <view class="voucher-inner-text-title">{{storeInfo.store_name}}</view>
+        <view class="voucher-inner-text-price">满{{voucher_t_limit}}元可用</view>
+      </view>
+      <view class="chat-goods-close" bindtap="delGoods"></view>
+  </view>
+  <view class="voucher-btn2" bindtap="getVoucher">{{voucherText}}</view>
+</view>
 <!-- 聊天室 -->
 <!--    wx:if="{{!hideCode && isOnline}}"  -->
 
@@ -348,12 +362,31 @@
 			<view class="team-list-last buy2"  bindtap='getgoods' >下一步</view>
 		</view>
 	</view>
-  <!-- 客服二维码 -->
+  <!-- 客服二维码   <image src="{{kefuUrl}}">"-->
   <view class="kefuCode-bg" wx:if="{{isKefuCOde}}">
-     <view class="kefuCode-cont"><image src="{{kefuUrl}}"></image></view>
-     <view class="kefuCode-text">
-       <label>截图后微信扫一扫</label>
-       <label>添加专属客服</label>
+     <view class="kefuCode-cont">
+       <view class="kefuCode-text">
+         <view class="kefuCode-text-one">微信群二维码</view>
+         <view class="kefuCode-text-two">加入群聊获取更优质服务</view>
+         <view class="kefuCode-text-three">为您创建更好的线上交流</view>
+       </view>
+       <image src="{{kefuUrl}}"></image>
+       <view class="kefuCode-text-four">截图保存 微信扫码添加</view>
+       <view class="code-close" bindtap="closeKefuCode"></view>
      </view>
-     <view class="code-close" bindtap="closeKefuCode"></view>
+     
   </view>
+  <view class="shareDialog" wx:if="{{isshareDialog}}">
+     <view class="shareDialog-bg" catchtap="hideShare"></view>
+     <view class="shareDialog-cont">
+        <view class="shareDialog-title">分享至</view>
+        <button open-type='share' class="share-btn friend fl"><view class="share-icon"></view>微信好友</button>
+        <view class="share-btn poster fr" bindtap="saveimg"><view class="share-icon"></view>保存海报</view>
+     </view>
+  </view>
+  <canvas-item id="canvas-demo" wx:if="{{hideCanvas}}"></canvas-item>
+  <canvas class="myQrcode" canvas-id="myQrcode"></canvas>
+  <!-- <canvas class="myQrcode" canvas-id="myQrcode" style="opacity:0;"></canvas> 
+<view class="box">
+	<canvas canvas-id='canvas-demo' class='demo' style="width:100%;height:100%;border-radius:20rpx;background:#fff"      bindtap="saveimg"></canvas>
+</view> -->

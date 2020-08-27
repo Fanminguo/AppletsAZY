@@ -458,7 +458,7 @@
 	</view>
 
 	<!-- 弹窗下载app -->
-	<view class="loadApp" bindtap="goLoad" wx:if="{{newcust}}">
+	<view class="loadApp" bindtap="goLoad" wx:if="{{newcust}}" style="display:none">
 	   <view class="loadApp-text">
 		    <view class="h3">160元</view>
 				<view class="h4">新人专属礼包</view>
@@ -467,8 +467,8 @@
 		   <view class="loadApp-circle-text">立即领取</view>
 		 </view>
 	</view>
-	<view class="loadApp2" bindtap="goLoad" wx:if="{{newcust}}"></view>
-	<view class="code-cont" wx:if="{{loadTc}}">
+	<view class="loadApp2" bindtap="goLoad" wx:if="{{newcust}}" style="display:none"></view>
+	<view class="code-cont" wx:if="{{loadTc}}" style="display:none">
 		<view class="code-bj" bindtap="closeLoad"></view>
 		<view class="code-close" bindtap="closeLoad"></view>
 		<view class="code-img"></view>

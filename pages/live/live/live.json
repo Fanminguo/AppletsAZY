@@ -1,8 +1,10 @@
 {
-  "usingComponents": {},
   "navigationStyle": "custom",
   "disableScroll":true,
-  "enablePullDownRefresh":false
+  "enablePullDownRefresh":false,
+  "usingComponents": {
+    "canvas-item":"../../canvas/canvas"
+  } 
   
   
 }

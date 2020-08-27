@@ -72,7 +72,7 @@ Page({
                 keyword: mythis.data.keyword
             })
         }
-        listNum(this.data.page, this.data.rows, mythis.data.keyword, mythis.data.pc_id, mythis.data.search_type, mythis)
+        listNum(mythis.data.page, mythis.data.rows, mythis.data.keyword, mythis.data.pc_id, mythis.data.search_type, mythis.data.voucherId, mythis)
     },
 
 

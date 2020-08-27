@@ -135,11 +135,12 @@ page {
 
 /* 按钮颜色 */
 
-/* 
+
 .color {
-    color: #d33d3c !important;
-    border: 1rpx solid #d33d3c;
-} */
+    color: #fff !important;
+    border: 1rpx solid #d33d3c  !important;
+    background-color:#d33d3c !important ;
+}
 
 /* 退款退货中 */
 

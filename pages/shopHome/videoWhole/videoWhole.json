@@ -1,3 +1,7 @@
 {
-  "navigationStyle": "custom"
+  "navigationStyle": "custom",
+  "component": true, 
+  "usingComponents": {
+    "canvas-item":"../../canvas/canvas"
+  } 
 }

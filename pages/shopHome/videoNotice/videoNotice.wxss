@@ -97,3 +97,74 @@
   margin-left: 0;
 
 }
+
+/*  canvas*/
+/* 底部分享海报 */
+.shareHaibao{
+  width: 100vw;
+  height: 225rpx;
+  background-color: #1B1D27;
+  border-radius:26rpx 26rpx 0px 0px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99999;
+}
+.haibaoBtn{
+  background: url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/10----.png") no-repeat 16rpx center;
+  background-size: 50rpx;
+  margin-bottom: 5rpx;
+  color: #fff;
+  position: absolute;
+  top: 100rpx;
+  left: 122rpx;
+  background-color: #00C710;
+  font-size: 30rpx;
+  padding: 1rpx 21rpx 1rpx 75rpx;
+  height: 68rpx;
+  line-height: 68rpx;
+  border-radius:34px;
+}
+.baocun{
+  background: url("https://bj.aizhiyi.com/wap/test/wap/xcxImg/2--------.png") no-repeat 16rpx center;
+  background-size: 50rpx;
+  margin-bottom: 5rpx;
+  font-size: 30rpx;
+  color: #fff;
+  position: absolute;
+  top: 100rpx;
+  right: 122rpx;
+  background-color: #F4DD3B;
+  padding: 1rpx 21rpx 1rpx 75rpx;
+  height: 68rpx;
+  line-height: 68rpx;
+  border-radius:34px;
+}
+.haiText{
+  width: 100vw;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 30rpx;
+}
+.shareExit {
+ position: fixed;
+ top: 0;
+ left: 0;
+ bottom: 0;
+ right: 0;
+ width: 100%;
+ height: 100%;
+ background: rgba(0, 0, 0, .7);
+ z-index:998;
+}
+
+/* 二维码 */
+.myQrcode {
+position: absolute;
+opacity: 0;
+left: -200rpx;
+top: -200rpx;
+}

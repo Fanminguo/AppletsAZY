@@ -1,4 +1,5 @@
 <wxs module="filters" src="../../../utils/filters.wxs"></wxs>
+<canvas-item wx:if="{{hideCanvas}}" id="canvas-demo"></canvas-item>
 <view>
 	<!--pages/shopHome/videoWhole/videoWhole.wxml-->
 	<view class="load_wrap" wx:if="{{!hide}}"></view>
@@ -12,10 +13,10 @@
 		<!-- <view class="head-store-follow" bindtap="followStore" wx:if="{{!is_followStore}}">关注</view> -->
 		<!-- <view class="followStore-dialog" bindtap="followStore" wx:if="{{!is_followStore && is_followDialog}}"></view> -->
 	</view>
-	<view class="exit" style="top:{{topHeight+48}}px" bindtap="byeReturn"></view>
+	<view class="exit" style="top:{{topHeight+10}}px" bindtap="byeReturn"></view>
 	<view style="position: relative">
 		<view style="position: relative;height:100%" wx:if="{{video_info.uri}}">
-			<video id="videoplayer" bindtap="doubleClick" bindplay='bindplay' bindwaiting="bindwaiting" custom-cache="{{false}}"  enable-progress-gesture="{{gesture}}" loop="{{loop}}" controls="{{controls}}" style="height: 100vh;width: 100vw;position: absolute;top: 0;left: 0;" objectFit="cover" src="{{video_info.uri}}" autoplay="true" bindtimeupdate="videoUpdate"></video>
+			<video id="videoplayer" bindtap="doubleClick" bindplay='bindplay' bindwaiting="bindwaiting" custom-cache="{{false}}" enable-progress-gesture="{{gesture}}" loop="{{loop}}" controls="{{controls}}" style="height: 100vh;width: 100vw;position: absolute;top: 0;left: 0;" objectFit="cover" src="{{video_info.uri}}" autoplay="true" bindtimeupdate="videoUpdate"></video>
 			<view class='process-container'>
 				<view class='slider-container'>
 					<slider bindchange="sliderChange" bindchanging="sliderChanging" blockSize="20" step="1" value="{{sliderValue}}" backgroundColor="#B7B7B7" activeColor="#FFFFFF" block-color="#F3F3F6" />
@@ -35,8 +36,16 @@
 		<view wx:if="{{caetNum > 0 && caetNum<=9 }}" class="cartNum2">{{caetNum}}</view>
 		<view wx:if="{{caetNum > 9}}" class="cartNum">{{caetNum}}</view>
 	</view>
-
-	<button open-type='share' data-id="" class='share'></button>
+	<!-- 分享 -->
+	<view class='share' bindtap="shareShow"></view>
+	<!-- 海报 -->
+	<view class="shareExit" wx:if="{{shareHide}}" bindtap="shareturn"></view>
+	<view class="shareHaibao" wx:if="{{shareHide}}">
+		<!-- <view class="shareExit"  bindtap="shareturn"></view> -->
+		<view class="haiText">分享至</view>
+		<button open-type='share' data-id="" class="haibaoBtn">分享好友</button>
+		<view class="baocun" bindtap="saveimg">保存海报</view>
+	</view>
 	<!-- 商品弹出框-->
 	<view class="list-dialog {{an}}">
 		<view class="list-dialog-bj" bindtap="closebj"></view>
@@ -164,3 +173,4 @@
 
 
 </view>
+<canvas class="myQrcode" canvas-id="myQrcode"></canvas>

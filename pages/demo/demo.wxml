@@ -1,4 +1,4 @@
-<view>
+<!-- <view>
   <image src="{{img}}" class='bgImg'></image>
   <text class='mine'>我的邀请码</text>
   <text class='code'>{{code}}</text>
@@ -14,10 +14,7 @@
     <button class='zfbtn m_l' bindtap='formSubmit'><image src="{{quan}}" class='img'></image></button>
   </view>
 
-  <!--生成海报  -->
-   <!-- <view class="img-box">
-        
-    </view> -->
+
     <view class='imagePathBox' hidden="{{maskHidden == false}}">
       <image src="{{imagePath}}" class='shengcheng'></image>
       <button class='baocun' bindtap='baocun'>保存相册，分享到朋友圈</button>
@@ -26,4 +23,8 @@
   <view class="canvas-box">
       <canvas  style="width: 375px;height: 667px;position:fixed;top:9999px" canvas-id="mycanvas"/>
   </view>  
+</view> -->
+<canvas class="myQrcode" canvas-id="myQrcode" style="opacity:0;"></canvas>
+<view class="box">
+	<canvas canvas-id='canvas-demo' class='demo' style="width:100%;height:100%;border-radius:20rpx;"      bindtap="saveimg"></canvas>
 </view>

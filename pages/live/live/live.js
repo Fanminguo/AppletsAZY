@@ -1,6 +1,7 @@
 // pages/live/live/live.js
 const app = getApp()
 import navigateTo from "../../../utils/navigateRoute.js"
+import QRCode from '../../../utils/weapp-qrcode.js';
 const util = require('../../../utils/util.js')
 const RongIMLib = require('../../../utils/RongIMLib-3.0.3-dev.js');
 // const RongIMEmoji = require('../../../utils/RongEmoji-2.2.7.js');
@@ -83,7 +84,7 @@ Page({
     choose_num: "5",
     playerS:true,
     closeApp:true,
-    isKefuCOde:false,//显示客服二维码
+    hideCanvas:false
    
     
   },
@@ -133,7 +134,6 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    
     wx.getNetworkType({
       success: function(res) {
         that.setData({
@@ -192,6 +192,7 @@ Page({
       that.getCartNum();
     }
     that.quertStore();
+    
     that.setData({
       is_followDialog: true,
       isIphoneX: isIphoneX,
@@ -220,6 +221,108 @@ Page({
     // that.queryData();
     // that.queryGoodsList()
   },
+  //分享
+  goshare:function(){
+    this.setData({
+      isshareDialog:true
+    })
+  },
+  hideShare:function(){
+    this.setData({
+      isshareDialog:false,
+      hideCanvas: false,
+      shareHide: false
+    })
+    wx.hideLoading()
+  },
+  // 生成海报开始
+
+  code: function (e) {
+    var that = this
+    new QRCode('myQrcode', {
+            text: "https://bj.aizhiyi.com/live/?store_id="+that.data.store_id + "&agent_code="+wx.getStorageSync('agent_code')+"&notice_id="+that.data.notice_id,
+            width: 77,
+            height: 77,
+            padding: 1, // 生成二维码四周自动留边宽度，不传入默认为0
+            // correctLevel: QRCode.CorrectLevel.L, // 二维码可辨识度
+            callback: (res) => {
+                console.log("https://bj.aizhiyi.com/live/?store_id="+that.data.store_id + "&agent_code="+wx.getStorageSync('agent_code')+"&is_share=yes"+"&notice_id="+that.data.notice_id)
+                that.setData({
+                    hide: true,
+                    posetrCodeUrl: res.path
+                })
+            }
+        })
+    },
+    // 保存海报
+    saveimg: function () {
+        this.canvas = this.selectComponent("#canvas-demo"); //组件的id
+        this.saveimg2()
+    },
+    // 保存海报
+    saveimg2() {
+        this.canvas.saveimg(); //
+        this.setData({
+          hideCanvas: false,
+          shareHide: false,
+          isshareDialog:false
+        })
+    },
+    // 关闭
+    shareturn: function () {
+        this.setData({
+            hideCanvas: false,
+            shareHide: false
+        })
+        wx.hideLoading()
+    },
+    // 展示海报
+    shareShow: function () {
+        if (!wx.getStorageSync('key')) {
+          setTimeout(function () {
+            navigateTo('../../getUserInfo/getUserInfo?is_live='+ true +'&store_id=' + that.data.store_id+"&notice_id="+that.data.notice_id)
+          }, 500)
+          return;
+        }
+        this.setData({
+            hideCanvas: true,
+            shareHide: true,
+            isshareDialog:true
+        })
+        
+        this.canvas = this.selectComponent("#canvas-demo"); //组件的id
+        this.adaptation()
+    },
+
+    // 适配
+    adaptation() {
+        // 画canvas所需要的数据
+        // posetrCodeUrl页面二维码
+        // type= 1回放 2= 预告 3 = 直播
+        // kf_qr_img  客服二维码
+        // transverse_notice_image   海报banner
+        // store_name店铺名称
+        // store_avatar 店铺头像
+        // store_collect  粉丝数量
+        // notice_title 标题
+        // cust_nickname分享人
+        // cust_avatar  分享人头像
+        // fans 观看人数
+        // item 开播时间
+        var shareName;
+        if(nickname.length<=4){
+          shareName=nickname
+        }else{
+          shareName=nickname.substr(0, 2)+"**"
+        }
+        console.log(this.data.posetrCodeUrl)
+        this.canvas.adaptation(this.data.posetrCodeUrl, 3, this.data.kefuUrl, this.data.shareImg, this.data.storeInfo.store_name, this.data.storeInfo.store_avatar, this.data.storeInfo.store_collect, this.data.notice_title, shareName, avater, this.data.Audience);
+
+
+        // this.canvas.adaptation(this.data.posetrCodeUrl, 2, this.data.anchornotice_info.kf_qr_img, this.data.anchornotice_info.transverse_notice_image, this.data.store_info.store_name, this.data.store_info.store_avatar, this.data.store_info.store_collect, this.data.anchornotice_info.notice_title, this.data.anchornotice_info.cust_nickname, this.data.anchornotice_info.cust_avatar, '', this.data.formatTwo); this.data.notice_title
+    },
+
+  // 生成海报结束
   goPlayBack:function(){
     if(this.data.liveTime=="点击查看直播回放>"){
       // navigateTo('../../shopHome/videoWhole/videoWhole?notice_id='+this.data.notice_id+"&store_id="+this.data.store_id)
@@ -461,27 +564,52 @@ Page({
           return;
         }
         if(message.messageType == "RCChatroomAnchorMessage" || message.messageType == "RCChatroomUserMessage") {//聊天室主播和观众
-          
-
-          
-          var goodsmsg = message.content.msg
-          message.content.msg=RongEmoji.symbolToEmoji(RongEmoji.emojiToSymbol(goodsmsg))
-          // that.setData({
-          //   newList: that.data.newList.concat(message),
-          // })
-          var length = that.data.newList.length;
-          if(length>40){
-            //  var list=that.data.newList.splice(0, 1)
-            //  console.log(list)
-             that.setData({
-              newList:that.data.newList.splice(1).concat(message),
-             })
-            //  console.log( that.data.newList.length+"]]]")
-          }else{
-            that.setData({             
-              ['newList[' + that.data.newList.length + ']']: message           
-           });
+          // console.log(message.content.msg+Date.parse(new Date()))
+         //去重开始
+          for( var i=0;i<that.data.newList.length;i++){
+             if(that.data.newList.indexOf(message)>-1){
+               //console.log("存在====="+that.data.newList.indexOf(message)+"==="+message.content.msg)
+             }else{
+               //console.log("======="+that.data.newList.indexOf(message)+"==="+message.content.msg)
+              var goodsmsg = message.content.msg
+              message.content.msg=RongEmoji.symbolToEmoji(RongEmoji.emojiToSymbol(goodsmsg))
+              // that.setData({
+              //   newList: that.data.newList.concat(message),
+              // })
+              var length = that.data.newList.length;
+              if(length>40){
+                //  var list=that.data.newList.splice(0, 1)
+                //  console.log(list)
+                 that.setData({
+                  newList:that.data.newList.splice(1).concat(message),
+                 })
+                //  console.log( that.data.newList.length+"]]]")
+              }else{
+                that.setData({             
+                  ['newList[' + that.data.newList.length + ']']: message           
+               });
+              }
+             }
           }
+         //去重结束
+          // var goodsmsg = message.content.msg
+          // message.content.msg=RongEmoji.symbolToEmoji(RongEmoji.emojiToSymbol(goodsmsg))
+          // // that.setData({
+          // //   newList: that.data.newList.concat(message),
+          // // })
+          // var length = that.data.newList.length;
+          // if(length>40){
+          //   //  var list=that.data.newList.splice(0, 1)
+          //   //  console.log(list)
+          //    that.setData({
+          //     newList:that.data.newList.splice(1).concat(message),
+          //    })
+          //   //  console.log( that.data.newList.length+"]]]")
+          // }else{
+          //   that.setData({             
+          //     ['newList[' + that.data.newList.length + ']']: message           
+          //  });
+          // }
           // console.log(that.data.newsList.indexOf(message))
           if(is_bottom){
             //  that.gobottom()
@@ -543,7 +671,10 @@ Page({
             inputText: "您已经被禁言",
           })
         }else if(message.messageType=="RCChatroomProMessage"){//商品信息
+          
+
           that.setData({
+              ischatVoucher:false,
               goodsInfo:message,
               goodsAn:"active"
           })
@@ -571,6 +702,20 @@ Page({
         //      newsNum:newsNum
         //     })
         //  }
+        }else if(message.messageType=="RCChatroomVoucherShow"){//代金券
+          that.setData({
+            goodsInfo:"",
+            ischatVoucher:true,
+            goodsAn:"active",
+
+          })
+          clearTimeout(Interval);
+          var Interval = setTimeout( function(){
+              that.setData({
+                ischatVoucher:false,
+                goodsAn:""
+              })
+            },30000)
         }else if(message.messageType=="RCChatroomUserQuit" && message.content.msgType=="1"){//直播结束
           that.setData({
             is_showEnd: true,
@@ -948,7 +1093,8 @@ Page({
     var that = this;
     that.setData({
       goodsInfo:"",
-      goodsAn:""
+      goodsAn:"",
+      ischatVoucher:"",
     })
     // var index = e.currentTarget.dataset.index;
     // for (var i = 0; i < that.data.newList.length; i++) {
@@ -1125,7 +1271,7 @@ Page({
             //   that.isLive();
             // }
         }
-
+        that.code();
         //========================================
         // chatRoom = im.ChatRoom.get({
         //   id:room_id+that.data.notice_id
@@ -1162,8 +1308,8 @@ Page({
                 wx.hideLoading();
                 that.setData({
                   is_showEnd:true,
-                  Audience:res.data.datas.res_anchor.watch_number?res.data.datas.res_anchor.watch_number:0,
-                  flowerNum:res.data.datas.res_anchor.get_flower?res.data.datas.res_anchor.get_flower:0,
+                  Audience:res.data.datas.res_anchor?res.data.datas.res_anchor.watch_number:0,
+                  flowerNum:res.data.datas.res_anchor?res.data.datas.res_anchor.get_flower:0,
                   isOnline:false,
                   hideCode:false
                 })
@@ -1937,7 +2083,7 @@ doubleClick: function (e) {
     //重新渲染关注
     im.unwatch();
     that.watchNews();
-
+    
 
     if(!is_connect){
       wx.request({

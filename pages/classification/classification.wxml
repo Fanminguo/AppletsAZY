@@ -26,7 +26,7 @@
 </view>
 <!-- banner -->
 <view class="bannerView" wx:if="{{bannerImg.banner_image!= ''}}">
-	<image src="{{bannerImg.banner_image}}"></image>
+	<image bindtap="goBanner" src="{{bannerImg.banner_image}}"></image>
 </view>
 <view class="commList">
 	<view class="commSingle fl">

@@ -4,6 +4,7 @@ var productsId;
 import navigateTo from "../../../utils/navigateRoute.js"
 const util = require('../../../utils/util.js')
 var http = require('../../../utils/httputils.js');
+import QRCode from '../../../utils/weapp-qrcode.js';
 Page({
 
 
@@ -34,7 +35,10 @@ Page({
         home: 0,
         follow: false,
         // status:2
-        SearchText:'订阅直播'
+        SearchText: '订阅直播',
+        hideCanvas: false,
+        shareHide: false,
+        posetrCodeUrl: "",//二维码
     },
 
     /**
@@ -50,17 +54,19 @@ Page({
                 store_id: store_id,
                 notice_id: notice_id,
                 agent_code: agent_code,
+                posetrCodeUrl: 'https://bj.aizhiyi.com/notice/?store_id=' + store_id + '&agent_code=' + agent_code + '&notice_id=' + notice_id
             })
-
+            console.log(1)
         } else {
+            console.log(2)
             this.setData({
                 store_id: options.store_id,
                 notice_id: options.notice_id,
                 agent_code: options.agent_code,
-                home: options.home
+                home: options.home,
+                posetrCodeUrl: 'https://bj.aizhiyi.com/notice/?store_id=' + options.store_id + '&agent_code=' + options.agent_code + '&notice_id=' + options.notice_id
             })
         }
-
         // 关联好友
         if (this.data.agent_code) {
             this.getFriend(this.data.agent_code);
@@ -68,6 +74,13 @@ Page({
         // 购物车数量
         this.noticeData()
         this.shopName()
+        this.code()
+    },
+    // 店铺
+    goHome: function () {
+        wx.redirectTo({
+            url: '../shopHome?store_id=' + this.data.store_id
+        })
     },
     // 店铺信息
     shopName: function () {
@@ -80,7 +93,6 @@ Page({
             (res) => {
                 that.setData({
                     follow: res.datas.store_info.is_favorate,
-                    hide: true,
                 });
                 if (that.data.follow) {
                     that.setData({
@@ -110,6 +122,7 @@ Page({
         let parms = {
             store_id: that.data.store_id,
             notice_id: that.data.notice_id,
+            cust_id: wx.getStorageSync('cust_id')
         }
         http.postRequest(app.globalData.apiUrl + '/cli/Products/live_data', parms,
             (res) => {
@@ -118,22 +131,36 @@ Page({
                     anchornotice_info: res.datas.anchornotice_info,
                     store_info: res.datas.store_info,
                     products_basket_count: res.datas.products_basket_count,
-                    hide: true,
                     status: res.datas.anchornotice_info.status,
+                    formatTwo:util.formatTimeTwo( res.datas.anchornotice_info.notice_start_time, ' M月'+'D日 h:m 开播')
                 })
-                console.log('----------' + that.data.status)
-                console.log('---------notice_start_time' + that.data.anchornotice_info.notice_start_time)
+                // let sjc = this.data.anchornotice_info.notice_start_time
+                // console.log(util.formatTimeTwo(this.data.anchornotice_info.notice_start_time, 'M月'+'D日 h点:m 开播');
+                // console.log(util.formatTime(this.data.anchornotice_info.notice_start_time, 'h:m'));
                 if (res.datas.is_online) {
-                    setTimeout(function () {
-                        wx.redirectTo({
-                            url:'../../live/live/live?store_id=' + that.data.store_info.store_id + '&is_share=yes' + "&notice_id=" + that.data.anchornotice_info.notice_id
-                        })
-                    }, 500)
+                    that.setData({
+                        hide: false,
+                    })
+                } else {
+                    that.setData({
+                        hide: true,
+                    })
+                }
+                if (res.datas.is_online) {
+                    wx.redirectTo({
+                        url: '../../live/live/live?store_id=' + that.data.store_info.store_id + '&is_share=yes' + "&notice_id=" + that.data.anchornotice_info.notice_id
+                    })
                 } else if (that.data.status == 2) {
                     wx.redirectTo({
                         url: '../videoWhole/videoWhole?store_id=' + that.data.store_info.store_id + "&notice_id=" + that.data.anchornotice_info.notice_id + '&home=' + 2
                     })
                 }
+                else if (that.data.status == 3) {
+                    wx.redirectTo({
+                        url: '../shopHome/shopHome?store_id=' + that.data.store_info.store_id + "&id=2" + '&home=' + 2
+                    })
+                }
+
                 // 倒计时
                 function grouptime() {
                     var day = 0,
@@ -241,6 +268,7 @@ Page({
             topHeight: wx.getMenuButtonBoundingClientRect().top
         })
     },
+  
     //购物车数量
     getCartNum: function () {
         var that = this
@@ -280,7 +308,7 @@ Page({
         this.videoContext.pause()
         wx.showLoading({
             title: '加载中...'
-          })
+        })
         this.setData({
             updateState: false //拖拽过程中，不允许更新进度条
         })
@@ -297,17 +325,85 @@ Page({
         }
     },
     bindplay: function () {
-        console.log(123333)
         setTimeout(function () {
-          wx.hideLoading()
-        }, 600) 
-      
-    
-      },
-      bindwaiting: function () {
+            wx.hideLoading()
+        }, 600)
+
+
+    },
+    bindwaiting: function () {
         this.videoContext.play()
-        console.log(222222)
-      },
+    },
+      // 引入海报banner
+    // 生成二维码   店铺
+    code: function (e) {
+        var that = this
+        console.log(that.data.posetrCodeUrl)
+        new QRCode('myQrcode', {
+            text: that.data.posetrCodeUrl,
+            // text:'https://bj.aizhiyi.com/notice/?store_id=331&agent_code=CUU1Q0L&notice_id=828',
+            width: 77,
+            height: 77,
+            padding: 1, // 生成二维码四周自动留边宽度，不传入默认为0
+            // correctLevel: QRCode.CorrectLevel.L, // 二维码可辨识度
+            callback: (res) => {
+                that.setData({
+                    hide: true,
+                    posetrCodeUrl: res.path
+                })
+                
+                console.log(res.path)
+            }
+        })
+    },
+    // 保存海报
+    saveimg: function () {
+        this.canvas = this.selectComponent("#canvas-demo"); //组件的id
+        this.saveimg()
+    },
+    // 保存海报
+    saveimg() {
+        this.canvas.saveimg(); //
+        this.setData({
+            hideCanvas: false,
+            shareHide: false
+          })
+    },
+    // 关闭
+    shareturn: function () {
+        this.setData({
+            hideCanvas: false,
+            shareHide: false
+        })
+        wx.hideLoading()
+    },
+    // 展示海报
+    shareShow: function () {
+        this.setData({
+            hideCanvas: true,
+            shareHide: true
+        })
+        this.canvas = this.selectComponent("#canvas-demo"); //组件的id
+        this.adaptation()
+    },
+    // 适配
+    adaptation() {
+        // 画canvas所需要的数据
+        // posetrCodeUrl页面二维码
+        // type= 1回放 2= 预告 3 = 直播
+        // kf_qr_img  客服二维码
+        // transverse_notice_image   海报banner
+        // store_name店铺名称
+        // store_avatar 店铺头像
+        // store_collect  粉丝数量
+        // notice_title 标题
+        // cust_nickname分享人
+        // cust_avatar  分享人头像
+        // fans 观看人数
+        // item 开播时间
+
+        this.canvas.adaptation(this.data.posetrCodeUrl, 2, this.data.anchornotice_info.kf_qr_img, this.data.anchornotice_info.transverse_notice_image, this.data.store_info.store_name, this.data.store_info.store_avatar, this.data.store_info.store_collect, this.data.anchornotice_info.notice_title, this.data.anchornotice_info.cust_nickname, this.data.anchornotice_info.cust_avatar, '', this.data.formatTwo);
+    },
     /**
      * 生命周期函数--监听页面显示
      */
@@ -350,7 +446,6 @@ Page({
     },
     gostatus1: function () {
         var that = this
-        console.log(1)
         wx.showModal({
             title: '',
             content: '直播结束',
@@ -361,7 +456,7 @@ Page({
 
                 } else if (res.confirm) {
                     wx.redirectTo({
-                        url: '../shopHome?store_id=' + that.data.store_info.store_id +"&id=" +2
+                        url: '../shopHome?store_id=' + that.data.store_info.store_id + "&id=" + 2
                     })
                 }
             }
@@ -378,7 +473,6 @@ Page({
                     SearchText: "订阅直播",
                 })
                 that.cancelhops()
-                console.log(1)
                 // 关注接口
             } else {
                 this.setData({
@@ -387,7 +481,6 @@ Page({
                     // 取关接口
                 })
                 that.payashops()
-                console.log(2)
 
             }
         } else {
@@ -475,9 +568,12 @@ Page({
     onShareAppMessage: function () {
         // var url = 'pages/shopHome/videoWhole/videoWhole?uri=' + this.data.vedioUrl + "&name=" + this.data.name + "&agent_code=" + wx.getStorageSync('agent_code')
         var url = 'pages/shopHome/videoNotice/videoNotice?notice_id=' + this.data.anchornotice_info.notice_id + '&store_id=' + this.data.store_info.store_id + "&agent_code=" + wx.getStorageSync('agent_code')
-        console.log(url)
         var title = this.data.anchornotice_info.notice_title
         var imageUrl = this.data.anchornotice_info.transverse_notice_image
+        this.setData({
+            hideCanvas: false,
+            shareHide: false
+          })
         return {
             title: title,
             path: url,
@@ -747,6 +843,7 @@ Page({
         this.choosegoods(products_id)
         productsId = products_id;
     },
+
 })
 function gup(name, url) {
     if (!url) url = location.href;

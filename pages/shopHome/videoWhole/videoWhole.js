@@ -4,6 +4,7 @@ var productsId;
 import navigateTo from "../../../utils/navigateRoute.js"
 const util = require('../../../utils/util.js')
 var http = require('../../../utils/httputils.js');
+import QRCode from '../../../utils/weapp-qrcode.js';
 Page({
 
   /**
@@ -28,7 +29,11 @@ Page({
     home: 0,
     number: -1,
     choose_num: "5",
-    gesture: false
+    gesture: false,
+    hideCanvas: false,
+    shareHide: false,
+    posetrCodeUrl: "",//二维码
+
   },
   doubleClick: function (e) {
     let diffTouch = this.touchEndTime - this.touchStartTime;
@@ -98,17 +103,32 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      store_id: options.store_id,
-      notice_id: options.notice_id,
-      agent_code:options.agent_code,
-      home: options.home
-    })
+    if (options.q) {
+      let queryAll = decodeURIComponent(options.q);
+      let store_id = gup('store_id', queryAll);
+      let notice_id = gup('notice_id', queryAll);
+      let agent_code = gup('agent_code', queryAll);
+      this.setData({
+        store_id: store_id,
+        notice_id: notice_id,
+        agent_code: agent_code,
+        posetrCodeUrl: 'https://bj.aizhiyi.com/playback/?store_id=' + store_id + '&agent_code=' + agent_code + '&notice_id=' + notice_id
+      })
+      console.log(1)
+    } else {
+      this.setData({
+        store_id: options.store_id,
+        notice_id: options.notice_id,
+        agent_code: options.agent_code,
+        home: options.home,
+        posetrCodeUrl: 'https://bj.aizhiyi.com/playback/?store_id=' + options.store_id + '&agent_code=' + options.agent_code + '&notice_id=' + options.notice_id
+      })
+    }
     if (this.data.agent_code) {
-      console.log(this.data.agent_code)
       this.getFriend(this.data.agent_code);
     }
     this.noticeData()
+    this.code()
   },
   // 精彩回放
   noticeData: function () {
@@ -116,6 +136,7 @@ Page({
     let parms = {
       store_id: that.data.store_id,
       notice_id: that.data.notice_id,
+      cust_id: wx.getStorageSync('cust_id')
     }
     http.postRequest(app.globalData.apiUrl + '/cli/Live/getPlayback', parms,
       (res) => {
@@ -123,7 +144,6 @@ Page({
           hide: true,
           video_info: res.datas.video_info
         })
-
       }, (err) => {
         wx.showToast({
           title: err.datas.error,
@@ -202,14 +222,81 @@ Page({
       updateState: true,
       topHeight: wx.getMenuButtonBoundingClientRect().top
     })
+
+
+  },
+  // 生成二维码   店铺
+  code: function (e) {
+    var that = this
+    new QRCode('myQrcode', {
+      text: that.data.posetrCodeUrl,
+      // text:'https://bj.aizhiyi.com/notice/?store_id=331&agent_code=CUU1Q0L&notice_id=828',
+      width: 77,
+      height: 77,
+      padding: 1, // 生成二维码四周自动留边宽度，不传入默认为0
+      // correctLevel: QRCode.CorrectLevel.L, // 二维码可辨识度
+      callback: (res) => {
+        console.log(res)
+        that.setData({
+          hide: true,
+          posetrCodeUrl: res.path
+        })
+        console.log(this.data.posetrCodeUrl)
+      }
+    })
+  },
+  // 保存海报
+  saveimg: function () {
+    this.canvas = this.selectComponent("#canvas-demo"); //组件的id
+    this.saveimg()
+
+  },
+  // 保存海报
+  saveimg() {
+    this.canvas.saveimg(); //
+    this.setData({
+      hideCanvas: false,
+      shareHide: false
+    })
+  },
+  // 关闭
+  shareturn: function () {
+    this.setData({
+      hideCanvas: false,
+      shareHide: false
+    })
+    wx.hideLoading()
+  },
+  // 展示海报
+  shareShow: function () {
+    this.setData({
+      hideCanvas: true,
+      shareHide: true
+    })
+    this.canvas = this.selectComponent("#canvas-demo"); //组件的id
+    this.adaptation()
   },
 
+  // 适配
+  adaptation() {
+    // 画canvas所需要的数据
+    // posetrCodeUrl页面二维码
+    // type=1   回放 2= 预告 3 = 直播
+    // kf_qr_img  客服二维码
+    // transverse_notice_image   海报banner
+    // store_name店铺名称
+    // store_avatar 店铺头像
+    // store_collect  粉丝数量
+    // notice_title 标题
+    // fans 观看人数
+    // item 开播时间
+    this.canvas.adaptation(this.data.posetrCodeUrl, 1, this.data.video_info.kf_qr_img, this.data.video_info.transverse_notice_image, this.data.video_info.store_name, this.data.video_info.store_avatar, this.data.video_info.store_collect, this.data.video_info.notice_title, this.data.video_info.cust_nickname, this.data.video_info.cust_avatar, '', '');
+  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
     this.getCartNum()
-    console.log(this.data.agent_code)
     this.getFriend(this.data.agent_code)
   },
 
@@ -389,6 +476,10 @@ Page({
     var url = 'pages/shopHome/videoWhole/videoWhole?store_id=' + this.data.store_id + "&notice_id=" + this.data.notice_id + "&agent_code=" + wx.getStorageSync('agent_code')
     var title = this.data.video_info.notice_title
     var imageUrl = this.data.video_info.transverse_notice_image
+    this.setData({
+      hideCanvas: false,
+      shareHide: false
+    })
     return {
       title: title,
       path: url,
@@ -517,7 +608,7 @@ Page({
     var that = this; //把this对象复制到临时变量that
     that.setData({
       products_map_spec: [],
-      chooseText:'默认'
+      chooseText: '默认'
     })
     const wxreq = wx.request({
       url: app.globalData.apiUrl + '/cli/Products/products_detail',
@@ -684,4 +775,12 @@ function decodeUnicode(str) {
     ret += spliteDecode(splits[i]);
   }
   return ret;
+}
+function gup(name, url) {
+  if (!url) url = location.href;
+  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+  var regexS = "[\\?&]" + name + "=([^&#]*)";
+  var regex = new RegExp(regexS);
+  var results = regex.exec(url);
+  return results == null ? null : results[1];
 }

@@ -1,0 +1,42 @@
+.box {
+	margin: 0% auto 0;
+	/* border-radius: 20rpx; */
+	overflow: hidden;
+	width: 516rpx;
+	height: 900rpx;
+	position: fixed;
+top: 0;
+left: 0;
+z-index: 9999;
+right: 0;
+/* background: #00f; */
+
+  }
+  
+  .demo {
+	z-index: 9999;
+  }
+
+  .boxCode{
+	  /*  position: fixed;
+	 top: 0;
+	  left: 0;
+	  bottom: 0;
+	  right: 0;
+	  width: 100%;
+	  height: 100%;
+	  z-index: 999; */
+	  /* background-color: rgba(0, 0, 0, 0.7); */
+  }
+  .btn{
+	  width: 400rpx;
+	  height: 80rpx;
+	  background-color: rgb(216, 35, 35);
+	  margin: 0 auto;
+	  margin-top: 20rpx;
+	  text-align: center;
+	  line-height: 80rpx;
+	  color: #fff;
+  }
+  
+	
